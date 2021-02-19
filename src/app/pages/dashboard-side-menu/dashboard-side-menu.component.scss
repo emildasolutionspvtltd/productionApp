@@ -1,0 +1,58 @@
+mat-drawer-container{height: 100%;}
+
+
+
+mat-drawer{
+    min-width: 240px;
+    background: #003C8F;
+}
+
+
+.blockUl{
+    padding:16px;
+
+}
+
+.blockLi{
+    
+}
+
+.blockUl>li{
+    color: white;
+    opacity: 45%;
+    padding: 12px 16px 12px 16px;
+    margin-bottom: 12px;
+
+   list-style: none;
+   line-height: 1;
+   font-size: 18px;
+}
+
+.profileIcon{
+    padding: 16px;
+    background: #00337B;
+}
+
+.active{
+    background:#1565C0 ;
+    border-radius: 8px;
+opacity: 100% !important;
+box-shadow: 0px 3px 12px #00000029;
+}
+.drawerContainer{
+    height: 100%;
+}
+
+
+.textMenu{
+    line-height: 1;
+    font-size: 16px;
+    margin: 0;
+    font-weight: 400;
+    padding-left: 10px;
+}
+.vesion{
+    color: #fff;
+    opacity: 45%;
+    text-align: center;
+}

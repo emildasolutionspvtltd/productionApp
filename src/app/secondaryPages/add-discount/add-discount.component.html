@@ -1,0 +1,18 @@
+<div>
+    <mat-form-field appearance="outline" style="width:250px; margin-right: 10px;">
+    <mat-label>Discount</mat-label>
+<input [(ngModel)]="discount" matInput type='number'>
+</mat-form-field>
+
+<mat-button-toggle-group #group="matButtonToggleGroup">
+    <mat-button-toggle style="width:50px;" value="sar" autofocus>
+        <mat-label>SAR</mat-label>
+    </mat-button-toggle>
+    <mat-button-toggle  style="width:50px;" value="percentage">
+        <mat-label>%</mat-label>
+    </mat-button-toggle>
+</mat-button-toggle-group>
+</div>
+<br>
+<button mat-raised-button (click)="getDiscount(group.value)" id="rightMargin" color="accent"
+    class="bigButton">Add</button>

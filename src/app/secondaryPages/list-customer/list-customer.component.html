@@ -1,0 +1,38 @@
+<div class="container">
+
+    <div fxLayout='row' fxLayoutAlign='space-between center' class="headingContainer">
+        <h3 class="heading3">Add Customer</h3>
+        <button (click)='closeDialog()'  mat-icon-button>
+            <mat-icon>highlight_off</mat-icon>
+        </button>
+    </div>
+<br>
+
+        <ng-autocomplete [data]="data" [searchKeyword]="keyword" (selected)='selectEvent($event)'
+        (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
+        [notFoundTemplate]="notFoundTemplate">
+      </ng-autocomplete>
+
+    <ng-template #itemTemplate let-item>
+        <a [innerHTML]="item.name"></a>
+        </ng-template>
+        
+        <ng-template #notFoundTemplate let-notFound>
+        <div [innerHTML]="notFound"></div>
+        </ng-template>
+<p *ngIf='searchResults.length == 0'  style="text-align: center;font-size: 16px;opacity: 70%;">Or</p>
+      <button *ngIf='searchResults.length == 0'   (click)='newCustomerModal()' mat-raised-button color="accent" class="bigButton">Create New Customer</button>
+
+      <!-- <mat-list *ngIf="searchResults.length != 0 && searchTermValue" role="list">
+          <div  *ngFor='let customer of searchResults ' class="div">
+            <mat-list-item (click)="saveCustomer(customer)" >{{customer.name}}</mat-list-item>
+            <mat-divider></mat-divider>
+
+
+          </div>
+      
+      </mat-list> -->
+
+      <p ></p>
+
+</div>

@@ -1,0 +1,76 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer #drawer mode='over' class="siders">
+    <div fxLayout="column" fxLayoutAlign="space-between" class="drawerContainer">
+
+      <div fxLayout='row' fxLayoutAlign='none center' fxLayoutGap='10px' class="profileIcon">
+
+        <img src="../../../assets/logo.png" alt="">
+        <div class="contentHolder">
+          <h4 style="line-height: 1; margin:0px ; color:white;font-size: 18px;">Hello Peter Paul !!</h4>
+          <p style='margin: 0; color: white;opacity:0.52;'>peterpaularasu@gmail.com</p>
+        </div>
+      </div>
+
+
+
+      <ul class="blockUl">
+
+        <li  class="blockLi" fxLayout='coloumn' fxLayoutAlign='start center' fxLayoutGap='10' (click)="routersCall('')"
+          routerLinkActive="active">
+          <mat-icon aria-hidden="false">dashboard</mat-icon>
+          <p class='textMenu'>Sales </p>
+        </li>
+
+        <li  class="blockLi" fxLayout='coloumn' fxLayoutAlign='start center' fxLayoutGap='10' (click)="routersCall('items')"
+          routerLinkActive="active">
+          <mat-icon aria-hidden="false">map</mat-icon>
+          <p class='textMenu'>Items </p>
+        </li>
+        <li class="blockLi" fxLayout='coloumn' fxLayoutAlign='start center' fxLayoutGap='10' (click)="routersCall('reports')"
+          routerLinkActive="active">
+          <mat-icon aria-hidden="false">category</mat-icon>
+          <p class='textMenu'>Reports </p>
+        </li>
+        <li class="blockLi" fxLayout='coloumn' fxLayoutAlign='start center' fxLayoutGap='10' (click)="routersCall('customers')"
+          routerLinkActive="active">
+          <mat-icon aria-hidden="false">category</mat-icon>
+          <p class='textMenu'>Customer </p>
+        </li>
+        <li class="blockLi" fxLayout='coloumn' fxLayoutAlign='start center' fxLayoutGap='10' (click)="routersCall('transactions')"
+          routerLinkActive="active">
+          <mat-icon aria-hidden="false">category</mat-icon>
+          <p class='textMenu'>Transactions </p>
+        </li>
+
+
+
+        <li class="blockLi" fxLayout='coloumn' fxLayoutAlign='start center' fxLayoutGap='10' (click)="routersCall('settings')"
+          routerLinkActive="active">
+          <mat-icon aria-hidden="false">settings</mat-icon>
+          <p class='textMenu'>Settings </p>
+        </li>
+
+        <li class="blockLi" fxLayout='coloumn' fxLayoutAlign='start center' fxLayoutGap='10' (click)="routersCall('register')">
+          <mat-icon aria-hidden="false">lock</mat-icon>
+          <p class='textMenu'>Logout </p>
+        </li>
+
+      </ul>
+
+
+
+
+
+      <p class="vesion">Roza POS Version 0.1 </p>
+
+
+
+    </div>
+
+
+  </mat-drawer>
+  <mat-drawer-content class="container">
+
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

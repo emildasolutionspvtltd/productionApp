@@ -1,0 +1,17 @@
+<div>
+    <button (click)='closeDialog()' style="float: right;" mat-icon-button>
+        <mat-icon>highlight_off</mat-icon>
+    </button>
+    <br>
+<mat-button-toggle-group #group="matButtonToggleGroup">
+    <mat-button-toggle style="width:50px;" value="sucess" autofocus>
+        <mat-label>Sucess</mat-label>
+    </mat-button-toggle>
+    <mat-button-toggle  style="width:50px;" value="failure">
+        <mat-label>Failure</mat-label>
+    </mat-button-toggle>
+</mat-button-toggle-group>
+</div>
+<br>
+<button mat-raised-button (click)="outcome(group.value)" id="rightMargin" color="accent"
+    class="bigButton">Add</button>

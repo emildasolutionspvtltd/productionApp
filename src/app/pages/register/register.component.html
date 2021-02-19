@@ -1,0 +1,52 @@
+<div fxLayout='row' fxLayoutAlign='center center' class="container">
+    <mat-card class="registerHolder">
+  <div class="titleHolder" fxLayout='row' fxLayoutAlign='space-between center'>
+    <h4 class='registerHeading'>Register</h4>   
+    <button routerLink='/login' mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+        <mat-icon>highlight_off</mat-icon>
+      </button>
+  </div>
+
+  <br>
+
+<form [formGroup]="registerForm" class="formdata">
+
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input  formControlName="name" matInput type='text' >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email Id</mat-label>
+        <input formControlName='email' matInput type='email' >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Mobile Number</mat-label>
+        <input formControlName='mobileNumber' matInput type='tel' >
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input formControlName='password' matInput type='password' >
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Re - Type Password</mat-label>
+        <input formControlName='rePassword' matInput type='password' >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Serial Key</mat-label>
+        <input formControlName='serialKey' matInput type='text' >
+      </mat-form-field>
+
+
+
+
+</form>
+<button (click)='register()' class="bigButton" color='accent' mat-raised-button>Register</button>
+    </mat-card>
+    
+</div>

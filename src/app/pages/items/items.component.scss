@@ -1,0 +1,27 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+
+
+.container{
+  background: #ECEFF1;
+  height: 100%;
+
+}
+
+
+
+.itemsCard{
+margin: 0 auto;
+   padding-bottom: 0px;
+   table{
+     width: 100%;
+   }
+}
+
+.verticalCardContainer{
+  height: 85%;
+  padding-left: 20px;
+  padding-right: 20px;
+}

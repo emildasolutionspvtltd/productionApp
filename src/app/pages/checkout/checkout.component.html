@@ -1,0 +1,204 @@
+<div fxLayout='column' class="flexContainer">
+
+
+
+  <mat-toolbar color='primary' class="mat-elevation-z3">
+    <button mat-icon-button (click)="drawerToggle()">
+      <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">dehaze</mat-icon>
+    </button>
+    <p class="toolbarHeading">
+      Rozana Al Riyadh | صلصة الطماطم </p>
+
+    <span class="example-spacer"></span>
+    <div style="width: 200px; background-color:#3f51b5;border-bottom: black 5px;">
+      <ng-autocomplete [data]="data" [searchKeyword]="keyword" (selected)='selectEvent($event)'
+        (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
+        [notFoundTemplate]="notFoundTemplate">
+      </ng-autocomplete>
+    </div>
+    <ng-template #itemTemplate let-item>
+      <a [innerHTML]="item.name"></a>
+    </ng-template>
+
+    <ng-template #notFoundTemplate let-notFound>
+      <div [innerHTML]="notFound"></div>
+    </ng-template>
+
+    <div class="buttonHolder">
+
+
+
+      <button [matMenuTriggerFor]="menu" (click)="searchItem()" mat-icon-button>
+        <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">search</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button (click)="insertData(item)" mat-menu-item
+          *ngFor="let item of sesarchItem | appFilter: searchText">{{item.name}}</button>
+      </mat-menu>
+      <button mat-icon-button>
+        <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">more_vert</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <div style="overflow-y: hidden;" fxLayout='row' fxLayoutGap='18px' class="checkoutContainer">
+
+    <mat-card style="overflow-y: scroll;padding: 0px;" fxFlex='75' class="listCard">
+      <table mat-table [dataSource]="dataSource">
+
+        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="barcode">
+          <th mat-header-cell *matHeaderCellDef>Barcode / Id</th>
+          <td mat-cell *matCellDef="let element"> {{element.barcode}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef> Quantity </th>
+          <td mat-cell *matCellDef="let element"> {{element.quantity}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="cost">
+          <th mat-header-cell *matHeaderCellDef> Cost </th>
+          <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tax">
+          <th mat-header-cell *matHeaderCellDef> Tax </th>
+          <td mat-cell *matCellDef="let element"> {{element.tax}}%</td>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+          <th mat-header-cell *matHeaderCellDef> Total </th>
+          <td mat-cell *matCellDef="let element"> {{element.total}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="buttons">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let element">
+            <button [matMenuTriggerFor]="menu" mat-icon-button>
+              <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+
+
+              <button (click)="options(element)" mat-menu-item>
+                <mat-icon>create</mat-icon>
+                <span>Edit Item</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon style="color: red;">delete</mat-icon>
+                <span style="color: red;">Delete Item</span>
+              </button>
+
+
+            </mat-menu>
+          </td>
+        </ng-container>
+
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="options(row)"></tr>
+
+      </table>
+
+
+      <br>
+
+
+
+    </mat-card>
+
+    <mat-card fxFlex='25' fxLayout='column' fxLayoutAlign='space-between' class="cartCard">
+      <div class="grandTotalContainer">
+        <p class='headingValues'>Grand Total</p>
+        <p class='totalValue'>{{totalCost}} <span class="currency">SAR</span> </p>
+      </div>
+
+
+      <div fxFlexAlign="none" class="paymentMode">
+
+        <div class="headingValues">
+          Payment Mode
+        </div>
+        <br>
+        <div style='padding-bottom: 10px;' fxLayout='row' fxLayoutGap='10px' class="paymentContainer">
+
+
+          <!-- <div (click)="changeModePayment('cash')"
+            [ngClass]="selectedPaymentMode == 'cash' ? 'selectedButtonOfPaymentMode': ''" matRipple fxFlex='50'
+            fxLayout='column' fxLayoutAlign='center center' class="buttonOfPaymentMode">
+            
+          </div> -->
+          <mat-selection-list #shoes style=" display: flex;  
+          flex-wrap: wrap;" [multiple]="false">
+            <mat-list-option *ngFor="let shoe of typesOfShoes"
+              (click)="changeModePayment(shoes.selectedOptions.selected[0]?.value)" [value]="shoe">
+              {{shoe.paymentName}}
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
+      </div>
+
+
+
+
+      <div class="subValuesContainer">
+        <div class="subValuesHolder" fxLayout="row" fxLayoutAlign="space-between center">
+          <p class='subValuesField'>Discount </p>
+          <p class='subValues'>{{finalDiscount}}</p>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="subValuesHolder" fxLayout="row" fxLayoutAlign="space-between center">
+          <p class='subValuesField'>Tax </p>
+          <p class='subValues'>125.00</p>
+        </div>
+        <mat-divider></mat-divider>
+        <div style="padding-bottom:0px" class="subValuesHolder" fxLayout="row" fxLayoutAlign="space-between center">
+          <p class='subValuesField'>Total </p>
+          <p class='subValues'>{{finalTotal}}</p>
+        </div>
+      </div>
+
+
+    </mat-card>
+
+  </div>
+
+  <div fxLayout='row' fxLayoutGap='18px' class="buttonsContainer">
+
+    <div fxFlex='75' fxLayout='row' fxLayoutAlign='space-between center' class="secondaryButton">
+      <mat-form-field style="height: 45px; border-top: 0;" appearance="outline">
+        <mat-label>Barcode</mat-label>
+        <input cdk-focus-start id="codeInput" [formControl]='searchBar' matKeyboard='oh' autofocus matInput>
+      </mat-form-field>
+      <button (click)='addCustomer()' fxFlex='25' class='buttonSeconday' mat-raised-button>
+        <mat-icon>people</mat-icon>&nbsp; Add Customer
+      </button>
+      <button (click)='addDiscount()' fxFlex='25' class='buttonSeconday' mat-raised-button>
+        <mat-icon>local_offer</mat-icon>&nbsp; Add Discount
+      </button>
+
+    </div>
+    <div fxFlex='25' class="primaryButton">
+      <button (click)='checkOut()' color="accent" fxFlex='100' class='primarySeconday' mat-raised-button>Charge</button>
+
+    </div>
+
+  </div>
+
+
+
+
+</div>

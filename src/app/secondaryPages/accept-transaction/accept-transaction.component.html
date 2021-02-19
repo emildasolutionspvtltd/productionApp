@@ -1,0 +1,28 @@
+<div>
+    <div fxLayout='row' fxLayoutAlign='space-between center' class="headingContainer">
+        <h3 class="heading3">Return Item</h3>
+        <button (click)='closeDialog()' mat-icon-button>
+            <mat-icon>highlight_off</mat-icon>
+        </button>
+    </div>
+    <mat-selection-list #shoes [(ngModel)]="selectedOptions" (ngModelChange)="onNgModelChange($event)">
+        <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
+            <table>
+            <tr>
+                <td>{{shoe.barcode}}</td>
+                <td>{{shoe.name}}</td>
+                <td>{{shoe.quantity}}</td>
+                <td>{{shoe.price}}</td>
+              </tr>
+            </table>
+        </mat-list-option>
+      </mat-selection-list>
+      
+      <p>
+        Options selected: {{shoes.selectedOptions.selected.length}}<br>
+                Return Item price :{{totalPrice}}<br>
+                
+      </p>
+      <button  mat-raised-button (click)='submit()' color="accent" class="bigButton">Save</button>
+
+</div>

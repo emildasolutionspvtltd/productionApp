@@ -1,0 +1,81 @@
+<div class="container">
+    <div fxLayout='row' fxLayoutAlign='space-between center' class="headingContainer">
+        <h3 class="heading3">Add Items</h3>
+        <button (click)='closeDialog()' mat-icon-button>
+            <mat-icon>highlight_off</mat-icon>
+        </button>
+    </div>
+    <br>
+    <form [formGroup]='itemForm'>
+    <mat-form-field appearance="outline">
+        <mat-label>{{itembarcode}} </mat-label>
+        <input formControlName='barcode' autofocus matInput type='text' [(ngModel)]="itembarcode">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>{{itemname}} </mat-label>
+        <input formControlName='name' autofocus matInput type='text' [(ngModel)]="itemname">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>{{itemarabic}}</mat-label>
+        <input formControlName='nameInArabic' autofocus matInput type='text' [(ngModel)]="itemarabic">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>{{itemcat}}</mat-label>
+        <mat-select formControlName='category' [(ngModel)]="itemcat">
+            <mat-option *ngFor="let category of categories" [value]="category.categoryName" >
+                {{category.categoryName}} </mat-option>
+               
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field id="rightMargin"  appearance="outline">
+        <mat-label>{{itemmrp}} </mat-label>
+        <input formControlName='mrp' autofocus matInput type='number' [(ngModel)]="itemmrp">
+
+    </mat-form-field>
+    <mat-form-field id="leftMargin" appearance="outline">
+        <mat-label>{{itemprice}}</mat-label>
+        <input formControlName='price' autofocus matInput type='number' [(ngModel)]="itemprice">
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>select tax</mat-label>
+        <mat-select formControlName='tax' [(ngModel)]="itemtax">
+            <mat-option value="food1">
+                Chinna </mat-option>
+            <mat-option value="food1">
+                Chinna </mat-option>
+            <mat-option value="food1">
+                Chinna </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field id="rightMargin" appearance="outline">
+        <mat-label>{{iteminven}}</mat-label>
+        <input formControlName='inventory' autofocus matInput type='number' [(ngModel)]="iteminven">
+
+    </mat-form-field>
+
+
+    <mat-form-field id="leftMargin" appearance="outline">
+        <mat-label>select units</mat-label>
+        <mat-select formControlName='unit' [(ngModel)]="itemunit">
+            <mat-option value="food1">
+                Chinna </mat-option>
+            <mat-option value="food1">
+                Chinna </mat-option>
+            <mat-option value="food1">
+                Chinna </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+</form>
+
+<!-- (click)='submit()' -->
+    <button  mat-raised-button (click)='submit()' color="accent" class="bigButton">Save</button>
+</div>

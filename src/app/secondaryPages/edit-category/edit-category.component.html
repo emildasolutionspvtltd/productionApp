@@ -1,0 +1,20 @@
+<div class="container">
+    <div  fxLayout='row' fxLayoutAlign='space-between center' class="headingContainer">
+    <h3 class="heading3">Add Cateogry</h3>
+    <button (click)='closeDialog()'  mat-icon-button>
+        <mat-icon>highlight_off</mat-icon>
+      </button>
+    </div>
+    <br>
+        <mat-form-field appearance="outline">
+            <mat-label>{{catname}}</mat-label>
+            <input [formControl]='categoryName' autofocus matInput type='text' >
+
+          </mat-form-field>
+    
+    
+    
+    
+    
+        <button (click)='submit()' mat-raised-button color="accent" class="bigButton">Save</button>
+    </div>

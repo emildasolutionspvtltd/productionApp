@@ -1,0 +1,31 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+
+
+.container{
+  background: #ECEFF1;
+  height: 100%;
+}
+.custom-file-upload {
+  width: 100px;
+  height: 50px;
+  margin-left: 40%;
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload1 {
+  width: 200px;
+  margin-left: 40%;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  color: gold;
+}

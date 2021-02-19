@@ -1,0 +1,46 @@
+<div class="container">
+    <div fxLayout='row' fxLayoutAlign='space-between center' class="headingContainer">
+        <h3 class="heading3">Add New Customer</h3>
+        <button (click)='closeDialog()'  mat-icon-button>
+            <mat-icon>highlight_off</mat-icon>
+        </button>
+    </div>
+<br>
+    <form [formGroup]='customerForm' >
+
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input formControlName='name' autofocus matInput type='text'>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email Id</mat-label>
+            <input formControlName='email' autofocus matInput type='email'>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input formControlName='phNumber' autofocus matInput type='tel'>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+            <mat-label>Notes</mat-label>
+            <input formControlName='notes' autofocus matInput type='text'>
+        </mat-form-field>
+
+
+    
+
+
+    </form>
+
+
+
+    <button (click)='submit()' mat-raised-button color="accent" class="bigButton">Save</button>
+
+
+
+</div>
