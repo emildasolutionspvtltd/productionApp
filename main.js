@@ -277,3 +277,7 @@ ipcMain.handle('getTransac', async (event, id) => {
     });
 
 })
+ipcMain.handle('getPrinter', async (event) => {
+    let printersInfo = win.webContents.getPrinters();
+    return printersInfo
+})

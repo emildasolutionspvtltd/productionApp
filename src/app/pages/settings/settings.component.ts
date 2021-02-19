@@ -18,16 +18,21 @@ export class SettingsComponent implements OnInit {
   dataSource:MatTableDataSource<any>
   dataSource1:MatTableDataSource<any>
   displayedColumns1: string[] = ['payName', 'paynotes','button'];
-
+  printerName
   // gets all the previous payment mode and taxes
   constructor(@Inject(SecondaryService) private secService:SecondaryService,private dialog:MatDialog,private db:DatabaseService) {
     this.getTax()
     this.getPay()
+    this.getPrinter()
    }
    infoForm = new FormGroup({
      header : new FormControl('',Validators.required),
      footer : new FormControl('',Validators.required)
    })
+   printerForm = new FormGroup({
+    recieptPrinter: new FormControl('',Validators.required),
+    labelPrinter: new FormControl('',Validators.required),
+  });
   ngOnInit(): void {
   }
 
@@ -93,5 +98,9 @@ export class SettingsComponent implements OnInit {
   addInfo(){
     console.log(this.infoForm)
   }
-
+  getPrinter(){
+    this.db.getPrinter().then(x=>{
+      this.printerName = x
+    })
+  }
 }

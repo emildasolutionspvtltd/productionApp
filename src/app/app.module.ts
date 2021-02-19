@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './pages/login/login.component';
 // import { IKeyboardLayouts, keyboardLayouts, MAT_KEYBOARD_LAYOUTS, MatKeyboardModule } from 'angular-onscreen-material-keyboard';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatRippleModule} from '@angular/material/core';
@@ -70,7 +70,7 @@ import { AddPaymentComponent } from './secondaryPages/add-payment/add-payment.co
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { DisplayCheckoutComponent } from './secondaryPages/display-checkout/display-checkout.component';
 import { AcceptTransactionComponent } from './secondaryPages/accept-transaction/accept-transaction.component';
-
+import {MatNativeDateModule} from '@angular/material/core';
 // const customLayouts: IKeyboardLayouts = {
 //   ...keyboardLayouts,
 //   'oh': {
@@ -152,7 +152,9 @@ import { AcceptTransactionComponent } from './secondaryPages/accept-transaction/
     MatButtonToggleModule,
     MatAutocompleteModule,
     MatTabsModule,
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
 
   ],
   providers: [

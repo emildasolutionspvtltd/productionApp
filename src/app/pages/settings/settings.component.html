@@ -133,32 +133,38 @@
                 </mat-card>
             </div>
             <br>
-            <div style="padding: 20px;">
-                <p style="width: 200px; font-size: large; margin: 0px,0px,0px,0px;">
-                    Printer
-                </p>
-                <mat-label>Reciept Printer</mat-label>
-                <mat-form-field style="float: right;" appearance="fill">
-                    <mat-label>Reciept Printer Name</mat-label>
-                    <mat-select>
-                        <mat-option value="one">First option</mat-option>
-                        <mat-option value="two">Second option</mat-option>
-                    </mat-select>
-                </mat-form-field>
+            <form [formGroup]="printerForm">
+                <div style="padding: 20px;">
+
+                    <p style="width: 200px; font-size: large; margin: 0px,0px,0px,0px;">
+                        Printer
+                    </p>
+
+                    <mat-label>Reciept Printer</mat-label>
+                    <mat-form-field style="float: right;" appearance="fill">
+                        <mat-label>Reciept Printer Name</mat-label>
+                        <mat-select formControlName='recieptPrinter'>
+                            <mat-option value="one">First option</mat-option>
+                            <mat-option value="two">Second option</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+                </div>
                 <br>
-            </div>
-            <br>
-            <div style="padding: 20px;">
-                <mat-label>Label Printer</mat-label>
-                <mat-form-field style="float: right;" appearance="fill">
-                    <mat-label>Label Printer Name</mat-label>
-                    <mat-select>
-                        <mat-option value="one">First option</mat-option>
-                        <mat-option value="two">Second option</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <br>
-            </div>
+                <div style="padding: 20px;">
+                    <mat-label>Label Printer</mat-label>
+                    <mat-form-field style="float: right;" appearance="outline">
+                        <mat-label>Label Printer Name</mat-label>
+                        <mat-select formControlName='labelPrinter'>
+                            <mat-option *ngFor="let printer of printerName" [value]="printerName">
+                                {{printer.name}} </mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+                </div>
+            </form>
+
             <div style="padding: 20px;">
                 <p style="width: 200px; font-size: large; margin: 0px,0px,0px,0px;">
                     Printer Info

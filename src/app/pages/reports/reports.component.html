@@ -17,6 +17,24 @@
         </button>
     </div>
 </mat-toolbar>
+<mat-card>
+    <form [formGroup]="reportForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Type of Report</mat-label>
+            <select formControlName="type" matNativeControl required>
+              <option value="sales">Report Sales</option>
+              <option value="item">Items</option>
+            </select>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Enter a date range</mat-label>
+            <input formControlName="date" matInput [matDatepicker]="mydatepicker"> 
+            <mat-datepicker-toggle [for]="mydatepicker" matSuffix></mat-datepicker-toggle>
+            <mat-datepicker #mydatepicker></mat-datepicker>
+          </mat-form-field>
+    </form>
+</mat-card>
 
 
 </div>

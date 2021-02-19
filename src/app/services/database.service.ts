@@ -138,4 +138,7 @@ deleteTransaction(id){
 getTransac(id){
   return this.electron.ipcRenderer.invoke('getTransac',id)
 }
+getPrinter(){
+  return this.electron.ipcRenderer.invoke('getPrinter')
+}
 }
