@@ -42,14 +42,11 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-        <mat-label>select tax</mat-label>
-        <mat-select formControlName='tax' [(ngModel)]="itemtax">
-            <mat-option value="food1">
-                Chinna </mat-option>
-            <mat-option value="food1">
-                Chinna </mat-option>
-            <mat-option value="food1">
-                Chinna </mat-option>
+         <mat-label>Tax</mat-label>
+         <mat-select formControlName='tax'>
+            <mat-option *ngFor="let tax of taxes" [value]="tax.taxName">
+                {{tax.taxName}} </mat-option>
+               
         </mat-select>
     </mat-form-field>
 

@@ -141,4 +141,7 @@ getTransac(id){
 getPrinter(){
   return this.electron.ipcRenderer.invoke('getPrinter')
 }
+getBetweenDates(a,b){
+  return this.electron.ipcRenderer.invoke('getBetweenDates',a,b)
+}
 }

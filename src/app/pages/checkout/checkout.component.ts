@@ -46,7 +46,8 @@ export class CheckoutComponent implements OnInit {
   discountType: any
   totalCost: number = 0
   typesOfShoes = [];
-
+  allTaxes
+finalTax: number = 0
   // gets value for search bar and payment modes from settings
   constructor(private matBottom: MatBottomSheet, private checkService: CheckoutServiceService, private dialog: MatDialog, private databaseService: DatabaseService, @Inject(SecondaryService) private secService: SecondaryService) {
     this.searchBar.valueChanges.subscribe(res => {
@@ -61,8 +62,15 @@ export class CheckoutComponent implements OnInit {
 
       this.typesOfShoes = x
     })
-  }
 
+    this.getTaxes()
+  }
+getTaxes(){
+  this.databaseService.getTax().then(x =>{
+    console.log(x)
+    this.allTaxes = x
+  })
+}
 
   /// this searches for the item when barcode is inserted
   searchBarcode(bar) {
@@ -200,6 +208,7 @@ export class CheckoutComponent implements OnInit {
     this.finalTotal = 0
     for (var index1 in data) {
       this.one[index1] = data[index1].total;
+      this.two
       this.finalTotal = this.finalTotal + this.one[index1]
     }
     this.getFinalDiscount()

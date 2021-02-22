@@ -281,3 +281,10 @@ ipcMain.handle('getPrinter', async (event) => {
     let printersInfo = win.webContents.getPrinters();
     return printersInfo
 })
+
+
+ipcMain.handle('getBetweenDates', async (event, a,b) => {
+
+    return db.find({ $and: [{ time: {$gte: a} }, { time: { $lt: b } }] }, function (err, docs) {
+      });
+})

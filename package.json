@@ -2,6 +2,7 @@
   "name": "desktopapp",
   "version": "0.0.0",
   "main": "main.js",
+  "author": "kriti kadolkar",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -54,6 +55,7 @@
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
     "electron": "^11.2.1",
+    "electron-builder": "^22.9.1",
     "electron-packager": "^15.2.0",
     "firebase-tools": "^8.0.0",
     "fuzzy": "^0.1.3",

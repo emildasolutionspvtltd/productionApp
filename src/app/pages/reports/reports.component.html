@@ -17,24 +17,33 @@
         </button>
     </div>
 </mat-toolbar>
-<mat-card>
+<div class="main-div">
+<mat-card style="max-width: 50%; text-align: center;">
     <form [formGroup]="reportForm">
         <mat-form-field appearance="outline">
             <mat-label>Type of Report</mat-label>
-            <select formControlName="type" matNativeControl required>
-              <option value="sales">Report Sales</option>
-              <option value="item">Items</option>
-            </select>
+            <mat-select (selectionChange)="doSomething($event)" formControlName="type" matNativeControl required>
+              <mat-option value="sales">Report Sales</mat-option>
+              <mat-option value="item">Items</mat-option>
+            </mat-select>
           </mat-form-field>
           <br>
-          <mat-form-field appearance="fill">
-            <mat-label>Enter a date range</mat-label>
-            <input formControlName="date" matInput [matDatepicker]="mydatepicker"> 
+          <mat-form-field appearance="outline">
+            <mat-label>Enter a start date</mat-label>
+            <input formControlName="startdate" matInput [matDatepicker]="mydatepicker" [disabled]="disableSelect"> 
             <mat-datepicker-toggle [for]="mydatepicker" matSuffix></mat-datepicker-toggle>
             <mat-datepicker #mydatepicker></mat-datepicker>
           </mat-form-field>
+          <br>
+          <mat-form-field appearance="outline">
+            <mat-label>Enter a end date</mat-label>
+            <input formControlName="enddate" matInput [matDatepicker]="mydatepicker1" [disabled]="disableSelect"> 
+            <mat-datepicker-toggle [for]="mydatepicker1" matSuffix></mat-datepicker-toggle>
+            <mat-datepicker #mydatepicker1></mat-datepicker>
+          </mat-form-field>
     </form>
+    <button (click)='submit()' mat-raised-button color="accent" class="bigButton">Save</button>
 </mat-card>
-
+</div>
 
 </div>

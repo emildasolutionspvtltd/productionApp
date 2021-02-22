@@ -15,6 +15,7 @@ export class EditItemsComponent implements OnInit {
   constructor(private router :Router,private dialog:MatDialog,private db:DatabaseService, @Inject(SecondaryService) private secService: SecondaryService,@Inject(MAT_DIALOG_DATA) public data: any) {
     this.getAllCategory()
     this.getInfo()
+    this.getTax()
    }
    a :any
    itembarcode
@@ -27,6 +28,7 @@ export class EditItemsComponent implements OnInit {
    iteminven
    itemunit
    categories
+   taxes
   itemForm = new FormGroup({
     type : new FormControl('items'),
     barcode: new FormControl('', Validators.required),
@@ -51,7 +53,12 @@ export class EditItemsComponent implements OnInit {
      this.categories=allCategory
     })
   }
-
+  getTax(){
+    this.db.getTax().then(x=>{
+      console.log(x)
+    this.taxes = x
+    })
+    }
   // gets the requires data from database
   getInfo(){
   

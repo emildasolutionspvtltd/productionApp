@@ -31,7 +31,7 @@ itemscount : any
  dataSource : MatTableDataSource<Items>
  categoryData:MatTableDataSource<any>
  displayedColumnsCategory:string[]=['name','count','button']
- 
+ allTaxes
  displayedColumns: string[] = ['name', 'inventory', 'price','button'];
 
  // get all the items and categories
@@ -40,6 +40,7 @@ this.getCountCategory()
    this.getTabelAllItems()
    this.getAllCategory()
    this.getCountItems()
+   this.getTax()
   }
 
   ngOnInit(): void {
@@ -91,7 +92,14 @@ this.getCountCategory()
       console.log('The dialog was closed');
     });
   }
-
+  async getTax(){ 
+    this.db.getTax().then(x =>{
+      console.log(x)
+      this.allTaxes = x
+    })
+     
+       
+     }
 
 
 

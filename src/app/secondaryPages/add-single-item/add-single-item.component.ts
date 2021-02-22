@@ -34,16 +34,22 @@ export class AddSingleItemComponent implements OnInit {
 
 dataSource = this.items;
 categories
-
+taxes
 displayedColumns: string[] = ['name', 'inventory', 'price'];
 
   constructor(private dialog: MatDialog , private db:DatabaseService,private secService:SecondaryService) { 
     
 this.getAllCategory()
+this.getTax()
   }
 
 // finction t getr all the category
-
+getTax(){
+this.db.getTax().then(x=>{
+  console.log(x)
+this.taxes = x
+})
+}
    getAllCategory(){
      this.db.getAllCategory().then(allCategory=>{
        console.log(allCategory)
