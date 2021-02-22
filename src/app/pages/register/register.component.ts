@@ -45,27 +45,34 @@ console.log(x)
 
 
   register() {
-    console.log(this.registerForm.value)
+
+    //Password Match 
     if (this.registerForm.value.password == this.registerForm.value.rePassword) {
+
+      //form Validation 
       if (this.registerForm.valid) {
+
+        //Validate Key 
         this.db.validateKey(this.registerForm.value.serialKey).then(x=>{
 console.log(x)
 this.secService.presentSanckBar('You have registered successfully', 'success')
         }).catch(err=>{
-          console.log(err)
+
+          this.secService.presentSanckBar("sum", 'g')
+
         })
         this.registerForm.reset()
        // this.db.registerUser(this.registerForm.valid)
        
       }
       else{
-        this.secService.presentSanckBar('Please enter correct value', 'ok')
+        this.secService.presentSanckBar('Please enter correct value', 'success')
 
       }
 
     }
     else {
-      this.secService.presentSanckBar('Passwords do not match', 'ok')
+      this.secService.presentSanckBar('Passwords do not match', 'danger')
     }
 
   }
