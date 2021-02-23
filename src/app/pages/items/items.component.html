@@ -22,7 +22,7 @@
 
         <mat-card fxFlex='70%' style="overflow-y: scroll;height: 100%;" class="itemsCard">
             <div fxLayout='row' fxLayoutAlign='space-between center' class="hedingContainer">
-                <p style="color:#2C2C2C  ;" class="toolbarHeading">List of Items</p>
+                <p style="color:#2C2C2C  ;" class="heading3">List of Items</p>
                 <input style="width: 200px;border-bottom: 1px solid black;" matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
                 <button mat-icon-button>
                     <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">search</mat-icon>
@@ -160,21 +160,21 @@ style="position: fixed; max-width: 150px; bottom: 10px;right: 10px;" class="bigB
             <mat-icon matListIcon>add_box
             </mat-icon>
     
-            <h4 matLine> Add Single Item </h4>
+            <p matLine> Add Single Item </p>
         
         </mat-list-item>
         <mat-divider></mat-divider>
     
         <mat-list-item (click)="routeToBulk()">
             <mat-icon matListIcon>add_to_photos</mat-icon>
-            <h4 matLine> Add Items In Bulk </h4>
+            <p matLine> Add Items In Bulk </p>
              </mat-list-item>
             <mat-divider></mat-divider>
     
         <mat-list-item (click)="routeToCategory()">
     
             <mat-icon matListIcon>add_task</mat-icon>
-            <h4 matLine> Add Categories </h4>
+            <p matLine> Add Categories </p>
        
     </mat-list-item>
     </mat-nav-list>
