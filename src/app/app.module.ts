@@ -71,6 +71,8 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { DisplayCheckoutComponent } from './secondaryPages/display-checkout/display-checkout.component';
 import { AcceptTransactionComponent } from './secondaryPages/accept-transaction/accept-transaction.component';
 import {MatNativeDateModule} from '@angular/material/core';
+import { EditTaxComponent } from './secondaryPages/edit-tax/edit-tax.component';
+import { EditPayComponent } from './secondaryPages/edit-pay/edit-pay.component';
 // const customLayouts: IKeyboardLayouts = {
 //   ...keyboardLayouts,
 //   'oh': {
@@ -115,6 +117,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     AddPaymentComponent,
     DisplayCheckoutComponent,
     AcceptTransactionComponent,
+    EditTaxComponent,
+    EditPayComponent,
   ],
   imports: [
     BrowserModule,

@@ -42,8 +42,8 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-         <mat-label>Tax</mat-label>
-         <mat-select formControlName='tax'>
+         <mat-label>{{itemtax}}</mat-label>
+         <mat-select formControlName='tax' [(ngModel)]="itemtax">
             <mat-option *ngFor="let tax of taxes" [value]="tax.taxName">
                 {{tax.taxName}} </mat-option>
                

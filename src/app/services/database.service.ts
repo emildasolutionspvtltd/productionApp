@@ -144,4 +144,22 @@ getPrinter(){
 getBetweenDates(a,b){
   return this.electron.ipcRenderer.invoke('getBetweenDates',a,b)
 }
+
+delete(id){
+  return this.electron.ipcRenderer.invoke('delete',id)
+}
+
+getinfo(id){
+  return this.electron.ipcRenderer.invoke('getInfo',id)
+}
+
+updatePay(id,data){
+  return this.electron.ipcRenderer.invoke('editPay',id,data)
+  }
+  updateTax(id,data){
+    return this.electron.ipcRenderer.invoke('editTax',id,data)
+    }
+    getTaxInEx(tax){
+      return this.electron.ipcRenderer.invoke('getInEx',tax)
+    }
 }

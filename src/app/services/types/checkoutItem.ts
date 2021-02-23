@@ -11,5 +11,6 @@ export interface CheckoutItem {
     inventory?: number,
     unit?: string
     id?: string,
-    total?:number
+    total?:number,
+    inEx?:any
 }

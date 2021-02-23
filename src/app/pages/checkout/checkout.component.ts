@@ -29,6 +29,7 @@ export class CheckoutComponent implements OnInit {
   itemCount
   itemInfo
   itemId
+  taxInEx
   sesarchItem
   data = [];
   one: string[] = ['']
@@ -47,7 +48,10 @@ export class CheckoutComponent implements OnInit {
   totalCost: number = 0
   typesOfShoes = [];
   allTaxes
+  inex
 finalTax: number = 0
+subtotal : number=0
+
   // gets value for search bar and payment modes from settings
   constructor(private matBottom: MatBottomSheet, private checkService: CheckoutServiceService, private dialog: MatDialog, private databaseService: DatabaseService, @Inject(SecondaryService) private secService: SecondaryService) {
     this.searchBar.valueChanges.subscribe(res => {
@@ -110,13 +114,14 @@ getTaxes(){
         this.databaseService.getItem(this.itemId).then(x => {
 
           this.itemInfo = x[0]
-          this.insertData(this.itemInfo)
+          this.getInEx(this.itemInfo)
+          //this.insertData(this.itemInfo)
         })
       });
     }
     else {
-  
-      this.insertData(this.itemInfo[0])
+      this.getInEx(this.itemInfo[0])
+      //this.insertData(this.itemInfo[0])
     }
   }
   ngOnInit(): void {
@@ -178,25 +183,42 @@ getTaxes(){
   }
   displayedColumns: string[] = ['barcode', 'name', 'quantity', 'cost', 'tax', 'total', 'buttons'];
   i = 0;
-
+  getInEx(data){
+    this.databaseService.getTaxInEx(data.tax).then(x=>{
+      console.log(x[0].inex)
+      data.inEx = x[0].inex
+      data.tax = x[0].taxPercentage
+      this.insertData(data)
+    })
+  }
 
   //inserts data selected from all three selecting modes to the checkout table and calcualtes total by calling calculateTotal function
   insertData(data) {
+    
+    console.log(data.inEx)
     console.log(data.price)
-    this.indivisualTotal = this.costCalculation(data.price, 1)
+    this.indivisualTotal = this.costCalculation(data.price, 1,data.inEx,data.tax)
     console.log(this.indivisualTotal)
-    this.items.push({ barcode: data.barcode, name: data.name, nameInArabic: data.nameInArabic, category: data.category, discount: 1, quantity: 1, mrp: data.mrp, price: data.price, tax: data.tax, inventory: data.inventory, unit: data.unit, id: data._id, total: this.indivisualTotal })
+    
+    this.items.push({ barcode: data.barcode, name: data.name, nameInArabic: data.nameInArabic, category: data.category, discount: 1, quantity: 1, mrp: data.mrp, price: data.price, tax: data.tax, inventory: data.inventory, unit: data.unit, id: data._id, total: this.indivisualTotal,inEx:data.inEx})
     // this.totalPrice()
 
     this.dataSource = new MatTableDataSource<CheckoutItem>(this.items)
     var index
+    console.log(this.dataSource.data)
     this.calculateTotal(this.dataSource.data)
   }
 
 // Actual calculation of the cost = price * quantity
-  costCalculation(price, quantity) {
+  costCalculation(price, quantity,inex,tax) {
+    console.log(inex)
+    console.log(tax)
     console.log(quantity)
     console.log(price)
+    if(inex =='exclusive'){
+        price = price + (price*tax)/100
+    }
+    else console.log('price is inclusive')
     return price * quantity;
 
   }
@@ -208,9 +230,10 @@ getTaxes(){
     this.finalTotal = 0
     for (var index1 in data) {
       this.one[index1] = data[index1].total;
-      this.two
+       
       this.finalTotal = this.finalTotal + this.one[index1]
     }
+    this.subtotal =this.finalTotal
     this.getFinalDiscount()
     this.totalCost = this.finalTotal
 
@@ -248,7 +271,7 @@ getTaxes(){
     bottomSheetRef.afterDismissed().subscribe((result) => {
       console.log(result)
       this.updateResult = result
-      this.updateResult.total = this.costCalculation(this.updateResult.price, this.updateResult.quantity)
+      this.updateResult.total = this.costCalculation(this.updateResult.price, this.updateResult.quantity,data.inEx,this.updateResult.tax)
       console.log(this.updateResult)
       this.calculateTotal(this.dataSource.data)
       console.log('Bottom sheet has been dismissed.');
@@ -261,7 +284,8 @@ getTaxes(){
 
   selectEvent(item) {
     console.log(item)
-    this.insertData(item)
+    this.getInEx(item)
+    //this.insertData(item)
   }
 
   onChangeSearch(val: string) {

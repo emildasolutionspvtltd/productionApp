@@ -60,13 +60,13 @@
                                 <mat-menu #menu="matMenu">
 
 
-                                    <button mat-menu-item>
+                                    <button (click)="editTax(element._id)" mat-menu-item>
                                         <mat-icon>create</mat-icon>
-                                        <span>Edit Category</span>
+                                        <span>Edit Tax</span>
                                     </button>
-                                    <button mat-menu-item>
+                                    <button (click)="delete(element._id)" mat-menu-item>
                                         <mat-icon style="color: red;">delete</mat-icon>
-                                        <span style="color: red;">Delete Category</span>
+                                        <span style="color: red;">Delete Tax</span>
                                     </button>
 
 
@@ -113,13 +113,13 @@
                                 <mat-menu #menu="matMenu">
 
 
-                                    <button mat-menu-item>
+                                    <button (click)="editPayment(element._id)" mat-menu-item>
                                         <mat-icon>create</mat-icon>
-                                        <span>Edit Category</span>
+                                        <span>Edit Payment</span>
                                     </button>
-                                    <button mat-menu-item>
+                                    <button (click)="delete(element._id)" mat-menu-item>
                                         <mat-icon style="color: red;">delete</mat-icon>
-                                        <span style="color: red;">Delete Category</span>
+                                        <span style="color: red;">Delete Payment</span>
                                     </button>
 
 

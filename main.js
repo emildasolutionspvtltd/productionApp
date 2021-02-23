@@ -288,3 +288,49 @@ ipcMain.handle('getBetweenDates', async (event, a,b) => {
     return db.find({ $and: [{ time: {$gte: a} }, { time: { $lt: b } }] }, function (err, docs) {
       });
 })
+
+
+ipcMain.handle('delete', async (event, id) => {
+
+    return db.remove({ _id: id }, {}, function (err, numRemoved) {
+    });
+
+})
+ipcMain.handle('getInfo', async (event, id,) => {
+    return db.find({ _id: id }, function (err, docs) {
+
+    })
+
+
+})
+
+ipcMain.handle('editPay', async (event, id, data) => {
+    console.log(data)
+    return db.update({ _id: id }, {
+        $set: {
+            paymentName: data.paymentName,
+            notes: data.notes
+        }
+    }, {}, function (err, numReplaced) {
+
+    });
+})
+ipcMain.handle('editTax', async (event, id, data) => {
+    console.log(data)
+    return db.update({ _id: id }, {
+        $set: {
+            taxName: data.taxName,
+            taxPercentage: data.taxPercentage,
+            inex : data.inex
+        }
+    }, {}, function (err, numReplaced) {
+
+    });
+})
+
+ipcMain.handle('getInEx', async (event, tax) => {
+
+    return db.find({ taxName: tax },{
+    });
+
+})

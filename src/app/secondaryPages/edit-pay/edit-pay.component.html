@@ -1,0 +1,21 @@
+<div fxLayout='row' fxLayoutAlign='space-between center' class="headingContainer">
+    <h3 class="heading3">Add Tax</h3>
+    <button (click)='closeDialog()' mat-icon-button>
+        <mat-icon>highlight_off</mat-icon>
+    </button>
+</div>
+<br>
+<form [formGroup]='payForm'>
+<mat-form-field appearance="outline">
+    <mat-label>{{payName}} </mat-label>
+    <input formControlName='paymentName' id="codeInput" autofocus matInput type='text'[(ngModel)]="payName">
+</mat-form-field>
+<br>
+<mat-form-field appearance="outline">
+    <mat-label>{{Paynote}} </mat-label>
+    <input formControlName='notes' matInput type='text' [(ngModel)]="Paynote">
+</mat-form-field>
+<br>
+<button  mat-raised-button (click)='submit()' color="accent" class="bigButton">Save</button>
+
+</form>

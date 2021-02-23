@@ -1,0 +1,32 @@
+<div fxLayout='row' fxLayoutAlign='space-between center' class="headingContainer">
+    <h3 class="heading3">Add Tax</h3>
+    <button (click)='closeDialog()' mat-icon-button>
+        <mat-icon>highlight_off</mat-icon>
+    </button>
+</div>
+<br>
+<form [formGroup]='taxForm'>
+<mat-form-field appearance="outline">
+    <mat-label>{{taxname}} </mat-label>
+    <input formControlName='taxName' id="codeInput" autofocus matInput type='text' [(ngModel)]="taxname">
+</mat-form-field>
+<br>
+<mat-form-field appearance="outline">
+    <mat-label>{{taxpercentage}} </mat-label>
+    <input formControlName='taxPercentage'   matInput type='text' [(ngModel)]="taxpercentage">
+</mat-form-field>
+<br>
+<mat-form-field appearance="outline">
+    <mat-label>{{Taxinex}}</mat-label>
+    <mat-select formControlName='inex' [(ngModel)]="Taxinex">
+        <mat-option value="inclusive">
+            Inclusive </mat-option>
+        <mat-option value="exclusive">
+            Exclusive </mat-option>
+    </mat-select>
+</mat-form-field>
+
+<br>
+<button  mat-raised-button (click)='submit()' color="accent" class="bigButton">Save</button>
+
+</form>

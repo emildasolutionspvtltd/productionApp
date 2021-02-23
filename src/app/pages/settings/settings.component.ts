@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AddPaymentComponent } from 'src/app/secondaryPages/add-payment/add-payment.component';
 
 import { AddTaxesComponent } from 'src/app/secondaryPages/add-taxes/add-taxes.component';
+import { EditPayComponent } from 'src/app/secondaryPages/edit-pay/edit-pay.component';
+import { EditTaxComponent } from 'src/app/secondaryPages/edit-tax/edit-tax.component';
 import { DatabaseService } from 'src/app/services/database.service';
 import { SecondaryService } from 'src/app/services/secondary.service';
 
@@ -75,6 +77,26 @@ export class SettingsComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
+  editPayment(id){
+    console.log(id)
+     const dialogRef = this.dialog.open(EditPayComponent,{
+      data: id
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      this.getPay()
+      console.log('The dialog was closed');
+    });
+  }
+  editTax(id){
+    console.log(id)
+     const dialogRef = this.dialog.open(EditTaxComponent,{
+       data: id
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      this.getTax()
+      console.log('The dialog was closed');
+    });
+  }
   drawerToggle(){
     this.secService.toggle()
   }
@@ -102,5 +124,12 @@ export class SettingsComponent implements OnInit {
     this.db.getPrinter().then(x=>{
       this.printerName = x
     })
+  }
+  delete(id){
+    this.db.delete(id).then(x=>{
+      console.log(x)
+    })
+    this.db.getTax()
+    this.db.getPay()
   }
 }
