@@ -56,6 +56,7 @@ getInfo(){
         this.secService.presentSanckBar("👍 Category updated Successfully",'success')
        this.db.getAllCategory()
        this.db.getAllItems()
+       this.closeDialog()
   
       })
     }else{

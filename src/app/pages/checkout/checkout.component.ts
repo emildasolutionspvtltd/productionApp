@@ -230,11 +230,7 @@ getTaxes(){
     this.finalTotal = 0
     for (var index1 in data) {
       this.one[index1] = data[index1].total;
-<<<<<<< HEAD
        
-=======
-      
->>>>>>> 55228ca14bb33906d6842dc2169556269d7d88a0
       this.finalTotal = this.finalTotal + this.one[index1]
     }
     this.subtotal =this.finalTotal

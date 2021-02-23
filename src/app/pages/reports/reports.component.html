@@ -1,49 +1,56 @@
 <div class="container">
 
-<mat-toolbar color='primary' class="mat-elevation-z3">
+  <mat-toolbar color='primary' class="mat-elevation-z3">
     <button mat-icon-button (click)="drawerToggle()">
-        <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">dehaze</mat-icon>
+      <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">dehaze</mat-icon>
     </button>
     <p class="toolbarHeading">
-        Reports | صلصة الطماطم </p>
+      Reports </p>
 
 
     <span class="example-spacer"></span>
 
     <div class="buttonHolder">
-   
-        <button mat-icon-button>
-            <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">more_vert</mat-icon>
-        </button>
+
+      <button mat-icon-button>
+        <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">more_vert</mat-icon>
+      </button>
     </div>
-</mat-toolbar>
-<div class="main-div">
-<mat-card style="max-width: 50%; text-align: center;">
-    <form [formGroup]="reportForm">
+  </mat-toolbar>
+
+
+
+  <div class="main-div">
+    <mat-card style="max-width: 50%;">
+
+
+      <h3 class="heading3">Report Generation </h3>
+      <br>
+      <form [formGroup]="reportForm">
+        <mat-form-field style='width: 100%;'appearance="outline">
+          <mat-label>Type of Report</mat-label>
+          <mat-select (selectionChange)="doSomething($event)" formControlName="type" matNativeControl required>
+            <mat-option value="sales">Report Sales</mat-option>
+            <mat-option value="item">Items</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
         <mat-form-field appearance="outline">
-            <mat-label>Type of Report</mat-label>
-            <mat-select (selectionChange)="doSomething($event)" formControlName="type" matNativeControl required>
-              <mat-option value="sales">Report Sales</mat-option>
-              <mat-option value="item">Items</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <br>
-          <mat-form-field appearance="outline">
-            <mat-label>Enter a start date</mat-label>
-            <input formControlName="startdate" matInput [matDatepicker]="mydatepicker" [disabled]="disableSelect"> 
-            <mat-datepicker-toggle [for]="mydatepicker" matSuffix></mat-datepicker-toggle>
-            <mat-datepicker #mydatepicker></mat-datepicker>
-          </mat-form-field>
-          <br>
-          <mat-form-field appearance="outline">
-            <mat-label>Enter a end date</mat-label>
-            <input formControlName="enddate" matInput [matDatepicker]="mydatepicker1" [disabled]="disableSelect"> 
-            <mat-datepicker-toggle [for]="mydatepicker1" matSuffix></mat-datepicker-toggle>
-            <mat-datepicker #mydatepicker1></mat-datepicker>
-          </mat-form-field>
-    </form>
-    <button (click)='submit()' mat-raised-button color="accent" class="bigButton">Save</button>
-</mat-card>
-</div>
+          <mat-label>Enter a start date</mat-label>
+          <input formControlName="startdate" matInput [matDatepicker]="mydatepicker" [disabled]="disableSelect">
+          <mat-datepicker-toggle [for]="mydatepicker" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #mydatepicker></mat-datepicker>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter a end date</mat-label>
+          <input formControlName="enddate" matInput [matDatepicker]="mydatepicker1" [disabled]="disableSelect">
+          <mat-datepicker-toggle [for]="mydatepicker1" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #mydatepicker1></mat-datepicker>
+        </mat-form-field>
+      </form>
+      <button (click)='submit()' mat-raised-button color="accent" class="bigButton">Download Report</button>
+    </mat-card>
+  </div>
 
 </div>

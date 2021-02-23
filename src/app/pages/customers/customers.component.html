@@ -5,7 +5,7 @@
             <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">dehaze</mat-icon>
         </button>
         <p class="toolbarHeading">
-            Customers | صلصة الطماطم </p>
+            Customers  </p>
     
     
         <span class="example-spacer"></span>
@@ -17,11 +17,21 @@
             </button>
         </div>
     </mat-toolbar>
-    <mat-card>
-        <input style="width: 80%;border-bottom: 1px solid black; margin-left: 20px;" matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
-<button mat-icon-button>
-    <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">search</mat-icon>
-</button>
+    <br>
+    <mat-card style="margin: 0 auto;width: 80%;">
+
+        <div fxLayout='row' fxLayoutAlign='space-between center' class="hedingContainer">
+            <p style="color:#2C2C2C  ;" class="heading3">List of Customers</p>
+            <mat-form-field appearance="legacy">
+
+        <input  matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+
+    <mat-icon matSuffix class="" aria-hidden="false" aria-label="Example user verified icon">search</mat-icon>
+</mat-form-field>
+
+
+
+</div>
     <table mat-table [dataSource]="dataStore">
 
         <!--- Note that these columns can be defined in any order.
@@ -76,7 +86,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         
     </table>
-    <mat-paginator #paginator [length]="5"
+    <mat-paginator #paginator [length]="8"
                            [pageSize]="5"
                            [pageSizeOptions]="[5, 10, 25, 100]">
             </mat-paginator>
