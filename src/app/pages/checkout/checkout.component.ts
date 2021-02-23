@@ -208,7 +208,7 @@ getTaxes(){
     this.finalTotal = 0
     for (var index1 in data) {
       this.one[index1] = data[index1].total;
-      this.two
+      
       this.finalTotal = this.finalTotal + this.one[index1]
     }
     this.getFinalDiscount()
