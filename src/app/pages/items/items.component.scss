@@ -21,7 +21,9 @@ margin: 0 auto;
 }
 
 .verticalCardContainer{
-  height: 85%;
+  height: 90%;
+  overflow-y: hidden;
+
   padding-left: 20px;
   padding-right: 20px;
 }

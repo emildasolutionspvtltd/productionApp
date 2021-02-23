@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { SecondaryService } from 'src/app/services/secondary.service';
 
 @Component({
   selector: 'app-add-discount',
@@ -8,16 +9,21 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./add-discount.component.scss']
 })
 export class AddDiscountComponent implements OnInit {
-  constructor(public dialogRef: MatDialogRef<AddDiscountComponent>) { }
-discount: any
+  discount: number = 0;
+
+  constructor(public dialogRef: MatDialogRef<AddDiscountComponent>,public secService:SecondaryService) { }
   ngOnInit(): void {
   }
   // get discount the value and type
 getDiscount(group){
-  console.log(this.discount)
-console.log(group)
-this.dialogRef.close({ grp:group,discount:this.discount})
+ if(this.discount != 0 ){
+  this.dialogRef.close({ grp:group,discount:this.discount})
+
+ }else{
+   this.secService.presentSanckBar('Your Discount field has a invalid input','danger')
+ }
 }
+
 // close that dialog 
   closeDialog(){
     this.dialogRef.close()

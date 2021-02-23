@@ -1,10 +1,21 @@
 <div>
-    <mat-form-field appearance="outline" style="width:250px; margin-right: 10px;">
+
+    <div fxLayout='row' fxLayoutAlign='space-between center' class="headingContainer">
+        <h3 class="heading3">Add Discount</h3>
+        <button (click)='closeDialog()'  mat-icon-button>
+            <mat-icon>highlight_off</mat-icon>
+        </button>
+    </div>
+
+    <div>
+
+   
+    <mat-form-field appearance="outline" style="width:275px; margin-right: 10px;">
     <mat-label>Discount</mat-label>
-<input [(ngModel)]="discount" matInput type='number'>
+<input  autofocus='true'  [(ngModel)]="discount" matInput type='number'>
 </mat-form-field>
 
-<mat-button-toggle-group #group="matButtonToggleGroup">
+<mat-button-toggle-group style='top:-5px' #group="matButtonToggleGroup" value='percentage'>
     <mat-button-toggle style="width:50px;" value="sar" autofocus>
         <mat-label>SAR</mat-label>
     </mat-button-toggle>
@@ -13,6 +24,7 @@
     </mat-button-toggle>
 </mat-button-toggle-group>
 </div>
+</div>
 <br>
 <button mat-raised-button (click)="getDiscount(group.value)" id="rightMargin" color="accent"
-    class="bigButton">Add</button>
+    class="bigButton">Add Discount</button>
