@@ -198,6 +198,9 @@ this.categoryData.paginator = this.paginatorU
   editCat(id){
      console.log(id)
      const dialogRef = this.dialog.open(EditCategoryComponent,{
+      maxWidth:'450px',
+      width:'90%',
+      panelClass:'dialogCss',
       data: id
     })
     dialogRef.afterClosed().subscribe(result => {
@@ -214,7 +217,11 @@ this.categoryData.paginator = this.paginatorU
   editItem(id){
     console.log(id)
     const dialogRef = this.dialog.open(EditItemsComponent,{
-      data:id
+      data:id,
+      maxWidth:'450px',
+      width:'90%',
+      panelClass:'dialogCss'
+      
     })
     dialogRef.afterClosed().subscribe(result => {
       this.getAllCategory()

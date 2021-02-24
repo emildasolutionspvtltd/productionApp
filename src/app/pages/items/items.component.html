@@ -22,11 +22,15 @@
 
         <mat-card fxFlex='70%' style="overflow-y: scroll;height: 100%;" class="itemsCard">
             <div fxLayout='row' fxLayoutAlign='space-between center' class="hedingContainer">
-                <p style="color:#2C2C2C  ;" class="heading3">List of Items</p>
-                <input style="width: 200px;border-bottom: 1px solid black;" matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
-                <button mat-icon-button>
-                    <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">search</mat-icon>
-                </button>
+                <h3 style="color:#2C2C2C  ;" class="heading3">List of Items</h3>
+                <mat-form-field appearance="legacy">
+
+                    <input style="width: 200px;" matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+            
+                <mat-icon matSuffix class="" aria-hidden="false" aria-label="Example user verified icon">search</mat-icon>
+            </mat-form-field>
+                
+               
             </div>
             <!-- <mat-form-field>
                 <mat-label>Filter</mat-label>

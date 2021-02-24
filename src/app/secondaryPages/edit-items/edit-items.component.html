@@ -1,6 +1,6 @@
 <div class="container">
     <div fxLayout='row' fxLayoutAlign='space-between center' class="headingContainer">
-        <h3 class="heading3">Add Items</h3>
+        <h3 class="heading3">Edit Items</h3>
         <button (click)='closeDialog()' mat-icon-button>
             <mat-icon>highlight_off</mat-icon>
         </button>
@@ -8,22 +8,22 @@
     <br>
     <form [formGroup]='itemForm'>
     <mat-form-field appearance="outline">
-        <mat-label>{{itembarcode}} </mat-label>
+        <mat-label> Item Id / Barcode </mat-label>
         <input formControlName='barcode' autofocus matInput type='text' [(ngModel)]="itembarcode">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-        <mat-label>{{itemname}} </mat-label>
+        <mat-label>Item Name </mat-label>
         <input formControlName='name' autofocus matInput type='text' [(ngModel)]="itemname">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-        <mat-label>{{itemarabic}}</mat-label>
+        <mat-label>Item Name in Arabic</mat-label>
         <input formControlName='nameInArabic' autofocus matInput type='text' [(ngModel)]="itemarabic">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-        <mat-label>{{itemcat}}</mat-label>
+        <mat-label>Cateogry</mat-label>
         <mat-select formControlName='category' [(ngModel)]="itemcat">
             <mat-option *ngFor="let category of categories" [value]="category.categoryName" >
                 {{category.categoryName}} </mat-option>
@@ -31,18 +31,18 @@
         </mat-select>
     </mat-form-field>
     <mat-form-field id="rightMargin"  appearance="outline">
-        <mat-label>{{itemmrp}} </mat-label>
+        <mat-label>Maximum Retial Price </mat-label>
         <input formControlName='mrp' autofocus matInput type='number' [(ngModel)]="itemmrp">
 
     </mat-form-field>
     <mat-form-field id="leftMargin" appearance="outline">
-        <mat-label>{{itemprice}}</mat-label>
+        <mat-label>Selling Price</mat-label>
         <input formControlName='price' autofocus matInput type='number' [(ngModel)]="itemprice">
 
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-         <mat-label>{{itemtax}}</mat-label>
+         <mat-label>Tax</mat-label>
          <mat-select formControlName='tax' [(ngModel)]="itemtax">
             <mat-option *ngFor="let tax of taxes" [value]="tax.taxName">
                 {{tax.taxName}} </mat-option>
@@ -52,14 +52,14 @@
 
 
     <mat-form-field id="rightMargin" appearance="outline">
-        <mat-label>{{iteminven}}</mat-label>
+        <mat-label>Inventory Stock</mat-label>
         <input formControlName='inventory' autofocus matInput type='number' [(ngModel)]="iteminven">
 
     </mat-form-field>
 
 
     <mat-form-field id="leftMargin" appearance="outline">
-        <mat-label>select units</mat-label>
+        <mat-label>Unit</mat-label>
         <mat-select formControlName='unit' [(ngModel)]="itemunit">
             <mat-option value="food1">
                 Chinna </mat-option>

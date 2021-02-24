@@ -105,5 +105,27 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
 }
 
+
+
+.heading3{
+  font: normal normal 900 22px/38px Avenir !important;
+  letter-spacing: 0px;
+  color: #434342;
+  margin: 0;
+}
+
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+mat-list-option{
+  border-radius: 2px;
+  width: 45%;
+  margin-left: 2.5%;
+}
+
+.mat-list-option{
+
+}

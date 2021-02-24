@@ -1,7 +1,7 @@
 <button mat-icon-button (click)="onclose()" style="position: absolute; right: 0; vertical-align:top;"><span class="material-icons">
     highlight_off
     </span></button>
-<h3 style="width: 80%; margin: 0px 0px 0px;">{{data.name}}</h3>
+<h3 class="heading3" style="width: 80%; margin: 0px 0px 0px;">{{data.name}}</h3>
 <br>
 <form [formGroup]="checkOutForm">
     <mat-form-field id="rightMargin" appearance="outline">
@@ -16,17 +16,21 @@
     </mat-form-field>
     <br>
 
-    <mat-form-field id="rightMargin" appearance="outline">
+    <!-- <mat-form-field id="rightMargin" appearance="outline">
         <mat-label>Tax</mat-label>
         <input formControlName='tax' [(ngModel)]="data.tax"  autofocus matInput type='number' >
 
-    </mat-form-field>
-    <button  mat-raised-button  id="leftMargin" style="color: gold;" class="bigButton"><span class="material-icons">
+    </mat-form-field> -->
+
+    <div style="text-align:center;">
+
+    
+    <button  mat-button  id="leftMargin" style="color: gold;" class="bigButton"><span class="material-icons">
        print
-        </span>Print Label</button>
+        </span>Print Label</button></div>
         <br>
     <button  mat-raised-button (click)="update()" id="rightMargin" color="accent" class="bigButton">Update</button>
-    <button  mat-raised-button  id="leftMargin" style="color: red;" class="bigButton"><span class="material-icons">
+    <button  mat-button  id="leftMargin" style="color: red;" class="bigButton"><span class="material-icons">
         delete
-        </span>Remove</button>
+        </span>Remove Item</button>
 </form>

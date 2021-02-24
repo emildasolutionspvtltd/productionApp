@@ -49,32 +49,51 @@ export class CheckoutComponent implements OnInit {
   typesOfShoes = [];
   allTaxes
   inex
-finalTax: number = 0
-subtotal : number=0
+  finalTax: number = 0
+  subtotal: number = 0
 
   // gets value for search bar and payment modes from settings
   constructor(private matBottom: MatBottomSheet, private checkService: CheckoutServiceService, private dialog: MatDialog, private databaseService: DatabaseService, @Inject(SecondaryService) private secService: SecondaryService) {
+
+
+
     this.searchBar.valueChanges.subscribe(res => {
-     
+
       this.searchBarValue = res
       this.searchBarcode(this.searchBarValue)
     })
+
+
+
+
     this.databaseService.getAllItems().then(x => {
       this.data = x
     })
+
+
+    //getting the payment Methods
     this.databaseService.getPay().then(x => {
 
       this.typesOfShoes = x
     })
 
+
+
     this.getTaxes()
   }
-getTaxes(){
-  this.databaseService.getTax().then(x =>{
-    console.log(x)
-    this.allTaxes = x
-  })
-}
+
+
+
+
+
+  getTaxes() {
+    this.databaseService.getTax().then(x => {
+      console.log(x)
+      this.allTaxes = x
+    })
+  }
+
+
 
   /// this searches for the item when barcode is inserted
   searchBarcode(bar) {
@@ -86,6 +105,8 @@ getTaxes(){
     }).catch(err => {
       console.log(err)
     })
+
+
     this.databaseService.getCountBar(bar).then(x => {
 
       this.itemCount = x
@@ -125,7 +146,7 @@ getTaxes(){
     }
   }
   ngOnInit(): void {
-   
+
   }
 
 
@@ -138,7 +159,7 @@ getTaxes(){
   }
 
 
-/// on clicking it calls discount customer and calculates total again by calling finalDiacount function
+  /// on clicking it calls discount customer and calculates total again by calling finalDiacount function
   addDiscount() {
     this.discountType = ""
     this.finalDiscount = 0
@@ -157,11 +178,11 @@ getTaxes(){
   }
 
 
-// get all customers 
+  // get all customers 
   //below button
   addCustomer() {
     let dialogRef = this.dialog.open(ListCustomerComponent, {
-      maxWidth: '70%',
+      maxWidth: '450px',
       width: '90%',
       panelClass: 'dialogCss'
 
@@ -175,16 +196,22 @@ getTaxes(){
   }
 
 
+
+
+
+
+
+
   // seaches for all item and retrieves them
   searchItem() {
     this.databaseService.getAllItems().then(x => {
       this.sesarchItem = x
     })
   }
-  displayedColumns: string[] = ['barcode', 'name', 'quantity', 'cost', 'tax', 'total', 'buttons'];
+  displayedColumns: string[] = ['barcode', 'name', 'quantity', 'cost', 'tax', 'total'];
   i = 0;
-  getInEx(data){
-    this.databaseService.getTaxInEx(data.tax).then(x=>{
+  getInEx(data) {
+    this.databaseService.getTaxInEx(data.tax).then(x => {
       console.log(x[0].inex)
       data.inEx = x[0].inex
       data.tax = x[0].taxPercentage
@@ -192,15 +219,25 @@ getTaxes(){
     })
   }
 
+
+
+
+
   //inserts data selected from all three selecting modes to the checkout table and calcualtes total by calling calculateTotal function
   insertData(data) {
-    
-    console.log(data.inEx)
-    console.log(data.price)
-    this.indivisualTotal = this.costCalculation(data.price, 1,data.inEx,data.tax)
+
+
+    //some Algorithim is wrong
+
+
+    // console.log(data.inEx)
+    // console.log(data.price)
+
+
+    this.indivisualTotal = this.costCalculation(data.price, 1, data.inEx, data.tax)
     console.log(this.indivisualTotal)
-    
-    this.items.push({ barcode: data.barcode, name: data.name, nameInArabic: data.nameInArabic, category: data.category, discount: 1, quantity: 1, mrp: data.mrp, price: data.price, tax: data.tax, inventory: data.inventory, unit: data.unit, id: data._id, total: this.indivisualTotal,inEx:data.inEx})
+
+    this.items.push({ barcode: data.barcode, name: data.name, nameInArabic: data.nameInArabic, category: data.category, discount: 1, quantity: 1, mrp: data.mrp, price: data.price, tax: data.tax, inventory: data.inventory, unit: data.unit, id: data._id, total: this.indivisualTotal, inEx: data.inEx })
     // this.totalPrice()
 
     this.dataSource = new MatTableDataSource<CheckoutItem>(this.items)
@@ -209,14 +246,18 @@ getTaxes(){
     this.calculateTotal(this.dataSource.data)
   }
 
-// Actual calculation of the cost = price * quantity
-  costCalculation(price, quantity,inex,tax) {
+
+
+
+
+  // Actual calculation of the cost = price * quantity
+  costCalculation(price, quantity, inex, tax) {
     console.log(inex)
     console.log(tax)
     console.log(quantity)
     console.log(price)
-    if(inex =='exclusive'){
-        price = price + (price*tax)/100
+    if (inex == 'exclusive') {
+      price = price + (price * tax) / 100
     }
     else console.log('price is inclusive')
     return price * quantity;
@@ -230,10 +271,10 @@ getTaxes(){
     this.finalTotal = 0
     for (var index1 in data) {
       this.one[index1] = data[index1].total;
-      
+
       this.finalTotal = this.finalTotal + this.one[index1]
     }
-    this.subtotal =this.finalTotal
+    this.subtotal = this.finalTotal
     this.getFinalDiscount()
     this.totalCost = this.finalTotal
 
@@ -241,8 +282,8 @@ getTaxes(){
 
 
 
-// when discount is added to the checkout table, otherwise 0
-// Check if the selected is Sar
+  // when discount is added to the checkout table, otherwise 0
+  // Check if the selected is Sar
   getFinalDiscount() {
     if (this.finalDiscount != 0) {
       if (this.discountType == 'sar') {
@@ -255,7 +296,7 @@ getTaxes(){
   }
 
 
-// when payment mode is selected by defuult is cash
+  // when payment mode is selected by defuult is cash
 
   changeModePayment(choice) {
     this.selectedPaymentMode = choice
@@ -271,7 +312,7 @@ getTaxes(){
     bottomSheetRef.afterDismissed().subscribe((result) => {
       console.log(result)
       this.updateResult = result
-      this.updateResult.total = this.costCalculation(this.updateResult.price, this.updateResult.quantity,data.inEx,this.updateResult.tax)
+      this.updateResult.total = this.costCalculation(this.updateResult.price, this.updateResult.quantity, data.inEx, this.updateResult.tax)
       console.log(this.updateResult)
       this.calculateTotal(this.dataSource.data)
       console.log('Bottom sheet has been dismissed.');
@@ -295,25 +336,25 @@ getTaxes(){
   onFocused(e) {
     console.log(e)
   }
-  checkOut(){
-              
+  checkOut() {
 
-/// to proceed to checkout through the checkout button passes 4 components data,total,pay and discount for display during print
-const dialogRef = this.dialog.open(DisplayCheckoutComponent, {
-  height: '400px',
-  width: '400px',
-  data: {
-     data: this.dataSource.filteredData,
-     total: this.finalTotal,
-     pay : this.selectedPaymentMode,
-     discount : this.finalDiscount,
-     customer:this.customerData
-    }
-});
 
-dialogRef.afterClosed().subscribe(result => {
-  console.log('The dialog was closed');
+    /// to proceed to checkout through the checkout button passes 4 components data,total,pay and discount for display during print
+    const dialogRef = this.dialog.open(DisplayCheckoutComponent, {
+      height: '400px',
+      width: '400px',
+      data: {
+        data: this.dataSource.filteredData,
+        total: this.finalTotal,
+        pay: this.selectedPaymentMode,
+        discount: this.finalDiscount,
+        customer: this.customerData
+      }
+    });
 
-});
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+
+    });
   }
 }

@@ -14,6 +14,7 @@
 
 .itemsCard{
 margin: 0 auto;
+overflow-y: hidden;
    padding-bottom: 0px;
    table{
      width: 100%;
@@ -21,9 +22,17 @@ margin: 0 auto;
 }
 
 .verticalCardContainer{
-  height: 90%;
+  height: 85%;
   overflow-y: hidden;
 
   padding-left: 20px;
   padding-right: 20px;
+}
+
+
+.heading3{
+  font: normal normal 900 22px/38px Avenir !important;
+  letter-spacing: 0px;
+  color: #434342;
+  margin: 0;
 }
