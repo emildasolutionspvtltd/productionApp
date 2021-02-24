@@ -227,7 +227,7 @@ ipcMain.handle('print', async (event, data) => {
     let printersInfo = win.webContents.getPrinters();
     let printer = printersInfo.filter(printer => printer.isDefault === true)[0];
     const options = {
-        preview: false,               // Preview in window or print
+        preview: true,               // Preview in window or print
         width: '170px',               //  width of content body
         margin: '0 0 0 0',            // margin of content body
         copies: 1,                    // Number of copies to print
@@ -332,5 +332,31 @@ ipcMain.handle('getInEx', async (event, tax) => {
 
     return db.find({ taxName: tax },{
     });
+
+})
+ipcMain.handle('addprinter', async (event, data) => {
+    console.log(data)
+    return db.insert(data, function (err, Newdata) {
+
+    })
+})
+ipcMain.handle('addheadfoot', async (event, data) => {
+    console.log(data)
+    return db.insert(data, function (err, Newdata) {
+
+    })
+})
+ipcMain.handle('getSelectPrinter', async (event, id,) => {
+    return db.find({ type: 'printer' }, function (err, docs) {
+
+    })
+
+
+})
+ipcMain.handle('getHeadFoot', async (event, id,) => {
+    return db.find({ type:'headerfooter' }, function (err, docs) {
+
+    })
+
 
 })

@@ -28,10 +28,12 @@ export class SettingsComponent implements OnInit {
     this.getPrinter()
    }
    infoForm = new FormGroup({
+     type : new FormControl('headerfooter'),
      header : new FormControl('',Validators.required),
      footer : new FormControl('',Validators.required)
    })
    printerForm = new FormGroup({
+    type : new FormControl('printer'),
     recieptPrinter: new FormControl('',Validators.required),
     labelPrinter: new FormControl('',Validators.required),
   });
@@ -118,7 +120,8 @@ export class SettingsComponent implements OnInit {
 
   // function to add header and footer
   addInfo(){
-    console.log(this.infoForm)
+    this.addRecipetPrinter()
+    this.addHeaderFooter()
   }
   getPrinter(){
     this.db.getPrinter().then(x=>{
@@ -131,5 +134,25 @@ export class SettingsComponent implements OnInit {
     })
     this.db.getTax()
     this.db.getPay()
+  }
+  addRecipetPrinter(){
+    if(this.printerForm.valid){
+      this.db.addPrinter(this.printerForm.value).then(x=>{
+       console.log(x)
+      })
+    }
+    else{
+      this.secService.presentSanckBar('please enter correct values','ok')
+    }
+  }
+  addHeaderFooter(){
+    if(this.infoForm.valid){
+      this.db.addHeadFoot(this.infoForm.value).then(x=>{
+        console.log(x)
+       })
+    }
+    else{
+      this.secService.presentSanckBar('please enter correct values','ok')
+    }
   }
 }

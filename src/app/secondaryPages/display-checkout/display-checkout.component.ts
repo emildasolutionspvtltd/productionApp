@@ -3,22 +3,24 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { type } from 'os';
 import { DatabaseService } from 'src/app/services/database.service';
 import { SecondaryService } from 'src/app/services/secondary.service';
-const data = [
+let recieptPrint = [
   {
     type: 'text', value: 'hopefully it will work', style: `text-align:center;`
+
   }, {
-    type: 'barCode',
-    value: 'HB4587896',
-    height: 12,                     // height of barcode, applicable only to bar and QR codes
-    width: 1,                       // width of barcode, applicable only to bar and QR codes
-    displayValue: true,             // Display value below barcode
-    fontsize: 8,
-  }, {
-    type: 'qrCode',
-    value: 'https://github.com/Hubertformin/electron-pos-printer',
-    height: 55,
-    width: 55,
-    style: 'margin: 10 20px 20 20px'
+    type: 'table',
+
+    style: 'border: 1px solid #ddd',
+    tableHeader: ['description', 'Qty', 'total', 'net'],
+    tableBody: [
+      ['Cat', 2],
+      ['Dog', 4],
+      ['Horse', 12],
+      ['Pig', 4],
+    ],
+    tableFooter: ['Animal', 'Age'],
+    tableBodyStyle: 'border: 0.5px solid #ddd',
+
   }
 ];
 
@@ -29,12 +31,24 @@ const data = [
 })
 export class DisplayCheckoutComponent implements OnInit {
   consoleData: any
+headerfooter
+printerinfo
+ things: any[]
+ secondArray: string[][]=[]
   constructor(private db: DatabaseService, @Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DisplayCheckoutComponent>, private dialog: MatDialog, private secService: SecondaryService) {
     console.log(data.data)
     console.log(data.pay)
     console.log(data.total)
     console.log(data.discount)
     console.log(data.customer)
+    this.db.getEnteredPrinter().then(x => {
+      this.printerinfo =x[0]
+    })
+    this.db.getEnterheadFoot().then(x => {
+      this.headerfooter=x[0] 
+    })
+    this.things=[];
+    this.secondArray=[];
   }
 
   ngOnInit(): void {
@@ -80,6 +94,60 @@ export class DisplayCheckoutComponent implements OnInit {
 
   // function to print data
   printData() {
-    this.db.printData(data)
+    for(var index in this.data.data){
+      this.things.push(this.data.data[index].name,this.data.data[index].quantity,this.data.data[index].mrp,this.data.data[index].total)
+    }
+    let newDate = new Date().toDateString()
+    let a: string[][] = ['']['']
+    recieptPrint = [
+      {
+        type: 'text', value: this.headerfooter.header, style: `text-align:center;`
+
+      }, {
+        type: 'table',
+
+        style: 'border: 0px',
+        tableHeader: [],
+        tableBody: [
+          ['Name of customer', this.consoleData.customer.name],
+          ['Date', newDate],
+          ['Payment Type', this.consoleData.paymentType.paymentName]
+        ],
+        tableFooter: [],
+        tableBodyStyle: 'border: 0px',
+
+      },
+       {
+        type: 'table',
+
+        style: 'border: 1px solid #ddd',
+        tableHeader: ['description', 'Qty', 'total', 'net'],
+        tableBody: [
+          this.things
+        ],
+        tableFooter: ['description', 'Qty', 'total', 'net'],
+        tableBodyStyle: 'border: 0.5px solid #ddd',
+
+      },
+      {
+        type: 'table',
+
+        style: 'border: 0px',
+        tableHeader: [],
+        tableBody: [
+          ['dicount', this.consoleData.discount],
+          ['total', this.consoleData.total]
+        ],
+        tableFooter: [],
+        tableBodyStyle: 'border: 0px,display: none',
+
+      },
+      {
+        type: 'text', value: this.headerfooter.footer, style: `text-align:center;`
+
+      }
+    ];
+    console.log(recieptPrint)
+    this.db.printData(recieptPrint)
   }
 }

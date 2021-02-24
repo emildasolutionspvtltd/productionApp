@@ -162,4 +162,19 @@ updatePay(id,data){
     getTaxInEx(tax){
       return this.electron.ipcRenderer.invoke('getInEx',tax)
     }
+
+    addPrinter(data){
+      return this.electron.ipcRenderer.invoke('addprinter',data)
+    }
+
+    addHeadFoot(data){
+      return this.electron.ipcRenderer.invoke('addheadfoot',data)
+    }
+    getEnteredPrinter(){
+       return this.electron.ipcRenderer.invoke('getSelectPrinter')
+    }
+    getEnterheadFoot(){
+      return this.electron.ipcRenderer.invoke('getHeadFoot')
+
+    }
 }

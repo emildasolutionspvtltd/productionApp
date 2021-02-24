@@ -144,8 +144,8 @@
                     <mat-form-field style="float: right;" appearance="fill">
                         <mat-label>Reciept Printer Name</mat-label>
                         <mat-select formControlName='recieptPrinter'>
-                            <mat-option value="one">First option</mat-option>
-                            <mat-option value="two">Second option</mat-option>
+                            <mat-option *ngFor="let printer of printerName" [value]="printerName">
+                                {{printer.name}} </mat-option>
                         </mat-select>
                     </mat-form-field>
                     <br>
