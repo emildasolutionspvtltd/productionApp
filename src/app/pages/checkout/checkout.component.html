@@ -7,15 +7,16 @@
       <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">dehaze</mat-icon>
     </button>
     <p class="toolbarHeading">
-      Rozana Al Riyadh  </p>
-
-    <span class="example-spacer"></span>
+      Rozana Al Riyadh </p>
 
 
-    <mat-form-field appearance="fill" >
-      <input matInput placeholder="Search Item by Name">
-      <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
+      <span class="example-spacer"></span>
+
+    <!-- 
+    <mat-form-field  > -->
+    <input matInput placeholder="Search Item by Name"></input>
+    <mat-icon matSuffix>search</mat-icon>
+    <!-- </mat-form-field> -->
     <!-- <div style="width: 200px; background-color:#3f51b5;border-bottom: black 5px;">
 
 
@@ -26,13 +27,13 @@
         [notFoundTemplate]="notFoundTemplate">
       </ng-autocomplete>
     </div> -->
-    <ng-template #itemTemplate let-item>
+    <!-- <ng-template #itemTemplate let-item>
       <a [innerHTML]="item.name"></a>
     </ng-template>
 
     <ng-template #notFoundTemplate let-notFound>
       <div [innerHTML]="notFound"></div>
-    </ng-template>
+    </ng-template> -->
 
     <div class="buttonHolder">
 
@@ -62,7 +63,7 @@
 
 
 
-    <mat-card  style="overflow-y: scroll;padding: 0px;" fxFlex='75' class="listCard hideScroll">
+    <mat-card style="overflow-y: scroll;padding: 0px;" fxFlex='75' class="listCard hideScroll">
       <table mat-table [dataSource]="dataSource">
 
         <!--- Note that these columns can be defined in any order.
@@ -100,7 +101,7 @@
           <th mat-header-cell *matHeaderCellDef> Total </th>
           <td mat-cell *matCellDef="let element"> {{element.total}}</td>
         </ng-container>
-<!-- 
+        <!-- 
         <ng-container matColumnDef="buttons">
           <th mat-header-cell *matHeaderCellDef> </th>
           <td mat-cell *matCellDef="let element">
@@ -162,7 +163,7 @@
           </div> -->
           <mat-selection-list #shoes style=" display: flex;  
           flex-wrap: wrap;" [multiple]="false">
-            <mat-list-option  *ngFor="let shoe of typesOfShoes"
+            <mat-list-option *ngFor="let shoe of typesOfShoes"
               (click)="changeModePayment(shoes.selectedOptions.selected[0]?.value)" [value]="shoe">
               {{shoe.paymentName}}
             </mat-list-option>
