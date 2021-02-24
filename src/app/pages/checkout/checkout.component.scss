@@ -131,3 +131,32 @@ opacity: 0.95;
 .custom-width {
     width: 450px;
 }
+
+
+.hideScroll::-webkit-scrollbar {
+    display: none;
+  }
+
+
+
+  mat-list-option[aria-selected="true"] {
+    background: rgb(255, 166, 0);
+    color: #000;
+    border-radius: 2px;
+    width: 45%;
+    margin-left: 2.5%;
+  }
+
+
+
+
+  mat-list-option{
+      text-transform: capitalize !important;
+      text-align: center !important;
+    border-radius: 2px !important;
+    padding: 0 5px !important;
+    width: 45%  !important;
+    margin-top:5px !important;
+    margin-left: 2.5%  !important;
+
+  }

@@ -107,3 +107,17 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+mat-list-option{
+  border-radius: 2px;
+  width: 45%;
+  margin-left: 2.5%;
+}
+
+.mat-list-option{
+  border-radius: 2px;
+  width: 45%;
+  margin-left: 2.5%;
+}
