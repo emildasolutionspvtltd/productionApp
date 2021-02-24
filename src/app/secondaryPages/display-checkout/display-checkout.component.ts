@@ -31,10 +31,10 @@ let recieptPrint = [
 })
 export class DisplayCheckoutComponent implements OnInit {
   consoleData: any
-headerfooter
-printerinfo
- things: any[]
- secondArray: string[][]=[]
+  headerfooter
+  printerinfo
+  things: any[]
+  secondArray: string[][] = []
   constructor(private db: DatabaseService, @Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DisplayCheckoutComponent>, private dialog: MatDialog, private secService: SecondaryService) {
     console.log(data.data)
     console.log(data.pay)
@@ -42,13 +42,13 @@ printerinfo
     console.log(data.discount)
     console.log(data.customer)
     this.db.getEnteredPrinter().then(x => {
-      this.printerinfo =x[0]
+      this.printerinfo = x[0]
     })
     this.db.getEnterheadFoot().then(x => {
-      this.headerfooter=x[0] 
+      this.headerfooter = x[0]
     })
-    this.things=[];
-    this.secondArray=[];
+    this.things = [];
+    this.secondArray = [];
   }
 
   ngOnInit(): void {
@@ -94,11 +94,22 @@ printerinfo
 
   // function to print data
   printData() {
-    for(var index in this.data.data){
-      this.things.push(this.data.data[index].name,this.data.data[index].quantity,this.data.data[index].mrp,this.data.data[index].total)
+    for (var index in this.data.data) {
+      let Temp:Array<any>
+      
+      Temp.push(this.data.data[index].name, this.data.data[index].quantity, this.data.data[index].mrp, this.data.data[index].total)
+      
+      this.things.push(Temp)
     }
+
+
+    console.log("hello"+ this.things)
     let newDate = new Date().toDateString()
     let a: string[][] = ['']['']
+
+
+
+
     recieptPrint = [
       {
         type: 'text', value: this.headerfooter.header, style: `text-align:center;`
@@ -117,18 +128,19 @@ printerinfo
         tableBodyStyle: 'border: 0px',
 
       },
-       {
+
+      {
         type: 'table',
 
         style: 'border: 1px solid #ddd',
         tableHeader: ['description', 'Qty', 'total', 'net'],
-        tableBody: [
-          this.things
-        ],
+        tableBody: this.things
+        ,
         tableFooter: ['description', 'Qty', 'total', 'net'],
         tableBodyStyle: 'border: 0.5px solid #ddd',
 
       },
+
       {
         type: 'table',
 
