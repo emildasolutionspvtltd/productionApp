@@ -8,18 +8,31 @@
     </div>
 <br>
 
-        <ng-autocomplete [data]="data" [searchKeyword]="keyword" (selected)='selectEvent($event)'
+
+<mat-form-field appearance="outline">
+    <mat-label>Customer Name</mat-label>
+<input  autofocus='true' 
+(inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' 
+ matInput type='text'>
+<mat-icon matSuffix>search</mat-icon>
+
+</mat-form-field>
+
+
+        <!-- <ng-autocomplete [data]="data" [searchKeyword]="keyword" (selected)='selectEvent($event)'
         (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
         [notFoundTemplate]="notFoundTemplate">
-      </ng-autocomplete>
+      </ng-autocomplete> -->
 
-    <ng-template #itemTemplate let-item>
+    <!-- <ng-template #itemTemplate let-item>
         <a [innerHTML]="item.name"></a>
         </ng-template>
         
         <ng-template #notFoundTemplate let-notFound>
         <div [innerHTML]="notFound"></div>
-        </ng-template>
+        </ng-template>  -->
+
+
 <p *ngIf='searchResults.length == 0'  style="text-align: center;font-size: 16px;opacity: 70%;">Or</p>
       <button *ngIf='searchResults.length == 0'   (click)='newCustomerModal()' mat-raised-button color="accent" class="bigButton">Create New Customer</button>
 
