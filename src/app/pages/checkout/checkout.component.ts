@@ -28,7 +28,7 @@ export class CheckoutComponent implements OnInit {
 
 
 
-  selectedPaymentMode = 'cash'
+  selectedPaymentMode = 'Cash'
 
 
   itemCount
@@ -333,18 +333,18 @@ getGrantTotal(){
 
 
   // Actual calculation of the cost = price * quantity
-  costCalculation(price, quantity, inex, tax) {
-    // console.log(inex)
-    // console.log(tax)
-    // console.log(quantity)
-    // console.log(price)
-    // if (inex == 'exclusive') {
-    //   price = price + (price * tax) / 100
-    // }
-    // else console.log('price is inclusive')
-    // return price * quantity;
+  // costCalculation(price, quantity, inex, tax) {
+  //   // console.log(inex)
+  //   // console.log(tax)
+  //   // console.log(quantity)
+  //   // console.log(price)
+  //   // if (inex == 'exclusive') {
+  //   //   price = price + (price * tax) / 100
+  //   // }
+  //   // else console.log('price is inclusive')
+  //   // return price * quantity;
 
-  }
+  // }
 
 
 
@@ -380,6 +380,10 @@ getGrantTotal(){
 
   // when payment mode is selected by defuult is cash
 
+
+
+
+  
   changeModePayment(choice) {
     this.selectedPaymentMode = choice
   }
@@ -394,9 +398,9 @@ getGrantTotal(){
     bottomSheetRef.afterDismissed().subscribe((result) => {
       console.log(result)
       this.updateResult = result
-      this.updateResult.total = this.costCalculation(this.updateResult.price, this.updateResult.quantity, data.inEx, this.updateResult.tax)
-      console.log(this.updateResult)
-      this.calculateTotal(this.dataSource.data)
+      // this.updateResult.total = this.costCalculation(this.updateResult.price, this.updateResult.quantity, data.inEx, this.updateResult.tax)
+      // console.log(this.updateResult)
+      // this.calculateTotal(this.dataSource.data)
       console.log('Bottom sheet has been dismissed.');
     });
   }

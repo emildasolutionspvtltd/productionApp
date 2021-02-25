@@ -140,9 +140,10 @@ opacity: 0.95;
 
 
   mat-list-option[aria-selected="true"] {
-    background: rgb(255, 166, 0);
-    color: #000;
-    border-radius: 2px;
+    background: #FFB846;
+    color: #000 !important;
+   
+    border-radius: 5px;
     width: 45%;
     margin-left: 2.5%;
   }
@@ -153,10 +154,17 @@ opacity: 0.95;
   mat-list-option{
       text-transform: capitalize !important;
       text-align: center !important;
-    border-radius: 2px !important;
+    border-radius: 5px !important;
+    color: #FFB846  ;
+    font-size: 14px  !important;
+    border: #FFB846 2px solid;
     // padding: 0 5px !important;
     width: 45%  !important;
     margin-top:5px !important;
     margin-left: 2.5%  !important;
 
+  }
+
+  .mat-list-text{
+      padding-right: 0 !important;
   }
