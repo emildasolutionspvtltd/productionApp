@@ -1,3 +1,4 @@
+{"type":"payment","paymentName":"GPay","notes":"Google Pay","_id":"AVW0i709onfQ67Os"}
 {"type":"payment","paymentName":"Card ","notes":"Debit/ Credit Card","_id":"Q6SIUzHdb3ZeJoFK"}
 {"type":"payment","paymentName":"Cash","notes":"Cash In Hand","_id":"cR1axlTDZ1zpKWif"}
 {"type":"tax","taxName":"IGST","taxPercentage":18,"inex":"exclusive","_id":"dN2WcB8oU9XvcmOi"}

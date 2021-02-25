@@ -29,35 +29,35 @@ export class CheckoutComponent implements OnInit {
 
 
   selectedPaymentMode = 'cash'
-  
-  
+
+
   itemCount
   itemInfo
-  
-  
+
+
   itemId
   taxInEx
-  
-  
+
+
   sesarchItem
   data = [];
-  
-  
+
+
   one: string[] = ['']
   selectedStates
-  
+
   searchText = '';
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
   customerData: customer
   items: Array<CheckoutItem> = []
-  
+
   dataSource: MatTableDataSource<CheckoutItem>
   updateResult
   indivisualTotal: number
   finalTotal: number
   finalDiscount: number = 0
-  discountType: any
+  discountType: any =''
   totalCost: number = 0
   typesOfShoes = [];
   allTaxes
@@ -67,17 +67,17 @@ export class CheckoutComponent implements OnInit {
 
 
 
-//
+  //
 
-  bag =[]  
+  bag = []
 
   // gets value for search bar and payment modes from settings
-  constructor(   private matBottom: MatBottomSheet, private checkService: CheckoutServiceService, private dialog: MatDialog, private databaseService: DatabaseService, @Inject(SecondaryService) private secService: SecondaryService) {
+  constructor(private matBottom: MatBottomSheet, private checkService: CheckoutServiceService, private dialog: MatDialog, private databaseService: DatabaseService, @Inject(SecondaryService) private secService: SecondaryService) {
 
 
 
-    this.bag=this.checkService.getBag
-    
+    this.bag = this.checkService.getBag
+
 
 
 
@@ -132,14 +132,14 @@ export class CheckoutComponent implements OnInit {
 
     this.databaseService.getCountBar(bar).then(x => {
 
-    this.itemCount = x
-    //   this.getInfo()
-    // }).catch(err => {
-    //   console.log(err)
-    // })
+      this.itemCount = x
+      //   this.getInfo()
+      // }).catch(err => {
+      //   console.log(err)
+      // })
 
-  })
-}
+    })
+  }
 
 
   // gets information about the selected barcode and will trigger addcheckout component if more than one product returns 
@@ -200,20 +200,27 @@ export class CheckoutComponent implements OnInit {
 
   /// on clicking it calls discount customer and calculates total again by calling finalDiacount function
   addDiscount() {
-    // this.discountType = ""
-    // this.finalDiscount = 0
-    // let dialogRef = this.dialog.open(AddDiscountComponent, {
-    //   maxWidth: '450px',
-    //   width: '90%',
-    //   panelClass: 'dialogCss'
+    this.discountType = ""
+    this.finalDiscount = 0
 
-    // })
-    // dialogRef.afterClosed().subscribe(result => {
-    //   this.finalDiscount = result.discount
-    //   this.discountType = result.grp
-    //   this.calculateTotal(this.dataSource.data)
 
-    // });
+
+    let dialogRef = this.dialog.open(AddDiscountComponent, {
+      maxWidth: '450px',
+      width: '90%',
+      panelClass: 'dialogCss'
+
+    })
+
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      console.log(result)
+      this.finalDiscount = result.discount
+      this.discountType = result.grp
+      // this.calculateTotal(this.dataSource.data)
+
+    });
   }
 
 
@@ -237,6 +244,29 @@ export class CheckoutComponent implements OnInit {
 
   }
 
+  getTotal() {
+    return this.bag.reduce((i, j) => i + j.price * j.quantity, 0);
+  }
+
+
+  getTax() {
+
+    return this.bag.reduce((i, j) => i + ((j.price * j.quantity) * j.tax / 100), 0);
+
+  }
+
+getGrantTotal(){
+ 
+
+
+   
+   return this.getTotal()-this.finalDiscount
+  
+
+
+  
+
+}
 
 
 
@@ -252,11 +282,11 @@ export class CheckoutComponent implements OnInit {
   }
 
 
-addItem(item){
-  this.checkService.addItem(item)
+  addItem(item) {
+    this.checkService.addItem(item)
 
-  this.dataSource = new MatTableDataSource<CheckoutItem>(this.bag)
-}
+    this.dataSource = new MatTableDataSource<CheckoutItem>(this.bag)
+  }
 
 
   displayedColumns: string[] = ['barcode', 'name', 'quantity', 'cost', 'tax', 'total'];

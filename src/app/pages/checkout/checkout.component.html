@@ -143,7 +143,7 @@
     <mat-card fxFlex='25' fxLayout='column' fxLayoutAlign='space-between' class="cartCard">
       <div class="grandTotalContainer">
         <p class='headingValues'>Grand Total</p>
-        <p class='totalValue'>{{totalCost | currency : '':''}} <span class="currency">SAR</span> </p>
+        <p class='totalValue'>{{getGrantTotal() | currency : '':''}} <span class="currency">SAR</span> </p>
       </div>
 
 
@@ -177,17 +177,21 @@
       <div class="subValuesContainer">
         <div class="subValuesHolder" fxLayout="row" fxLayoutAlign="space-between center">
           <p class='subValuesField'>Discount </p>
-          <p class='subValues'>{{finalDiscount}}</p>
+          <p *ngIf='discountType== "percentage" 'class='subValues'>{{finalDiscount}}%</p>
+          <p *ngIf='discountType == "sar" 'class='subValues'>{{finalDiscount | currency:'SAR'}}</p>
+          <p *ngIf='discountType == "" 'class='subValues'>0</p>
+        
         </div>
         <mat-divider></mat-divider>
         <div class="subValuesHolder" fxLayout="row" fxLayoutAlign="space-between center">
           <p class='subValuesField'>Tax </p>
-          <p class='subValues'>{{finalTax | currency : 'SAR' }}</p>
+          <p class='subValues'>{{
+            getTax()  | currency : 'SAR' }}</p>
         </div>
         <mat-divider></mat-divider>
         <div style="padding-bottom:0px" class="subValuesHolder" fxLayout="row" fxLayoutAlign="space-between center">
-          <p class='subValuesField'>Total </p>
-          <p class='subValues'>{{subtotal | currency : 'SAR'}}</p>
+          <p class='subValuesField'>Sub Total </p>
+          <p class='subValues'>{{ getTotal() | currency : 'SAR'}}</p>
         </div>
       </div>
 

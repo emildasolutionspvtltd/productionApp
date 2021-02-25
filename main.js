@@ -174,10 +174,10 @@ ipcMain.handle('insertCust', async (event, data) => {
 
 //searchingCustomer
 ipcMain.handle('searchcust', async (event, data) => {
-    console.log(data)
+    // console.log(data)
     
     temp= new RegExp(data)
-  console.log( temp)
+//   console.log( temp)
     return customerDb.find({ name:temp }, function (err, docs) {
     })
 })
