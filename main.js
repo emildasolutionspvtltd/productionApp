@@ -189,7 +189,9 @@ ipcMain.handle('getCust', async (event) => {
     return customerDb.find({ type: 'customer' })
 })
 
-
+ipcMain.handle('getindivisualCust', async (event,data) => {
+    return customerDb.find({ _id: data })
+})
 //customer Delte
 ipcMain.handle('deleteCust', async (event, id) => {
 
@@ -261,14 +263,36 @@ ipcMain.handle('insertTax', async (event, data) => {
     })
 })
 
+//get indivisual tax
+ipcMain.handle('getIndivisualTax', async (event, id,) => {
+    return settingDb.find({ _id: id }, function (err, docs) {
+
+    })
+
+
+})
 
 
 //getting Payment Methods
 
-ipcMain.handle('getPay', async (event) => {
-    return secondaryDb.find({ type: 'payment' })
-})
+ipcMain.handle('insertPay', async (event,data) => {
+    return settingDb.insert(data, function (err, Newdata) {
 
+    })
+})
+//get payment
+ipcMain.handle('getPay', async (event) => {
+    return settingDb.find({ type: 'payment' })
+})
+//get indivisual payment
+
+ipcMain.handle('getIndivisualPay', async (event, id,) => {
+    return settingDb.find({ _id: id }, function (err, docs) {
+
+    })
+
+
+})
 
 //getting Transactions
 ipcMain.handle('getTransaction', async (event) => {
@@ -412,7 +436,7 @@ ipcMain.handle('getInfo', async (event, id,) => {
 
 ipcMain.handle('editPay', async (event, id, data) => {
     console.log(data)
-    return secondaryDb.update({ _id: id }, {
+    return settingDb.update({ _id: id }, {
         $set: {
             paymentName: data.paymentName,
             notes: data.notes

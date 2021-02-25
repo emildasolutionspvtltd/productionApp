@@ -23,7 +23,7 @@ export class EditTaxComponent implements OnInit {
   taxes
   constructor(private router :Router,private dialog:MatDialog,private db:DatabaseService, @Inject(SecondaryService) private secService: SecondaryService,@Inject(MAT_DIALOG_DATA) public data: any) {
     console.log(data)
-    this.db.getinfo(data).then(x=>{
+    this.db.getIndivisualTax(data).then(x=>{
       console.log(x)
       this.taxes =x[0]
       this.taxname = this.taxes.taxName

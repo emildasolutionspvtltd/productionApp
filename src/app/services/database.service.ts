@@ -83,6 +83,9 @@ searchCustomer(data){
 getCustomer(){
   return this.electron.ipcRenderer.invoke('getCust')
 }
+getCus(data){
+  return this.electron.ipcRenderer.invoke('getindivisualCust',data)
+}
 
 deleteCust(id){
   return this.electron.ipcRenderer.invoke('deleteCust',id)
@@ -109,8 +112,17 @@ getTax(){
 insertTax(data){
   return this.electron.ipcRenderer.invoke('insertTax',data)
 }
+getIndivisualTax(data){
+  return this.electron.ipcRenderer.invoke('getIndivisualTax',data)
+}
+insertPay(data){
+  return this.electron.ipcRenderer.invoke('insertPay',data)
+}
 getPay(){
   return this.electron.ipcRenderer.invoke('getPay')
+}
+getindivisualPay(data){
+  return this.electron.ipcRenderer.invoke('getIndivisualPay',data)
 }
 getTransaction(){
  return this.electron.ipcRenderer.invoke('getTransaction')

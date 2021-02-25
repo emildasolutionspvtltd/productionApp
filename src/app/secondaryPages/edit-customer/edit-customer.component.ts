@@ -39,7 +39,7 @@ CustNotes
   
     console.log(this.data)
  
-   this.db.getItem(this.data).then(x=>{
+   this.db.getCus(this.data).then(x=>{
      console.log(x)
      this.a = x[0]
      this.custName = this.a.name

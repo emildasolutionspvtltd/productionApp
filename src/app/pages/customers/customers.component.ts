@@ -78,6 +78,7 @@ deleteCustomer(id){
 editCustomer(id){
   console.log(id)
   const dialogRef = this.dialog.open(EditCustomerComponent,{
+    maxWidth:'450px',
    data: id
  })
  dialogRef.afterClosed().subscribe(result => {

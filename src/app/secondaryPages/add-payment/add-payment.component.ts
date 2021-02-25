@@ -13,7 +13,7 @@ export class AddPaymentComponent implements OnInit {
   payForm = new FormGroup({
     type: new FormControl('payment'),
     paymentName : new FormControl('',Validators.required),
-    notes: new FormControl('',Validators.required),
+    notes: new FormControl(''),
   })
   constructor(private db : DatabaseService, private secService: SecondaryService,private dialog:MatDialog) { }
 
@@ -29,7 +29,7 @@ export class AddPaymentComponent implements OnInit {
   // validate and enter the value to new payment mode
   submit(){
     if(this.payForm.valid){
-      this.db.insertTax(this.payForm.value).then(x=>{
+      this.db.insertPay(this.payForm.value).then(x=>{
         console.log(x)
         this.secService.presentSanckBar("👍 Item added Successfully",'success')
       })
