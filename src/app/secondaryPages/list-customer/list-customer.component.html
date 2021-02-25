@@ -11,8 +11,8 @@
 
 <!-- <mat-form-field appearance="outline">
     <mat-label>Customer Name</mat-label>
-<input  autofocus='true' 
-(inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' 
+<input style="text-transform: uppercase;" autofocus='true' 
+(input)='onChangeSearch($event.target.value)'  
  matInput type='text'>
 <mat-icon matSuffix>search</mat-icon>
 
@@ -33,19 +33,24 @@
         </ng-template> 
 
 
-<p *ngIf='searchResults.length == 0'  style="text-align: center;font-size: 16px;opacity: 70%;">Or</p>
-      <button *ngIf='searchResults.length == 0'   (click)='newCustomerModal()' mat-raised-button color="accent" class="bigButton">Create New Customer</button>
-
-      <!-- <mat-list *ngIf="searchResults.length != 0 && searchTermValue" role="list">
+     <mat-list *ngIf='searchTerm  '  role="list">
           <div  *ngFor='let customer of searchResults ' class="div">
-            <mat-list-item (click)="saveCustomer(customer)" >{{customer.name}}</mat-list-item>
+            <mat-list-item  (click)="selectCustomer(customer)" > <div mat-line style='text-transform:capitalize'> {{customer.name}} </div> 
+                <div mat-line> {{customer.phNumber}} </div>
+                </mat-list-item>
             <mat-divider></mat-divider>
 
 
           </div>
       
-      </mat-list> -->
+      </mat-list>
 
       <p ></p>
+
+
+
+
+<p *ngIf='!searchTerm  '  style="text-align: center;font-size: 16px;opacity: 70%;">Or</p>
+<button *ngIf='searchResults.length == 0 || !searchTerm  '   (click)='newCustomerModal()' mat-raised-button color="accent" class="bigButton">Create New Customer</button>
 
 </div>

@@ -1,0 +1,4 @@
+{"type":"payment","paymentName":"Card ","notes":"Debit/ Credit Card","_id":"Q6SIUzHdb3ZeJoFK"}
+{"type":"payment","paymentName":"Cash","notes":"Cash In Hand","_id":"cR1axlTDZ1zpKWif"}
+{"type":"tax","taxName":"IGST","taxPercentage":18,"inex":"inclusive","_id":"dN2WcB8oU9XvcmOi"}
+{"type":"tax","taxName":"Gst","taxPercentage":18,"inex":"inclusive","_id":"sflcZzkpXhnMwYHH"}

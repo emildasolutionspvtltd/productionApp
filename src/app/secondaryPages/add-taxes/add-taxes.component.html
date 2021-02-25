@@ -7,17 +7,17 @@
 <br>
 <form [formGroup]='taxForm'>
 <mat-form-field appearance="outline">
-    <mat-label>Item Id / Barcode </mat-label>
+    <mat-label>Tax Name</mat-label>
     <input formControlName='taxName' id="codeInput" autofocus matInput type='text'>
 </mat-form-field>
 <br>
 <mat-form-field appearance="outline">
-    <mat-label>Item Name </mat-label>
-    <input formControlName='taxPercentage'   matInput type='text'>
+    <mat-label> Tax Percentage </mat-label>
+    <input formControlName='taxPercentage'   matInput type='number'>
 </mat-form-field>
 <br>
 <mat-form-field appearance="outline">
-    <mat-label>Inclusive/Exclusive</mat-label>
+    <mat-label>Type of Tax</mat-label>
     <mat-select formControlName='inex'>
         <mat-option value="inclusive">
             Inclusive </mat-option>

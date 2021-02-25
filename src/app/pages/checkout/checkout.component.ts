@@ -25,20 +25,33 @@ import { DisplayCheckoutComponent } from 'src/app/secondaryPages/display-checkou
 export class CheckoutComponent implements OnInit {
   searchBar = new FormControl('')
   searchBarValue: string = ''
+
+
+
   selectedPaymentMode = 'cash'
+  
+  
   itemCount
   itemInfo
+  
+  
   itemId
   taxInEx
+  
+  
   sesarchItem
   data = [];
+  
+  
   one: string[] = ['']
   selectedStates
+  
   searchText = '';
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
   customerData: customer
   items: Array<CheckoutItem> = []
+  
   dataSource: MatTableDataSource<CheckoutItem>
   updateResult
   indivisualTotal: number
@@ -52,8 +65,19 @@ export class CheckoutComponent implements OnInit {
   finalTax: number = 0
   subtotal: number = 0
 
+
+
+//
+
+  bag =[]  
+
   // gets value for search bar and payment modes from settings
-  constructor(private matBottom: MatBottomSheet, private checkService: CheckoutServiceService, private dialog: MatDialog, private databaseService: DatabaseService, @Inject(SecondaryService) private secService: SecondaryService) {
+  constructor(   private matBottom: MatBottomSheet, private checkService: CheckoutServiceService, private dialog: MatDialog, private databaseService: DatabaseService, @Inject(SecondaryService) private secService: SecondaryService) {
+
+
+
+    this.bag=this.checkService.getBag
+    
 
 
 
@@ -66,20 +90,19 @@ export class CheckoutComponent implements OnInit {
 
 
 
-    this.databaseService.getAllItems().then(x => {
-      this.data = x
-    })
+    // this.databaseService.getAllItems().then(x => {
+    //   this.data = x
+    // })
 
 
     //getting the payment Methods
     this.databaseService.getPay().then(x => {
-
       this.typesOfShoes = x
     })
 
 
 
-    this.getTaxes()
+    // this.getTaxes()
   }
 
 
@@ -87,10 +110,10 @@ export class CheckoutComponent implements OnInit {
 
 
   getTaxes() {
-    this.databaseService.getTax().then(x => {
-      console.log(x)
-      this.allTaxes = x
-    })
+    // this.databaseService.getTax().then(x => {
+    //   console.log(x)
+    //   this.allTaxes = x
+    // })
   }
 
 
@@ -109,18 +132,21 @@ export class CheckoutComponent implements OnInit {
 
     this.databaseService.getCountBar(bar).then(x => {
 
-      this.itemCount = x
-      this.getInfo()
-    }).catch(err => {
-      console.log(err)
-    })
+    this.itemCount = x
+    //   this.getInfo()
+    // }).catch(err => {
+    //   console.log(err)
+    // })
 
-  }
+  })
+}
 
 
   // gets information about the selected barcode and will trigger addcheckout component if more than one product returns 
   // or will proceed to inserting by calling insertData
   getInfo() {
+
+
     if (this.itemCount >= 2) {
       const dialogRef = this.dialog.open(AddCheckoutComponent, {
         height: '800px',
@@ -144,6 +170,10 @@ export class CheckoutComponent implements OnInit {
       this.getInEx(this.itemInfo[0])
       //this.insertData(this.itemInfo[0])
     }
+
+
+
+
   }
   ngOnInit(): void {
 
@@ -159,22 +189,31 @@ export class CheckoutComponent implements OnInit {
   }
 
 
+
+
+
+
+
+
+
+
+
   /// on clicking it calls discount customer and calculates total again by calling finalDiacount function
   addDiscount() {
-    this.discountType = ""
-    this.finalDiscount = 0
-    let dialogRef = this.dialog.open(AddDiscountComponent, {
-      maxWidth: '450px',
-      width: '90%',
-      panelClass: 'dialogCss'
+    // this.discountType = ""
+    // this.finalDiscount = 0
+    // let dialogRef = this.dialog.open(AddDiscountComponent, {
+    //   maxWidth: '450px',
+    //   width: '90%',
+    //   panelClass: 'dialogCss'
 
-    })
-    dialogRef.afterClosed().subscribe(result => {
-      this.finalDiscount = result.discount
-      this.discountType = result.grp
-      this.calculateTotal(this.dataSource.data)
+    // })
+    // dialogRef.afterClosed().subscribe(result => {
+    //   this.finalDiscount = result.discount
+    //   this.discountType = result.grp
+    //   this.calculateTotal(this.dataSource.data)
 
-    });
+    // });
   }
 
 
@@ -187,6 +226,9 @@ export class CheckoutComponent implements OnInit {
       panelClass: 'dialogCss'
 
     })
+
+
+    //getting Customer Data
     dialogRef.afterClosed().subscribe(result => {
       this.customerData = result
       console.log(result)
@@ -208,15 +250,25 @@ export class CheckoutComponent implements OnInit {
       this.sesarchItem = x
     })
   }
+
+
+addItem(item){
+  this.checkService.addItem(item)
+
+  this.dataSource = new MatTableDataSource<CheckoutItem>(this.bag)
+}
+
+
   displayedColumns: string[] = ['barcode', 'name', 'quantity', 'cost', 'tax', 'total'];
   i = 0;
+
   getInEx(data) {
-    this.databaseService.getTaxInEx(data.tax).then(x => {
-      console.log(x[0].inex)
-      data.inEx = x[0].inex
-      data.tax = x[0].taxPercentage
-      this.insertData(data)
-    })
+    // this.databaseService.getTaxInEx(data.tax).then(x => {
+    //   console.log(x[0].inex)
+    //   data.inEx = x[0].inex
+    //   data.tax = x[0].taxPercentage
+    //   this.insertData(data)
+    // })
   }
 
 
@@ -234,16 +286,16 @@ export class CheckoutComponent implements OnInit {
     // console.log(data.price)
 
 
-    this.indivisualTotal = this.costCalculation(data.price, 1, data.inEx, data.tax)
-    console.log(this.indivisualTotal)
+    // this.indivisualTotal = this.costCalculation(data.price, 1, data.inEx, data.tax)
+    // console.log(this.indivisualTotal)
 
-    this.items.push({ barcode: data.barcode, name: data.name, nameInArabic: data.nameInArabic, category: data.category, discount: 1, quantity: 1, mrp: data.mrp, price: data.price, tax: data.tax, inventory: data.inventory, unit: data.unit, id: data._id, total: this.indivisualTotal, inEx: data.inEx })
-    // this.totalPrice()
+    // this.items.push({ barcode: data.barcode, name: data.name, nameInArabic: data.nameInArabic, category: data.category, discount: 1, quantity: 1, mrp: data.mrp, price: data.price, tax: data.tax, inventory: data.inventory, unit: data.unit, id: data._id, total: this.indivisualTotal, inEx: data.inEx })
+    // // this.totalPrice()
 
-    this.dataSource = new MatTableDataSource<CheckoutItem>(this.items)
-    var index
-    console.log(this.dataSource.data)
-    this.calculateTotal(this.dataSource.data)
+    // 
+    // var index
+    // console.log(this.dataSource.data)
+    // this.calculateTotal(this.dataSource.data)
   }
 
 
@@ -252,15 +304,15 @@ export class CheckoutComponent implements OnInit {
 
   // Actual calculation of the cost = price * quantity
   costCalculation(price, quantity, inex, tax) {
-    console.log(inex)
-    console.log(tax)
-    console.log(quantity)
-    console.log(price)
-    if (inex == 'exclusive') {
-      price = price + (price * tax) / 100
-    }
-    else console.log('price is inclusive')
-    return price * quantity;
+    // console.log(inex)
+    // console.log(tax)
+    // console.log(quantity)
+    // console.log(price)
+    // if (inex == 'exclusive') {
+    //   price = price + (price * tax) / 100
+    // }
+    // else console.log('price is inclusive')
+    // return price * quantity;
 
   }
 
@@ -268,15 +320,15 @@ export class CheckoutComponent implements OnInit {
 
   // This calculates total by multiplying indivisual price and quantity. Then it adds all the indivisual total to get finalTotal
   public calculateTotal(data) {
-    this.finalTotal = 0
-    for (var index1 in data) {
-      this.one[index1] = data[index1].total;
+    // this.finalTotal = 0
+    // for (var index1 in data) {
+    //   this.one[index1] = data[index1].total;
 
-      this.finalTotal = this.finalTotal + this.one[index1]
-    }
-    this.subtotal = this.finalTotal
-    this.getFinalDiscount()
-    this.totalCost = this.finalTotal
+    //   this.finalTotal = this.finalTotal + this.one[index1]
+    // }
+    // this.subtotal = this.finalTotal
+    // this.getFinalDiscount()
+    // this.totalCost = this.finalTotal
 
   }
 
@@ -285,14 +337,14 @@ export class CheckoutComponent implements OnInit {
   // when discount is added to the checkout table, otherwise 0
   // Check if the selected is Sar
   getFinalDiscount() {
-    if (this.finalDiscount != 0) {
-      if (this.discountType == 'sar') {
-        this.finalTotal = this.finalTotal - this.finalDiscount
-      }
-      else {
-        this.finalTotal = this.finalTotal - (this.finalTotal * this.finalDiscount) / 100
-      }
-    }
+    // if (this.finalDiscount != 0) {
+    //   if (this.discountType == 'sar') {
+    //     this.finalTotal = this.finalTotal - this.finalDiscount
+    //   }
+    //   else {
+    //     this.finalTotal = this.finalTotal - (this.finalTotal * this.finalDiscount) / 100
+    //   }
+    // }
   }
 
 
@@ -324,8 +376,8 @@ export class CheckoutComponent implements OnInit {
   keyword = 'name';
 
   selectEvent(item) {
-    console.log(item)
-    this.getInEx(item)
+    // console.log(item)
+    // this.getInEx(item)
     //this.insertData(item)
   }
 
@@ -339,22 +391,22 @@ export class CheckoutComponent implements OnInit {
   checkOut() {
 
 
-    /// to proceed to checkout through the checkout button passes 4 components data,total,pay and discount for display during print
-    const dialogRef = this.dialog.open(DisplayCheckoutComponent, {
-      height: '400px',
-      width: '400px',
-      data: {
-        data: this.dataSource.filteredData,
-        total: this.finalTotal,
-        pay: this.selectedPaymentMode,
-        discount: this.finalDiscount,
-        customer: this.customerData
-      }
-    });
+    // /// to proceed to checkout through the checkout button passes 4 components data,total,pay and discount for display during print
+    // const dialogRef = this.dialog.open(DisplayCheckoutComponent, {
+    //   height: '400px',
+    //   width: '400px',
+    //   data: {
+    //     data: this.dataSource.filteredData,
+    //     total: this.finalTotal,
+    //     pay: this.selectedPaymentMode,
+    //     discount: this.finalDiscount,
+    //     customer: this.customerData
+    //   }
+    // });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
 
-    });
+    // });
   }
 }
