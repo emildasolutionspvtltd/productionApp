@@ -3,6 +3,4 @@
 {"type":"payment","paymentName":"Cash","notes":"Cash In Hand","_id":"cR1axlTDZ1zpKWif"}
 {"type":"tax","taxName":"IGST","taxPercentage":18,"inex":"exclusive","_id":"dN2WcB8oU9XvcmOi"}
 {"type":"tax","taxName":"Gst","taxPercentage":18,"inex":"inclusive","_id":"sflcZzkpXhnMwYHH"}
-{"type":"payment","paymentName":"gpay","notes":"","_id":"wwDhOj1RbWKMGGNV"}
-{"type":"payment","paymentName":"gpay","notes":"online psy","_id":"wwDhOj1RbWKMGGNV"}
-{"type":"payment","paymentName":"gpay","notes":"online pay","_id":"wwDhOj1RbWKMGGNV"}
+{"type":"payment","paymentName":"PhonePhe","notes":"online pay","_id":"wwDhOj1RbWKMGGNV"}
