@@ -16,6 +16,140 @@ import { SecondaryService } from 'src/app/services/secondary.service';
 export class AddSingleItemComponent implements OnInit {
 
 
+  units:Array<any>=[{
+    unitName:'Gram',
+    unit:'g'
+   },
+   {
+     unitName:'Kilogram',
+     unit:'kg'
+    },
+    {
+     unitName:'Milligram',
+     unit:'mg'
+    },
+    {
+     unitName:'Ounce',
+     unit:'oz'
+    },
+    {
+     unitName:'Pound',
+     unit:'lb'
+    },
+    {
+     unitName:'Stone',
+     unit:'st'
+    },
+    {
+     unitName:'Cubic Foot',
+     unit:'cu ft'
+    },
+    {
+     unitName:'Cubic Yard',
+     unit:'cu yd'
+    },
+    {
+     unitName:'Cup',
+     unit:'c'
+    },
+    {
+     unitName:'Fluid Ounce',
+     unit:'fl oz'
+    },
+    {
+     unitName:'Gallon',
+     unit:'gal'
+    },
+    {
+     unitName:'Litre',
+     unit:'L'
+    },
+    {
+     unitName:'Millilitre',
+     unit:'mL'
+    },
+    {
+     unitName:'Pint',
+     unit:'pt'
+    },
+    {
+     unitName:'Quart',
+     unit:'qt'
+    },
+    {
+     unitName:'Shot',
+     unit:'sh'
+    },
+    {
+     unitName:'Centimetre',
+     unit:'cm'
+    },
+    {
+     unitName:'Foot',
+     unit:'ft'
+    },
+    {
+     unitName:'Inch',
+     unit:'in'
+    },
+    {
+     unitName:'Kilometre',
+     unit:'Km'
+    },
+    {
+     unitName:'Metre',
+     unit:'m'
+    },
+    {
+     unitName:'Mile',
+     unit:'mi'
+    },
+   {
+     unitName:'Millimetre',
+     unit:'mm'
+    }, 
+    {
+     unitName:'Yard',
+     unit:'yd'
+    }, 
+    {
+     unitName:'Acre',
+     unit:'ac'
+    }, 
+    {
+     unitName:'Square Centimetre',
+     unit:'cm^2'
+    }, 
+    {
+     unitName:'Square Foot',
+     unit:'sq ft'
+    }, 
+    {
+     unitName:'Square Inch',
+     unit:'sq in'
+    }, 
+    {
+     unitName:'Square Kilometre',
+     unit:'sq km'
+    }, 
+    {
+     unitName:'Square Metre',
+     unit:'m^2'
+    }, 
+    {
+     unitName:'Square Mile',
+     unit:'sq mi'
+    }, 
+    {
+     unitName:'Square Yard',
+     unit:'sq yd'
+    }, 
+                    
+   ]
+   
+
+
+
   itemForm = new FormGroup({
     type : new FormControl('items'),
     barcode: new FormControl('', Validators.required),

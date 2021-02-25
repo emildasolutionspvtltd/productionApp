@@ -14,17 +14,19 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 })
 export class ListCustomerComponent implements OnInit {
   data = [];
-  searchTerm = new FormControl('')
+  searchTerm 
   searchTermValue:string =''
   searchResults=[]
   constructor(private checkoutSerice: CheckoutServiceService , private dialog: MatDialog,private db:DatabaseService,private secService: SecondaryService,public dialogRef: MatDialogRef<ListCustomerComponent>) {
-    this.db.getCustomer().then(x=>{
-      this.data = x
-    })
+    // this.db.getCustomer().then(x=>{
+    //   this.data = x
+    // })
 }
 
 
 searchCustomer(term){
+
+  
 
   this.db.searchCustomer(term).then(res=>{
     this.searchResults= res
@@ -59,11 +61,29 @@ this.secService.presentSanckBar(err,'danger')
 
   }
   keyword = 'name';
+
+
+
+
   selectEvent(item) {
     this.selectCustomer(item)
   }
 
-  onChangeSearch(val: string) {
+  onChangeSearch(val) {
+
+    
+    this.searchTerm=val
+    this.db.searchCustomer(val).then(x=>{
+      console.log(x)
+      this.searchResults=x
+    }).catch(error=>{
+      console.log(error)
+    })
+
+
+
+
+
     // fetch remote data from here
     // And reassign the 'data' which is binded to 'data' property.
   }

@@ -95,16 +95,20 @@
         </mat-card>
         <div fxFlex='30%' fxLayout='column' fxLayoutGap='20px' fxLayoutAlign='space-between stretch'
             class="subCardContainer">
-            <mat-card fxFlex='15%' style="text-align: center;">
-                <h5>Total Number Of Items :-</h5>
-                <h4>{{itemscount}}</h4>
+            <mat-card fxFlex='15%' >
+                <h5 style="font-weight:700">Total Number Of Items : <span class="heading3" >  {{itemscount}}</span> </h5>
+                
             </mat-card>
 
-            <mat-card fxFlex='15%' style="text-align: center;">
-                <h5>Total Number Of Categories :-</h5>
-                <h4>{{categorycount}}</h4>
+            <mat-card fxFlex='15%' >
+                <h5 style="font-weight:700">Total Number Of Categories : <span class="heading3">  {{categorycount}}</span></h5>
+           
             </mat-card>
             <mat-card fxFlex='70%'>
+
+
+                <h3 style="color:#2C2C2C  ;" class="heading3">List of Categories</h3>
+
                 <table style="width: 100%;" mat-table [dataSource]="categoryData">
 
 

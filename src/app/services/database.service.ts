@@ -76,6 +76,7 @@ insertCustomer(data){
   return this.electron.ipcRenderer.invoke('insertCust',data)
 }
 searchCustomer(data){
+  console.log(data)
   return this.electron.ipcRenderer.invoke('searchcust',data)
 }
 

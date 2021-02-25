@@ -55,6 +55,13 @@ export class DisplayCheckoutComponent implements OnInit {
   }
 
 
+
+
+
+
+
+
+
   // function to get whether success or failure 
   // this will be replaced by actual payment module that will send a tranction id 
   outcome(group) {
@@ -92,18 +99,26 @@ export class DisplayCheckoutComponent implements OnInit {
   }
 
 
+
+
+
+
+
+
+
+
   // function to print data
   printData() {
     for (var index in this.data.data) {
       let Temp:Array<any>
       
-      Temp.push(this.data.data[index].name, this.data.data[index].quantity, this.data.data[index].mrp, this.data.data[index].total)
-      
+      Temp = [
+      this.data.data[index].name, this.data.data[index].quantity, this.data.data[index].mrp, this.data.data[index].total ]
       this.things.push(Temp)
     }
 
 
-    console.log("hello"+ this.things)
+    console.log( this.things)
     let newDate = new Date().toDateString()
     let a: string[][] = ['']['']
 

@@ -35,6 +35,7 @@ categoryName= new FormControl('',Validators.required)
   if(this.categoryName.valid){
     this.db.insertCategory({type : 'category',categoryName:this.categoryName.value}).then(x=>{
       console.log(x)
+      this.closeDialog()
       this.secService.presentSanckBar("👍 Category added Successfully",'success')
     
 
