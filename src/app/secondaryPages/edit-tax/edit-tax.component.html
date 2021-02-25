@@ -7,17 +7,17 @@
 <br>
 <form [formGroup]='taxForm'>
 <mat-form-field appearance="outline">
-    <mat-label>{{taxname}} </mat-label>
+    <mat-label>Tax Name </mat-label>
     <input formControlName='taxName' id="codeInput" autofocus matInput type='text' [(ngModel)]="taxname">
 </mat-form-field>
 <br>
 <mat-form-field appearance="outline">
-    <mat-label>{{taxpercentage}} </mat-label>
+    <mat-label>Tax Percentage  </mat-label>
     <input formControlName='taxPercentage'   matInput type='text' [(ngModel)]="taxpercentage">
 </mat-form-field>
 <br>
 <mat-form-field appearance="outline">
-    <mat-label>{{Taxinex}}</mat-label>
+    <mat-label>Type of Tax</mat-label>
     <mat-select formControlName='inex' [(ngModel)]="Taxinex">
         <mat-option value="inclusive">
             Inclusive </mat-option>

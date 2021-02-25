@@ -10,12 +10,31 @@ mat-drawer{
 
 .blockUl{
     padding:16px;
-
+   
+    .blockLi:hover {
+        border-radius: 12px;
+        background-color: #fff;
+       color: #003C8F;
+      }
+      
+      /* selected link */
+      .blockLi:active {
+        border-radius: 12px;
+       background-color: rgb(255, 255, 255);
+        color: #003C8F;
+      }
 }
+// li:hover{
+//     background-color: white;
+//     color: #003C8F;
+// }
+// li:active{
+//     background-color: white;
+//     color: #003C8F;
+// }
 
-.blockLi{
     
-}
+
 
 .blockUl>li{
     color: white;
