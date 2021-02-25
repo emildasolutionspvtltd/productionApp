@@ -15,7 +15,7 @@ payment
 payForm = new FormGroup({
   type: new FormControl('payment'),
   paymentName : new FormControl('',Validators.required),
-  notes: new FormControl('',Validators.required),
+  notes: new FormControl('')
 })
 payName
 Paynote
