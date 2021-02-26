@@ -31,7 +31,7 @@
         </ng-template>  -->
 
 
-     <mat-list *ngIf='searchTerm  '  role="list">
+     <mat-list  role="list">
           <div  *ngFor='let customer of searchResults ' class="div">
             <mat-list-item  (click)="selectCustomer(customer)" > <div mat-line style='text-transform:capitalize'> {{customer.name}} </div> 
                 <div mat-line> {{customer.phNumber}} </div>

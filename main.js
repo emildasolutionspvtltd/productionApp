@@ -127,6 +127,7 @@ ipcMain.handle('getCat', async (event, id) => {
 })
 
 ipcMain.handle('editCat', async (event, id, name) => {
+    name=name.toLowerCase()
     return categoryDb.update({ _id: id }, { $set: { categoryName: name } }, {}, function (err, numReplaced) {
 
     });
@@ -190,7 +191,7 @@ ipcMain.handle('insertCust', async (event, data) => {
 //searchingCustomer
 ipcMain.handle('searchcust', async (event, data) => {
     // console.log(data)
-    data.name=data.name.toLowerCase()
+    data=data.toLowerCase()
     temp= new RegExp(data)
 //   console.log( temp)
     return customerDb.find({ name:temp }, function (err, docs) {

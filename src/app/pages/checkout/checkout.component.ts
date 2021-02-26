@@ -430,39 +430,55 @@ getGrantTotal(){
   onFocused(e) {
     console.log(e)
   }
+
+
+ reset(){
+
+
+this.checkService.clearBag()
+console.log("ge")
+  this.dataSource = new MatTableDataSource<CheckoutItem>(this.bag)
+
+ }
+
+
+
+
+
+
   checkOut() {
 
 
-    // console.log(this.customerData)
-    // if(this.customerData == undefined || this.dataSource == undefined || this.selectedPaymentMode == undefined){
-    //   if(this.dataSource==undefined){
-    //     this.secService.presentSanckBar('please enter items','ok')
-    //   }
-    //   if(this.customerData==undefined){
-    //     this.secService.presentSanckBar('please add customer','ok')
+    if(this.customerData == undefined || this.dataSource == undefined || this.selectedPaymentMode == undefined){
+      if(this.dataSource==undefined){
+        this.secService.presentSanckBar('please enter items','ok')
 
-    //   }
-    //   if(this.selectedPaymentMode==undefined){
-    //     this.secService.presentSanckBar('select payment option','ok')
-    //   }
-    // }
-    // else{
-    //   const dialogRef = this.dialog.open(DisplayCheckoutComponent, {
-    //     height: '400px',
-    //     width: '400px',
-    //     data: {
-    //       data: this.dataSource.filteredData,
-    //       total: this.finalTotal,
-    //       pay: this.selectedPaymentMode,
-    //       discount: this.finalDiscount,
-    //       customer: this.customerData
-    //     }
-    //   });
+      }
+      if(this.customerData==undefined){
+        this.secService.presentSanckBar('please add customer','ok')
+
+      }
+      if(this.selectedPaymentMode==undefined){
+        this.secService.presentSanckBar('select payment option','ok')
+      }
+    }
+    else{
+      const dialogRef = this.dialog.open(DisplayCheckoutComponent, {
+        height: '400px',
+        width: '400px',
+        data: {
+          data: this.dataSource.filteredData,
+          total: this.finalTotal,
+          pay: this.selectedPaymentMode,
+          discount: this.finalDiscount,
+          customer: this.customerData
+        }
+      });
   
-    //   dialogRef.afterClosed().subscribe(result => {
-    //     console.log('The dialog was closed');
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
 
-    //   });
-    // }
+      });
+    }
   }
 }

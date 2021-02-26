@@ -204,8 +204,8 @@
         <mat-label>Barcode</mat-label>
         <input cdkFocusInitial id="codeInput" [formControl]='searchBar' matKeyboard='oh' autofocus matInput>
       </mat-form-field>
-      <button (click)='addCustomer()' fxFlex='25' class='buttonSeconday' mat-raised-button>
-        <mat-icon>people</mat-icon>&nbsp; Add Customer
+      <button (click)='addCustomer()' color="{{customerData? 'primary':'' }}" style="text-transform: capitalize;" fxFlex='25' class='buttonSeconday' mat-raised-button>
+        <mat-icon>people</mat-icon>&nbsp; {{ customerData ? customerData.name : ' Add Customer' }}
       </button>
       <button (click)='addDiscount()' fxFlex='25' class='buttonSeconday' mat-raised-button>
         <mat-icon>local_offer</mat-icon>&nbsp; Add Discount

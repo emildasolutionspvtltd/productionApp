@@ -34,7 +34,9 @@ private cartItemCount = new BehaviorSubject(0);
 
 
 
-
+ clearBag(){
+   this.bag.length=0
+ }
 
 
 getQuantity(item){
