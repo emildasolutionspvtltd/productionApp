@@ -1,5 +1,6 @@
-{"type":"items","barcode":"1661010","name":"Old Arabian Dates","nameInArabic":"تمور عربية قديمة","category":"Spices","mrp":256,"price":200,"tax":18,"inventory":200,"unit":"kg","_id":"AZcw76olbi7c1OYf"}
-{"type":"items","barcode":"1661009","name":"Fresh Arabian Dates","nameInArabic":"تمور عربية طازجة","category":"Dry Fruits","mrp":256,"price":250,"tax":18,"inventory":90,"unit":"mg","_id":"NLJwxOVH7oyxRw8o"}
-{"type":"items","barcode":"1661011","name":"Arabian Indian Masala Chilli","nameInArabic":"ماسالا عربي هندي حار","category":"Spices","mrp":200,"price":15,"tax":18,"inventory":200,"unit":"kg","_id":"SDCvLmbmhgtmvnmq"}
-{"type":"items","barcode":"1661009","name":"Dryfruits 800","nameInArabic":"فواكه مجففة 800","category":"Dry Fruits","mrp":250,"price":120,"tax":18,"inventory":200,"unit":"kg","_id":"tz3Y7mWQHpNQeBQ3"}
+{"type":"items","barcode":"1661009","name":"dry fruits new same","nameInArabic":"الفواكه المجففة جديدة نفس","category":"Spices","mrp":2000,"price":150,"tax":18,"inventory":150,"unit":"kg","_id":"7xHZgfDyBlbBPGv0"}
+{"type":"items","barcode":"1661010","name":"old arabian dates","nameInArabic":"تمور عربية قديمة","category":"Spices","mrp":256,"price":200,"tax":18,"inventory":200,"unit":"kg","_id":"AZcw76olbi7c1OYf"}
+{"type":"items","barcode":"1661009","name":"fresh arabian dates","nameInArabic":"تمور عربية طازجة","category":"Dry Fruits","mrp":256,"price":250,"tax":18,"inventory":90,"unit":"mg","_id":"NLJwxOVH7oyxRw8o"}
+{"type":"items","barcode":"1661011","name":"arabian indian masala chilli","nameInArabic":"ماسالا عربي هندي حار","category":"Spices","mrp":200,"price":15,"tax":18,"inventory":200,"unit":"kg","_id":"SDCvLmbmhgtmvnmq"}
+{"type":"items","barcode":"1661009","name":"dryfruits 800","nameInArabic":"فواكه مجففة 800","category":"Dry Fruits","mrp":250,"price":120,"tax":18,"inventory":200,"unit":"kg","_id":"tz3Y7mWQHpNQeBQ3"}
 {"type":"items","barcode":"1661012","name":"Ginger Powder","nameInArabic":"مسحوق الزنجبيل","category":"Spices","mrp":250,"price":100,"tax":18,"inventory":50,"unit":"kg","_id":"wZyKFRuNTxsvWQ1m"}

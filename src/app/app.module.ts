@@ -73,6 +73,7 @@ import { AcceptTransactionComponent } from './secondaryPages/accept-transaction/
 import {MatNativeDateModule} from '@angular/material/core';
 import { EditTaxComponent } from './secondaryPages/edit-tax/edit-tax.component';
 import { EditPayComponent } from './secondaryPages/edit-pay/edit-pay.component';
+import { SearchItemComponent } from './secondaryPages/search-item/search-item.component';
 // const customLayouts: IKeyboardLayouts = {
 //   ...keyboardLayouts,
 //   'oh': {
@@ -119,6 +120,7 @@ import { EditPayComponent } from './secondaryPages/edit-pay/edit-pay.component';
     AcceptTransactionComponent,
     EditTaxComponent,
     EditPayComponent,
+    SearchItemComponent,
   ],
   imports: [
     BrowserModule,

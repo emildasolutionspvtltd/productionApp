@@ -75,6 +75,7 @@ ipcMain.handle('getAllCategory', async (event) => {
 })
 // function to insert a single item 
 ipcMain.handle('insertSingleItem', async (event, data) => {
+    data.name=data.name.toLowerCase()
     return itemDb.insert(data, function (err, Newdata) {
 
     })
@@ -141,8 +142,22 @@ ipcMain.handle('getItem', async (event, id,) => {
 })
 
 
+
+//searchingItem
+ipcMain.handle('searchItem', async (event, data) => {
+   
+    data=data.toLowerCase()
+    temp= new RegExp(data)
+//   console.log( temp)
+    return itemDb.find({ name:temp }, function (err, docs) {
+    })
+})
+
+
+
+
 ipcMain.handle('editItem', async (event, id, data) => {
-    console.log(data)
+    data.name=data.name.toLowerCase()
     return itemDb.update({ _id: id }, {
         $set: {
             barcode: data.barcode,
@@ -163,7 +178,7 @@ ipcMain.handle('editItem', async (event, id, data) => {
 
 
 ipcMain.handle('insertCust', async (event, data) => {
-    console.log(data)
+    data.name=data.name.toLowerCase()
     return customerDb.insert(data, function (err, Newdata) {
 
     })
@@ -175,7 +190,7 @@ ipcMain.handle('insertCust', async (event, data) => {
 //searchingCustomer
 ipcMain.handle('searchcust', async (event, data) => {
     // console.log(data)
-    
+    data.name=data.name.toLowerCase()
     temp= new RegExp(data)
 //   console.log( temp)
     return customerDb.find({ name:temp }, function (err, docs) {
@@ -204,8 +219,8 @@ ipcMain.handle('deleteCust', async (event, id) => {
 
 //updating Customer Database
 ipcMain.handle('updateCust', async (event, id, data) => {
-    console.log(data)
-    return customerDb.update({ _id: id }, {
+    data.name=data.name.toLowerCase() 
+       return customerDb.update({ _id: id }, {
         $set: {
             barcode: data.barcode,
             name: data.name,

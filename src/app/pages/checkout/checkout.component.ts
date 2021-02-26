@@ -17,6 +17,7 @@ import { map, startWith } from 'rxjs/operators';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CheckOutItemComponent } from 'src/app/secondaryPages/check-out-item/check-out-item.component';
 import { DisplayCheckoutComponent } from 'src/app/secondaryPages/display-checkout/display-checkout.component';
+import { SearchItemComponent } from 'src/app/secondaryPages/search-item/search-item.component';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -82,7 +83,6 @@ export class CheckoutComponent implements OnInit {
 
 
     this.searchBar.valueChanges.subscribe(res => {
-
       this.searchBarValue = res
       this.searchBarcode(this.searchBarValue)
     })
@@ -223,6 +223,21 @@ if(results.length != 0){
   }
   
 
+  searchPopup(){
+    let dialogRef = this.dialog.open(SearchItemComponent, {
+      maxWidth: '450px',
+      width: '90%',
+      panelClass: 'dialogCss'
+
+    })
+
+
+    //getting Customer Data
+    dialogRef.afterClosed().subscribe(result => {
+      this.addItem(result.data)
+    });
+    
+  }
 
 
 
@@ -231,6 +246,9 @@ if(results.length != 0){
 
   }
 
+
+
+  
 
 
 
@@ -252,6 +270,7 @@ if(results.length != 0){
 
   /// on clicking it calls discount customer and calculates total again by calling finalDiacount function
   addDiscount() {
+
     this.discountType = ""
     this.finalDiscount = 0
 

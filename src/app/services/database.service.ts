@@ -32,6 +32,11 @@ deleteItem(id){
     return this.electron.ipcRenderer.invoke('insertSingleItem',data)
   }
 
+  searchItem(data){
+   
+    return this.electron.ipcRenderer.invoke('searchItem',data)
+  }
+
   getAllItems(){
     return this.electron.ipcRenderer.invoke('getTabelAllItems')
   }
