@@ -163,9 +163,9 @@
           </div> -->
           <mat-selection-list #shoes  style=" display: flex;  
           flex-wrap: wrap;" [multiple]="false">
-            <mat-list-option *ngFor="let shoe of typesOfShoes"
-              (click)="changeModePayment(shoes.selectedOptions.selected[0]?.value)" [value]="shoe">
-              {{shoe.paymentName}}
+            <mat-list-option *ngFor="let pay of typesOfPayment"
+              (click)="changeModePayment(pay.selectedOptions.selected[0]?.value)" [value]="pay">
+              {{pay.paymentName}}
             </mat-list-option>
           </mat-selection-list>
         </div>

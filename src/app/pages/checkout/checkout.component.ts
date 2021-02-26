@@ -59,7 +59,7 @@ export class CheckoutComponent implements OnInit {
   finalDiscount: number = 0
   discountType: any =''
   totalCost: number = 0
-  typesOfShoes = [];
+  typesOfPayment = [];
   allTaxes
   inex
   finalTax: number = 0
@@ -97,7 +97,7 @@ export class CheckoutComponent implements OnInit {
 
     //getting the payment Methods
     this.databaseService.getPay().then(x => {
-      this.typesOfShoes = x
+      this.typesOfPayment = x
     })
 
 
@@ -109,37 +109,83 @@ export class CheckoutComponent implements OnInit {
 
 
 
-  getTaxes() {
-    // this.databaseService.getTax().then(x => {
-    //   console.log(x)
-    //   this.allTaxes = x
-    // })
-  }
 
 
 
   /// this searches for the item when barcode is inserted
-  searchBarcode(bar) {
+  searchBarcode(barcode) {
 
-    console.log(bar)
-    this.databaseService.getItemBar(bar).then(x => {
+    console.log(barcode)
+    this.databaseService.getItemBar(barcode).then(x => {
+let results:Array<any> = x
 
-      this.itemInfo = x
-    }).catch(err => {
+if(results.length != 0){
+  if(results.length >= 1){
+//double items
+    if (results.length >= 2) {
+
+
+      const dialogRef = this.dialog.open(AddCheckoutComponent, {
+        maxWidth: '450px',
+        width: '90%',
+        panelClass: 'dialogCss',
+        data: { data: results }
+      })
+
+
+  dialogRef.afterClosed().subscribe(result => {
+
+      if(result){
+        this.addItem(result)
+        console.log(result)
+        this.searchBar.reset()
+      }else{
+        this.searchBar.reset()
+        console.log("nothing")
+      }
+
+
+  })
+
+
+
+
+
+
+
+
+
+  }else{
+    this.addItem(results[0])
+  }
+
+}
+}}
+
+    ).catch(err => {
+
+
+
       console.log(err)
     })
 
 
-    this.databaseService.getCountBar(bar).then(x => {
+    this.databaseService.getCountBar(barcode).then(x => {
 
-      this.itemCount = x
-      //   this.getInfo()
-      // }).catch(err => {
-      //   console.log(err)
-      // })
+      
+  
 
     })
   }
+
+
+
+
+
+
+
+
+
 
 
   // gets information about the selected barcode and will trigger addcheckout component if more than one product returns 
@@ -161,13 +207,13 @@ export class CheckoutComponent implements OnInit {
         this.databaseService.getItem(this.itemId).then(x => {
 
           this.itemInfo = x[0]
-          this.getInEx(this.itemInfo)
+          // this.getInEx(this.itemInfo)
           //this.insertData(this.itemInfo)
         })
       });
     }
     else {
-      this.getInEx(this.itemInfo[0])
+      // this.getInEx(this.itemInfo[0])
       //this.insertData(this.itemInfo[0])
     }
 
@@ -175,6 +221,12 @@ export class CheckoutComponent implements OnInit {
 
 
   }
+  
+
+
+
+
+
   ngOnInit(): void {
 
   }
@@ -224,6 +276,12 @@ export class CheckoutComponent implements OnInit {
   }
 
 
+
+
+
+
+
+
   // get all customers 
   //below button
   addCustomer() {
@@ -255,6 +313,11 @@ export class CheckoutComponent implements OnInit {
 
   }
 
+
+
+
+
+
 getGrantTotal(){
  
 
@@ -274,6 +337,8 @@ getGrantTotal(){
 
 
 
+
+
   // seaches for all item and retrieves them
   searchItem() {
     this.databaseService.getAllItems().then(x => {
@@ -286,101 +351,25 @@ getGrantTotal(){
     this.checkService.addItem(item)
 
     this.dataSource = new MatTableDataSource<CheckoutItem>(this.bag)
+    this.searchBar.reset()
   }
 
 
   displayedColumns: string[] = ['barcode', 'name', 'quantity', 'cost', 'tax', 'total'];
   i = 0;
 
-  getInEx(data) {
-    // this.databaseService.getTaxInEx(data.tax).then(x => {
-    //   console.log(x[0].inex)
-    //   data.inEx = x[0].inex
-    //   data.tax = x[0].taxPercentage
-    //   this.insertData(data)
-    // })
-  }
+  
 
 
 
 
 
-  //inserts data selected from all three selecting modes to the checkout table and calcualtes total by calling calculateTotal function
-  insertData(data) {
-
-
-    //some Algorithim is wrong
-
-
-    // console.log(data.inEx)
-    // console.log(data.price)
-
-
-    // this.indivisualTotal = this.costCalculation(data.price, 1, data.inEx, data.tax)
-    // console.log(this.indivisualTotal)
-
-    // this.items.push({ barcode: data.barcode, name: data.name, nameInArabic: data.nameInArabic, category: data.category, discount: 1, quantity: 1, mrp: data.mrp, price: data.price, tax: data.tax, inventory: data.inventory, unit: data.unit, id: data._id, total: this.indivisualTotal, inEx: data.inEx })
-    // // this.totalPrice()
-
-    // 
-    // var index
-    // console.log(this.dataSource.data)
-    // this.calculateTotal(this.dataSource.data)
-  }
+  
 
 
 
 
-
-  // Actual calculation of the cost = price * quantity
-  // costCalculation(price, quantity, inex, tax) {
-  //   // console.log(inex)
-  //   // console.log(tax)
-  //   // console.log(quantity)
-  //   // console.log(price)
-  //   // if (inex == 'exclusive') {
-  //   //   price = price + (price * tax) / 100
-  //   // }
-  //   // else console.log('price is inclusive')
-  //   // return price * quantity;
-
-  // }
-
-
-
-  // This calculates total by multiplying indivisual price and quantity. Then it adds all the indivisual total to get finalTotal
-  public calculateTotal(data) {
-    // this.finalTotal = 0
-    // for (var index1 in data) {
-    //   this.one[index1] = data[index1].total;
-
-    //   this.finalTotal = this.finalTotal + this.one[index1]
-    // }
-    // this.subtotal = this.finalTotal
-    // this.getFinalDiscount()
-    // this.totalCost = this.finalTotal
-
-  }
-
-
-
-  // when discount is added to the checkout table, otherwise 0
-  // Check if the selected is Sar
-  getFinalDiscount() {
-    // if (this.finalDiscount != 0) {
-    //   if (this.discountType == 'sar') {
-    //     this.finalTotal = this.finalTotal - this.finalDiscount
-    //   }
-    //   else {
-    //     this.finalTotal = this.finalTotal - (this.finalTotal * this.finalDiscount) / 100
-    //   }
-    // }
-  }
-
-
-  // when payment mode is selected by defuult is cash
-
-
+  
 
 
   
