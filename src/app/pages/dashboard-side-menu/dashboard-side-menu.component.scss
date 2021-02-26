@@ -20,20 +20,21 @@ mat-drawer{
       /* selected link */
       .blockLi:active {
         border-radius: 12px;
-       background-color: rgb(255, 255, 255);
+       background-color: #fff;
         color: #003C8F;
       }
+      .blockLi:visited {
+        border-radius: 12px;
+       background-color: #fff;
+        color: #003C8F;
+      }
+      .blockLi:focus{
+        border-radius: 12px;
+        background-color: #fff;
+         color: #003C8F;
+      }
 }
-// li:hover{
-//     background-color: white;
-//     color: #003C8F;
-// }
-// li:active{
-//     background-color: white;
-//     color: #003C8F;
-// }
 
-    
 
 
 .blockUl>li{
@@ -47,16 +48,21 @@ mat-drawer{
    font-size: 18px;
 }
 
+
 .profileIcon{
     padding: 16px;
     background: #00337B;
 }
 
 .active{
-    background:#1565C0 ;
-    border-radius: 8px;
-opacity: 100% !important;
-box-shadow: 0px 3px 12px #00000029;
+    
+    border-radius: 12px;
+    background-color: #fff;
+     color: #003C8F;
+//     background:#1565C0 ;
+//     border-radius: 8px;
+// opacity: 100% !important;
+// box-shadow: 0px 3px 12px #00000029;
 }
 .drawerContainer{
     height: 100%;
