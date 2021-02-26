@@ -399,20 +399,23 @@ getGrantTotal(){
 
 
   //this is the bottom sheet for editing quantity and price and it returns the vale as well as recalulates the total by calling updateResults function
-  async options(data) {
-   this.updateResult = this.checkService.editItem(data)
-    // console.log(data)
-    // const bottomSheetRef = this.matBottom.open(CheckOutItemComponent, {
-    //   data: data
-    // })
-    // bottomSheetRef.afterDismissed().subscribe((result) => {
-    //   console.log(result)
-    //   this.updateResult = result
-    //   // this.updateResult.total = this.costCalculation(this.updateResult.price, this.updateResult.quantity, data.inEx, this.updateResult.tax)
-    //   // console.log(this.updateResult)
-    //   // this.calculateTotal(this.dataSource.data)
-    //   console.log('Bottom sheet has been dismissed.');
-    // });
+  options(data) {
+   //this.checkService.editItem(data)
+   //this.dataSource = new MatTableDataSource<CheckoutItem>(this.bag)
+    console.log(data)
+    const bottomSheetRef = this.matBottom.open(CheckOutItemComponent, {
+      data: data
+    })
+    bottomSheetRef.afterDismissed().subscribe((result) => {
+      console.log(result)
+      this.updateResult = result
+      this.dataSource = new MatTableDataSource<CheckoutItem>(this.bag)
+
+      // this.updateResult.total = this.costCalculation(this.updateResult.price, this.updateResult.quantity, data.inEx, this.updateResult.tax)
+      // console.log(this.updateResult)
+      // this.calculateTotal(this.dataSource.data)
+      console.log('Bottom sheet has been dismissed.');
+    });
   }
 
 

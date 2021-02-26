@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { CheckOutItemComponent } from '../secondaryPages/check-out-item/check-out-item.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { DataSource } from '@angular/cdk/table';
 
 @Injectable({
   providedIn: 'root'
@@ -104,23 +105,9 @@ export class CheckoutServiceService {
       if (p._id === item._id) {
         this.cartItemCount.next(this.cartItemCount.value - p.quantity);
         this.bag.splice(index, 1);
+        return this.bag
       }
     }
   }
-updateResult
-  editItem(data) {
-    console.log(data)
-    const bottomSheetRef = this.matBottom.open(CheckOutItemComponent, {
-      data: data
-    })
-    bottomSheetRef.afterDismissed().subscribe((result) => {
-      console.log(result)
-      this.updateResult = result
-      // this.updateResult.total = this.costCalculation(this.updateResult.price, this.updateResult.quantity, data.inEx, this.updateResult.tax)
-      // console.log(this.updateResult)
-      // this.calculateTotal(this.dataSource.data)
-      console.log('Bottom sheet has been dismissed.');
-      return this.updateResult
-    });
-  }
+
 }

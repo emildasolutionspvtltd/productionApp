@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
+import { CheckoutServiceService } from 'src/app/services/checkout-service.service';
 
 @Component({
   selector: 'app-check-out-item',
@@ -10,12 +11,16 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class CheckOutItemComponent implements OnInit {
   checkOutForm = new FormGroup({
-    price: new FormControl(''),
-    quantity: new FormControl(''),
+    price: new FormControl('',Validators.required),
+    quantity: new FormControl('',Validators.required),
     tax:new FormControl('')
   })
-  constructor(private dialog:MatDialog,private bottom:MatBottomSheet,@Inject(MAT_BOTTOM_SHEET_DATA) public data: any) { 
-    console.log(data)
+  tablePrice 
+  tableQty
+
+  constructor(private dialog:MatDialog,private bottom:MatBottomSheet,@Inject(MAT_BOTTOM_SHEET_DATA) public data: any,private checkoutService : CheckoutServiceService) { 
+    this.tablePrice = data.price
+    this.tableQty = data.quantity
   }
 
   ngOnInit(): void {
@@ -23,7 +28,7 @@ export class CheckOutItemComponent implements OnInit {
 
   // function to close dialog
   onclose(){
-    this.bottom.dismiss(this.data)
+    this.bottom.dismiss()
   }
   // finction to validate and update the item
   update(){
@@ -34,8 +39,9 @@ export class CheckOutItemComponent implements OnInit {
       this.data.tax = this.checkOutForm.value.tax
     }
   }
-  openLink(event: MouseEvent): void {
-    this.bottom.dismiss();
-    event.preventDefault();
+updateData
+  removeItem(){
+    this.updateData=this.checkoutService.removeItem(this.data)
+    this.bottom.dismiss(this.updateData)
   }
 }

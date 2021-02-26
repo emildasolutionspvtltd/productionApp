@@ -7,11 +7,11 @@
     <mat-form-field id="rightMargin" appearance="outline">
         <mat-label>Cost </mat-label>
         <!-- [(ngModel)]="itemname" -->
-        <input formControlName='price' [(ngModel)]="data.price"  autofocus matInput type='text'>
+        <input formControlName='price' [(ngModel)]="tablePrice"  autofocus matInput type='text'>
     </mat-form-field>
     <mat-form-field id="leftMargin" appearance="outline">
         <mat-label>Quantity</mat-label>
-        <input formControlName='quantity' [(ngModel)]="data.quantity"  autofocus matInput type='number'>
+        <input formControlName='quantity' [(ngModel)]="tableQty"  autofocus matInput type='number'>
 
     </mat-form-field>
     <br>
@@ -30,7 +30,7 @@
         </span>Print Label</button></div>
         <br>
     <button  mat-raised-button (click)="update()" id="rightMargin" color="accent" class="bigButton">Update</button>
-    <button  mat-button  id="leftMargin" style="color: red;" class="bigButton"><span class="material-icons">
+    <button  mat-button (click)="removeItem()" id="leftMargin" style="color: red;" class="bigButton"><span class="material-icons">
         delete
         </span>Remove Item</button>
 </form>
