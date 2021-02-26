@@ -9,46 +9,54 @@ import { CustomersComponent } from './pages/customers/customers.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { TransactionsComponent } from './pages/transactions/transactions.component';
 import { SettingsComponent } from './pages/settings/settings.component';
-
+//import {AuthGuardService as AuthGuard } from './auth/auth-guard.service';
 const routes: Routes = [
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+  
   }
   , {
 
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },{
   
   path: '',
   component: DashboardSideMenuComponent,
+  //canActivate: [AuthGuard] ,
   children: [ {
     //Checkout
     path:'',
-    component:CheckoutComponent
+    component:CheckoutComponent,
+   // canActivate: [AuthGuard] 
     },
     {
       path: 'items',
-      component: ItemsComponent
+      component: ItemsComponent,
+     // canActivate: [AuthGuard] 
     },
    
 
     {
       path: 'customers',
-      component: CustomersComponent
+      component: CustomersComponent,
+     // canActivate: [AuthGuard] 
     },
     {
       path: 'reports',
-      component: ReportsComponent
+      component: ReportsComponent,
+    //  canActivate: [AuthGuard] 
     },
     {
       path: 'transactions',
-      component: TransactionsComponent
+      component: TransactionsComponent,
+    //  canActivate: [AuthGuard] 
     },
     {
       path: 'settings',
-      component: SettingsComponent
+      component: SettingsComponent,
+     // canActivate: [AuthGuard] 
     }
 
   ]
@@ -59,3 +67,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+ 

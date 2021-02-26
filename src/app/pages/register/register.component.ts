@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
 
 
   registerForm = new FormGroup({
+    type: new FormControl('userinfo'),
     name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     mobileNumber: new FormControl('', [Validators.required, Validators.maxLength(10)]),
@@ -23,21 +24,21 @@ export class RegisterComponent implements OnInit {
     serialKey: new FormControl('', Validators.required)
   })
 
-  constructor(private secService: SecondaryService, private router: Router, private db: DatabaseService) { 
-    var userInfo = {company:"webisto.tech",street:"123 licenseKey ave", city:"city/town", state:"State/Province", zip:"postal/zip"}
+  constructor(private secService: SecondaryService, private router: Router, private db: DatabaseService) {
+    var userInfo = {info :'userInfo'}
 
-    var licenseData = {info:userInfo,type :'license',prodCode: "LEN100120", appVersion: "1.5", osType: 'IOS8',license :'' }
+    var licenseData = { type: 'license',info: userInfo,prodCode: "LEN100120", appVersion: "1.5", osType: 'IOS8', license: '' }
 
-        try {
-          var license = licenseKey.createLicense(licenseData)
-          licenseData.license = license.license
-          console.log(licenseData);
-          this.db.registerKey(licenseData).then(x=>{
-console.log(x)
-          })
-        } catch (err) {
-          console.log(err);
-        }
+    try {
+      var license = licenseKey.createLicense(licenseData)
+      licenseData.license = license.license
+      console.log(licenseData);
+      this.db.registerKey(licenseData).then(x => {
+        console.log(x)
+      })
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   ngOnInit(): void {
@@ -53,19 +54,26 @@ console.log(x)
       if (this.registerForm.valid) {
 
         //Validate Key 
-        this.db.validateKey(this.registerForm.value.serialKey).then(x=>{
-console.log(x)
-this.secService.presentSanckBar('You have registered successfully', 'success')
-        }).catch(err=>{
+        this.db.validateKey(this.registerForm.value.serialKey).then(x => {
+          console.log(x)
+          this.db.enterUser(this.registerForm.value).then(x=>{
+            this.secService.presentSanckBar('You have registered successfully', 'success')
+            this.registerForm.reset()
+            this.routersCall('login')
+          }).catch(err=>{
+            console.log(err)
+          })
+          
+        }).catch(err => {
 
           this.secService.presentSanckBar("sum", 'g')
 
         })
-        this.registerForm.reset()
-       // this.db.registerUser(this.registerForm.valid)
-       
+        //this.registerForm.reset()
+        // this.db.registerUser(this.registerForm.valid)
+
       }
-      else{
+      else {
         this.secService.presentSanckBar('Please enter correct value', 'success')
 
       }

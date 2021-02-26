@@ -195,4 +195,14 @@ updatePay(id,data){
       return this.electron.ipcRenderer.invoke('getHeadFoot')
 
     }
+    getKey(){
+      return this.electron.ipcRenderer.invoke('getKey')
+    }
+    
+    getUser(){
+      return this.electron.ipcRenderer.invoke('getUser')
+    }
+    enterUser(data){
+      return this.electron.ipcRenderer.invoke('enterUser',data)
+    }
 }

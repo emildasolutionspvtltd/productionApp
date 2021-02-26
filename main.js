@@ -49,6 +49,7 @@ var categoryDb = new Datastore({filename:path.join(__dirname, 'category.db'), au
 
 var secondaryDb = new Datastore({filename:path.join(__dirname, 'secondary.db'), autoload:true});
 
+var userDb = new Datastore({filename:path.join(__dirname, 'user.db'), autoload:true});
 
 
 
@@ -368,14 +369,14 @@ ipcMain.handle('addTransaction', async (event, data) => {
 
 
 ipcMain.handle('registerKey', async (event, data) => {
-    return db.insert(data, function (err, Newdata) {
+    return userDb.insert(data, function (err, Newdata) {
 
     })
 })
 
 
 ipcMain.handle('validateKey', async (event, data) => {
-    return db.find({type:'license', license:data },  {}, function (err, numReplaced) {
+    return userDb.find({type:'license', license:data },  {}, function (err, numReplaced) {
 
     });
 })
@@ -512,6 +513,29 @@ ipcMain.handle('getSelectPrinter', async (event, id,) => {
 })
 ipcMain.handle('getHeadFoot', async (event, id,) => {
     return settingDb.find({ type:'headerfooter' }, function (err, docs) {
+
+    })
+
+
+})
+ipcMain.handle('getKey', async (event) => {
+    return userDb.find({ type: 'license' }, function (err, docs) {
+
+    })
+
+
+})
+ipcMain.handle('getUser', async (event) => {
+    return userDb.find({ type: 'userinfo' }, function (err, docs) {
+
+    })
+
+
+})
+
+
+ipcMain.handle('enterUser', async (event,data) => {
+    return userDb.insert(data, function (err, Newdata) {
 
     })
 
