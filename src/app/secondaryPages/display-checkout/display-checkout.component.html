@@ -1,5 +1,23 @@
+<div class="container">
+    <div   fxLayout='row' fxLayoutAlign='space-between center' class="headingContainer">
+        <h3 class="heading3">Checkout Print</h3>
+        <button (click)='closeDialog()' mat-icon-button>
+            <mat-icon>highlight_off</mat-icon>
+        </button>
+    </div>
+<div class="contentHolder">
+    <img  style="max-width: 120px;" src="assets/printer.svg" alt="">
+    <p style="font-weight: 700;color: #727272;">Choose the option to complete the checkout 
+        of your preferred printing method</p>
+</div>
+
+
+
+
+
+<!-- 
 <div>
-    <button (click)='closeDialog()' style="float: right;" mat-icon-button>
+    <butto(click)='closeDialog()' style="float: right;" mat-icon-button>
         <mat-icon>highlight_off</mat-icon>
     </button>
     <br>
@@ -11,7 +29,14 @@
         <mat-label>Failure</mat-label>
     </mat-button-toggle>
 </mat-button-toggle-group>
-</div>
+</div> -->
 <br>
-<button mat-raised-button (click)="outcome(group.value)" id="rightMargin" color="accent"
-    class="bigButton">Add</button>
+
+<div fxLayout='row' fxLayoutAlign='space-between center' >
+    <button mat-raised-button  id="rightMargin" color="accent"
+    class="bigButton">Checkout with Print</button>
+    <button mat-button  id="rightMargin" color="danger"
+    class="bigButton">Checkout without Print</button>
+</div>
+
+</div>
