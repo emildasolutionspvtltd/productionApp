@@ -12,24 +12,20 @@ mat-drawer{
     padding:16px;
    
     .blockLi:hover {
-        border-radius: 12px;
+        border-radius: 8px;
         background-color: #fff;
        color: #003C8F;
       }
       
       /* selected link */
-      .blockLi:active {
-        border-radius: 12px;
-       background-color: #fff;
-        color: #003C8F;
-      }
+
       .blockLi:visited {
-        border-radius: 12px;
+        border-radius: 8px;
        background-color: #fff;
         color: #003C8F;
       }
       .blockLi:focus{
-        border-radius: 12px;
+        border-radius: 8px;
         background-color: #fff;
          color: #003C8F;
       }
@@ -56,13 +52,13 @@ mat-drawer{
 
 .active{
     
-    border-radius: 12px;
+    border-radius: 8px;
     background-color: #fff;
-     color: #003C8F;
+     color: #003C8F !important;
 //     background:#1565C0 ;
 //     border-radius: 8px;
-// opacity: 100% !important;
-// box-shadow: 0px 3px 12px #00000029;
+opacity: 100% !important;
+box-shadow: 0px 3px 24px #7f9dc75d;
 }
 .drawerContainer{
     height: 100%;
