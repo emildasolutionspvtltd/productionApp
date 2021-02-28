@@ -11,7 +11,7 @@
 
 
     <mat-form-field appearance="outline">
-        <mat-label>E mail Id</mat-label>
+        <mat-label>Email Id</mat-label>
         <input formControlName='email' matInput type='email' >
       </mat-form-field>
 
@@ -20,7 +20,7 @@
           <input formControlName='password' type="password" matInput >
       </mat-form-field>
 
-      <button class="bigButton" color='accent' mat-raised-button>Login</button>
+      <button class="bigButton" color='accent' (click)="Login()" mat-raised-button>Login</button>
 
 
 

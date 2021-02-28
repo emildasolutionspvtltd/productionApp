@@ -37,33 +37,48 @@ export class RegisterComponent implements OnInit {
 
   register() {
     //form Validation 
-    
+
     if (this.registerForm.valid) {
       //Password Match 
       if (this.registerForm.value.password == this.registerForm.value.rePassword) {
+        this.db.enterUser(this.registerForm.value).then(x=>{
+          console.log(x)
+          if(x== -1){
+            this.secService.presentSanckBar('please enter correct value','ok')
+          }
+          else{
+            this.secService.presentSanckBar('Registration completed','success')
+            this.routersCall('login')
+          }
+        })
 
-        var userInfo = { name: this.registerForm.value.name, email: this.registerForm.value.email, phoneNumber: this.registerForm.value.mobileNumber, company: this.registerForm.value.shopName, password: this.registerForm.value.password }
-        var licenseData = { info: userInfo, prodCode: "LEN100120", appVersion: "1.5", osType: 'IOS8' }
-        try {
-          var license = licenseKey.validateLicense(licenseData, this.registerForm.value.serialKey);
-          console.log(license);
-          const now = new Date();
-    now.setFullYear(now.getFullYear() + 1);
+        // var userInfo = { name: this.registerForm.value.name, email: this.registerForm.value.email, phoneNumber: this.registerForm.value.mobileNumber, company: this.registerForm.value.shopName, password: this.registerForm.value.password }
+        // var licenseData = { info: userInfo, prodCode: "LEN100120", appVersion: "1.5", osType: 'IOS8' }
+        // try {
+        //   this.db.enterUser(this.registerForm.value).then(x=>{
 
-    console.log(now.toISOString().slice(0,10))
-    this.registerForm.value.expiryDate = now.toISOString().slice(0,10)
-    console.log(this.registerForm)
-    this.db.enterUser(this.registerForm.value).then(x=>{
-       console.log(x)
-    }).catch(err=>{
-      console.log(err)
-    })
-          this.secService.presentSanckBar('Registration Successful', 'sucess')
+        //   }).catch(err=>{
+        //     console.log(err)
+        //   })
+        //   var license = licenseKey.validateLicense(licenseData, this.registerForm.value.serialKey);
+        //   console.log(license);
+        //   const now = new Date();
+        //   now.setFullYear(now.getFullYear() + 1);
 
-        } catch (err) {
-          console.log(err);
-          this.secService.presentSanckBar('License Invaild Please Try Again', 'ok')
-        }
+        //   console.log(now.toISOString().slice(0, 10))
+        //   this.registerForm.value.expiryDate = now.toISOString().slice(0, 10)
+        //   console.log(this.registerForm)
+        //   this.db.enterUser(this.registerForm.value).then(x => {
+        //     console.log(x)
+        //   }).catch(err => {
+        //     console.log(err)
+        //   })
+        //   this.secService.presentSanckBar('Registration Successful', 'sucess')
+
+        // } catch (err) {
+        //   console.log(err);
+        //   this.secService.presentSanckBar('License Invaild Please Try Again', 'ok')
+        // }
 
 
         //Validate Key 
