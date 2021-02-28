@@ -175,8 +175,8 @@
       <div class="subValuesContainer">
         <div class="subValuesHolder" fxLayout="row" fxLayoutAlign="space-between center">
           <p class='subValuesField'>Discount </p>
-          <p *ngIf='discountType== "percentage" 'class='subValues'>{{finalDiscount}}%</p>
-          <p *ngIf='discountType == "sar" 'class='subValues'>{{finalDiscount | currency:'SAR'}}</p>
+          <p *ngIf='discountType== "percentage" 'class='subValues'>{{  getdiscount() | currency:'SAR'}} <span style="font: size 10px;opacity: 60%;" *ngIf='discountType == "percentage"'> {{finalDiscount}}%</span> </p>
+          <p *ngIf='discountType == "sar" 'class='subValues'>{{  getdiscount() | currency:'SAR'}}</p>
           <p *ngIf='discountType == "" 'class='subValues'>0</p>
         
         </div>

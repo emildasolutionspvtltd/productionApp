@@ -298,6 +298,20 @@ if(results.length != 0){
 
 
 
+  getdiscount(){
+    if(this.discountType =='percentage' ){
+
+      return ((this.getTotal()*this.finalDiscount)/100)
+           
+    }
+    else{
+      return this.finalDiscount
+    }
+  }
+
+
+
+
 
 
 
@@ -343,7 +357,7 @@ getGrantTotal(){
 
 
    
-   return this.getTotal()-this.finalDiscount
+   return this.getTotal()-this.getdiscount()
   
 
 
