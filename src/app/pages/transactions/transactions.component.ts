@@ -18,7 +18,7 @@ export class TransactionsComponent implements OnInit {
   constructor(@Inject(SecondaryService) private secService:SecondaryService,private db:DatabaseService,private dialog: MatDialog) { 
    this.getTransaction()
   }
-  displayedColumns: string[] = ['dateTime','orderId' ,'custid', 'cost','button'];
+  displayedColumns: string[] = ['dateTime','orderId' ,'custid', 'cost','typetransaction','button'];
   dataSource:MatTableDataSource<any>
   ngOnInit(): void {
   }
