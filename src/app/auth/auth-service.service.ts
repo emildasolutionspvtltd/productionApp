@@ -11,34 +11,66 @@ export class AuthServiceService {
   lisValid
   isRegister
 
+
+
+
+
+
+
+
+  register(data){
+  
+     let date = new Date(Date.now())
+     var year = date.getFullYear();
+     var month = date.getMonth();
+     var day = date.getDate();
+     let expireDate =   new Date(year + 1, month, day);
+    
+    
+
+
+
+    
+  }
+
   public isAuthenticated(): boolean {
-    if(this.licenseValid()){
-     this.secService.presentSanckBar('welcome ', 'sucess')
-      return true
-    }
-    return false
+
+    return true
+    // if(this.licenseValid()){
+    //  this.secService.presentSanckBar('welcome ', 'sucess')
+    //   return true
+    // }
+    // return false
   }
 
 
   public licenseValid(): boolean {
-    if(this.isRegistered()){
-      this.db.getKey().then(x => {
-        console.log(x.length)
-        if (x.length > 0) {
-          return true
-        }
-      })
-    }
-    return false
+    return true
+    // if(this.isRegistered()){
+    //   this.db.getKey().then(x => {
+    //     console.log(x.length)
+    //     if (x.length > 0) {
+    //       return true
+    //     }
+    //   })
+    // }
+    // return false
   }
 
-  public isRegistered(): boolean{
-    this.db.getUser().then(x => {
-      console.log(x.length)
-      if (x.length > 0) {
-        return true
-      }
-    })
+  public  isRegistered():boolean{
     return false
+    //  await this.db.isRegistered().then(x=>{
+
+
+    // })
+
+    // return false
+  //   this.db.getUser().then(x => {
+  //     console.log(x.length)
+  //     if (x.length > 0) {
+  //       return true
+  //     }
+  //   })
+  //   return false
   }
 }

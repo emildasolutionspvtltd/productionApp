@@ -9,7 +9,8 @@ import { CustomersComponent } from './pages/customers/customers.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { TransactionsComponent } from './pages/transactions/transactions.component';
 import { SettingsComponent } from './pages/settings/settings.component';
-//import {AuthGuardService as AuthGuard } from './auth/auth-guard.service';
+import {AuthGuardService as AuthGuard } from './auth/auth-guard.service';
+import { ExpieredComponent } from './secondaryPages/expiered/expiered.component';
 const routes: Routes = [
   {
     path: 'register',
@@ -20,11 +21,15 @@ const routes: Routes = [
 
     path: 'login',
     component: LoginComponent,
+  }, {
+
+    path: 'expire',
+    component: ExpieredComponent,
   },{
   
   path: '',
   component: DashboardSideMenuComponent,
-  //canActivate: [AuthGuard] ,
+  canActivate: [AuthGuard] ,
   children: [ {
     //Checkout
     path:'',

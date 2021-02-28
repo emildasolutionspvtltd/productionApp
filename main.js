@@ -143,6 +143,12 @@ ipcMain.handle('getItem', async (event, id,) => {
 
 })
 
+//isRegister
+ipcMain.handle('isRegister', async (event, id,) => {
+    return itemDb.find( {}, function (err, docs) {
+
+    })
+})
 
 
 //searchingItem
@@ -535,6 +541,15 @@ ipcMain.handle('getUser', async (event) => {
 
 
 ipcMain.handle('enterUser', async (event,data) => {
+    return userDb.insert(data, function (err, Newdata) {
+
+    })
+
+
+})
+
+
+ipcMain.handle('register', async (event,data) => {
     return userDb.insert(data, function (err, Newdata) {
 
     })
