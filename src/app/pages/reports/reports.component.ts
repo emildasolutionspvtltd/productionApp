@@ -14,6 +14,7 @@ export class ReportsComponent implements OnInit {
 allItems
 allTransactions
 disableSelect = false
+things: any[]
   constructor(@Inject(SecondaryService) private secService:SecondaryService,private db:DatabaseService) {
        this.db.getAllItems().then(x=>{
          console.log(x)
@@ -23,6 +24,8 @@ disableSelect = false
          console.log(x)
          this.allTransactions = x
        })
+
+       this.things = [];
    }
 
   ngOnInit(): void {
@@ -42,7 +45,7 @@ disableSelect = false
         console.log(this.reportForm)
         this.db.getBetweenDates(this.reportForm.value.startdate,this.reportForm.value.enddate).then(x=>{
           console.log(x)
-          this.convertToCsv(x)
+          this.convertToCsv1(x)
         })
       }
       else{
@@ -79,6 +82,39 @@ var downloadLink = document.createElement("a");
         downloadLink.click();
         document.body.removeChild(downloadLink);
 }
+itemHeader : any[] = [];
+convertToCsv1(data){
+  console.log(data)
+  for (var index in data) {
+        let Temp: Array<any>
+        Temp = [
+         data[index].customer.name, data[index].paymentType, data[index].total, data[index].typeOfTransaction]
+        this.things.push(Temp)
+      }
+      
+      const items = this.things
+      const replacer = (key, value) => value === null ? '' : value // specify how you want to handle null values here
+      const header = Object.keys(items[0])
+      const csv = [
+        header.join(','), // header row first
+        ...items.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
+      ].join('\r\n')
+      
+      console.log(csv)
+      
+      var downloadLink = document.createElement("a");
+              var blob = new Blob(["\ufeff", csv]);
+              var url = URL.createObjectURL(blob);
+              downloadLink.href = url;
+              downloadLink.download = "report.csv";  //Name the file here
+              document.body.appendChild(downloadLink);
+              downloadLink.click();
+              document.body.removeChild(downloadLink);
+}
   
 
+
+
+
 }
+
