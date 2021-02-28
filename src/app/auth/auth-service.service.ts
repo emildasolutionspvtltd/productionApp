@@ -58,7 +58,7 @@ export class AuthServiceService {
   }
 
   public  isRegistered():boolean{
-    return false
+    return true
     //  await this.db.isRegistered().then(x=>{
 
 

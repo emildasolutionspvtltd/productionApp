@@ -1,13 +1,13 @@
 <button mat-icon-button (click)="onclose()" style="position: absolute; right: 0; vertical-align:top;"><span class="material-icons">
     highlight_off
     </span></button>
-<h3 class="heading3" style="width: 80%; margin: 0px 0px 0px;">{{data.name}}</h3>
+<h3 class="heading3" style="width: 80%; margin: 0px 0px 0px;text-transform: capitalize;">{{data.name}}</h3>
 <br>
 <form [formGroup]="checkOutForm">
     <mat-form-field id="rightMargin" appearance="outline">
         <mat-label>Cost </mat-label>
         <!-- [(ngModel)]="itemname" -->
-        <input formControlName='price' [(ngModel)]="tablePrice"  autofocus matInput type='text'>
+        <input formControlName='price' [(ngModel)]="tablePrice"  autofocus matInput type='number'>
     </mat-form-field>
     <mat-form-field id="leftMargin" appearance="outline">
         <mat-label>Quantity</mat-label>
@@ -25,7 +25,7 @@
     <div style="text-align:center;">
 
     
-    <button  mat-button  id="leftMargin" style="color: gold;" class="bigButton"><span class="material-icons">
+    <button  mat-button  id="leftMargin" style="color: orange;" class="bigButton"><span class="material-icons">
        print
         </span>Print Label</button></div>
         <br>
