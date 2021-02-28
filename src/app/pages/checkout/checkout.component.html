@@ -158,10 +158,11 @@
             fxLayout='column' fxLayoutAlign='center center' class="buttonOfPaymentMode">
             
           </div> -->
-          <mat-selection-list #shoes [(ngModel)]="selectedOptions" style=" display: flex;  
+          <mat-selection-list #shoes [(ngModel)]="selectedOp" (ngModelChange)="changeModePayment($event)"tyle=" display: flex;  
           flex-wrap: wrap;" [multiple]="false">
             <mat-list-option *ngFor="let pay of typesOfPayment"
-              (click)="changeModePayment(pay.selectedOptions.selected[0]?.value)" [value]="pay">
+              [value]="pay">
+              <!-- (click)="changeModePayment(pay.selectedOptions.selected[0]?.value)"  -->
               {{pay.paymentName}}
             </mat-list-option>
           </mat-selection-list>

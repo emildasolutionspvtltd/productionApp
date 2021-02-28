@@ -60,7 +60,7 @@ export class AcceptTransactionComponent implements OnInit {
     else {
       console.log(this.otherData.data)
       let dateTime = new Date()
-      this.newData = {time : dateTime, type : this.otherData.type,paymentType :this.otherData.paymentType,discount: this.otherData.discount,customer: this.otherData.customer, total :this.totalPrice,data:this.selectedOptions}
+      this.newData = {time : dateTime, type : this.otherData.type,paymentType :this.otherData.paymentType,discount: this.otherData.discount,customer: this.otherData.customer, total :this.totalPrice,data:this.selectedOptions,typeOfTransaction : 'return'}
       this.db.addTransaction(this.newData).then(x=>{
 console.log(x)
       }).catch(err=>{
