@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
   })
 
   constructor(private secService: SecondaryService, private router: Router, private db: DatabaseService) {
-    var userInfo = {info :'userInfo'}
+    var userInfo = {name:'peter paul',companyName :'emilda solutions',phoneNumber:'1234567890'}
 
     var licenseData = { type: 'license',info: userInfo,prodCode: "LEN100120", appVersion: "1.5", osType: 'IOS8', license: '' }
 
@@ -55,14 +55,20 @@ export class RegisterComponent implements OnInit {
 
         //Validate Key 
         this.db.validateKey(this.registerForm.value.serialKey).then(x => {
-          console.log(x)
-          this.db.enterUser(this.registerForm.value).then(x=>{
-            this.secService.presentSanckBar('You have registered successfully', 'success')
-            this.registerForm.reset()
-            this.routersCall('login')
-          }).catch(err=>{
-            console.log(err)
-          })
+          console.log(x[0].info.name,x[0].info.phoneNumber)
+          if(this.registerForm.value.name == x[0].info.name && this.registerForm.value.mobileNumber == x[0].info.phoneNumber){
+            this.db.enterUser(this.registerForm.value).then(x=>{
+              this.secService.presentSanckBar('You have registered successfully', 'success')
+              this.registerForm.reset()
+              this.routersCall('login')
+            }).catch(err=>{
+              console.log(err)
+            })
+          }
+          else{
+            this.secService.presentSanckBar('please enter the correct name','ok')
+          }
+          
           
         }).catch(err => {
 
