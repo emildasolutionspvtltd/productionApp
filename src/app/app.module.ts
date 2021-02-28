@@ -75,6 +75,7 @@ import { EditTaxComponent } from './secondaryPages/edit-tax/edit-tax.component';
 import { EditPayComponent } from './secondaryPages/edit-pay/edit-pay.component';
 import { SearchItemComponent } from './secondaryPages/search-item/search-item.component';
 import { ExpieredComponent } from './secondaryPages/expiered/expiered.component';
+import { BagNotificationComponent } from './secondaryPages/bag-notification/bag-notification.component';
 // const customLayouts: IKeyboardLayouts = {
 //   ...keyboardLayouts,
 //   'oh': {
@@ -123,6 +124,7 @@ import { ExpieredComponent } from './secondaryPages/expiered/expiered.component'
     EditPayComponent,
     SearchItemComponent,
     ExpieredComponent,
+    BagNotificationComponent,
   ],
   imports: [
     BrowserModule,

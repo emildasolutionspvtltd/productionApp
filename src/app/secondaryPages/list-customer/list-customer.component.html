@@ -31,7 +31,7 @@
         </ng-template>  -->
 
 
-     <mat-list  role="list">
+     <mat-list *ngIf='searchTerm != ""  ' role="list">
           <div  *ngFor='let customer of searchResults ' class="div">
             <mat-list-item  (click)="selectCustomer(customer)" > <div mat-line style='text-transform:capitalize'> {{customer.name}} </div> 
                 <div mat-line> {{customer.phNumber}} </div>
@@ -48,7 +48,7 @@
 
 
 
-<p *ngIf='!searchTerm  '  style="text-align: center;font-size: 16px;opacity: 70%;">Or</p>
+<p *ngIf='!searchTerm'  style="text-align: center;font-size: 16px;opacity: 70%;">Or</p>
 <button *ngIf='searchResults.length == 0 || !searchTerm  '   (click)='newCustomerModal()' mat-raised-button color="accent" class="bigButton">Create New Customer</button>
 
 </div>

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { CheckoutServiceService } from 'src/app/services/checkout-service.service';
+import { SecondaryService } from 'src/app/services/secondary.service';
 
 @Component({
   selector: 'app-check-out-item',
@@ -13,12 +14,12 @@ export class CheckOutItemComponent implements OnInit {
   checkOutForm = new FormGroup({
     price: new FormControl('',Validators.required),
     quantity: new FormControl('',Validators.required),
-    tax:new FormControl('')
+    // tax:new FormControl('')
   })
   tablePrice 
   tableQty
 
-  constructor(private dialog:MatDialog,private bottom:MatBottomSheet,@Inject(MAT_BOTTOM_SHEET_DATA) public data: any,private checkoutService : CheckoutServiceService) { 
+  constructor(private sec:SecondaryService ,private dialog:MatDialog,private bottom:MatBottomSheet,@Inject(MAT_BOTTOM_SHEET_DATA) public data: any,private checkoutService : CheckoutServiceService) { 
     this.tablePrice = data.price
     this.tableQty = data.quantity
   }
@@ -33,10 +34,13 @@ export class CheckOutItemComponent implements OnInit {
   // finction to validate and update the item
   update(){
     if(this.checkOutForm.valid){
-      console.log(this.checkOutForm.value.price,this.checkOutForm.value.quantity,this.checkOutForm.value.tax)
+      console.log(this.checkOutForm.value.price,this.checkOutForm.value.quantity)
       this.data.price = this.checkOutForm.value.price
       this.data.quantity = this.checkOutForm.value.quantity
-      this.data.tax = this.checkOutForm.value.tax
+      // this.data.tax = this.checkOutForm.value.tax
+    }
+    else{
+      this.sec.presentSanckBar('Please Fill a Valid input','danger')
     }
   }
 updateData

@@ -1,0 +1,28 @@
+<div class="container">
+    <div   fxLayout='row' fxLayoutAlign='space-between center' class="headingContainer">
+        <h3 style="color: red;" class="heading3">Items in Bag !</h3>
+        <button (click)='closeDialog()' mat-icon-button>
+            <mat-icon>highlight_off</mat-icon>
+        </button>
+    </div>
+<div style="text-align:center" class="contentHolder">
+    <img  style="max-width: 120px;" src="assets/groceries.svg" alt="">
+    <p style="font-weight: 700;color: #727272;">Seems like there are few items in the bag kindly checkout the Current items in the bag or clear the bag To proceed further actions</p>
+</div>
+
+
+
+
+
+
+<br>
+
+<div fxLayout='row' fxLayoutAlign='space-between center' >
+    <button (click)="response('proceed')" mat-raised-button  id="rightMargin" color="accent"
+    class="bigButton">Proceed to Checkout</button>
+    <button (click)="response('clear')" mat-button  id="rightMargin" color="danger"
+    style="color: red;" class="bigButton">Clear Items in Bag</button>
+</div>
+
+</div>
+
