@@ -38,12 +38,22 @@ export class TransactionsComponent implements OnInit {
   drawerToggle(){
     this.secService.toggle()
   }
+  deleteTrans
   deleteTransaction(id){
     this.db.deleteTransaction(id).then(x=>{
       console.log(x)
+      let dateTime = new Date()
+     this.deleteTrans = {time : dateTime, type :x[0].type,paymentType :x[0].paymentType,discount: x[0].discount,customer: x[0].customer, total :x[0].total,data:x[0].data,typeOfTransaction : 'cancel transaction'}
+     this.deleteTrans.time = dateTime
+     this.db.addTransaction(this.deleteTrans).then(x=>{
+       
+       console.log(x)
+     }).catch(err=>{
+       console.log(err)
+     })
       this.getTransaction()
     })
-  }
+  }s
 
   ChangeTransaction(id){
     console.log(id)

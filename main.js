@@ -388,7 +388,7 @@ ipcMain.handle('validateKey', async (event, data) => {
 //transactions delete
 ipcMain.handle('deleteTransaction', async (event, id) => {
 
-    return transactionDb.remove({ _id: id }, {}, function (err, numRemoved) {
+    return transactionDb.find({ _id: id }, {}, function (err, numRemoved) {
     });
 
 })

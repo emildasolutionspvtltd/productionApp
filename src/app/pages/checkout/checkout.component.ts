@@ -67,7 +67,7 @@ export class CheckoutComponent implements OnInit {
   subtotal: number = 0
 
 // selevting the forst payment
-  selectedOptions
+  selectedOp
   //
 
   bag = []
@@ -98,7 +98,7 @@ export class CheckoutComponent implements OnInit {
     //getting the payment Methods
     this.databaseService.getPay().then(x => {
       this.typesOfPayment = x
-      this.selectedOptions = x
+      this.selectedOp = x
     })
 
 
@@ -394,7 +394,8 @@ getGrantTotal(){
 
   
   changeModePayment(choice) {
-    this.selectedPaymentMode = choice
+    this.selectedPaymentMode = choice[0].paymentName
+    console.log(choice[0].paymentName)
   }
 
 
@@ -468,12 +469,13 @@ console.log("ge")
       }
     }
     else{
+      console.log(this.selectedPaymentMode)
       const dialogRef = this.dialog.open(DisplayCheckoutComponent, {
         height: '400px',
         width: '400px',
         data: {
           data: this.dataSource.filteredData,
-          total: this.finalTotal,
+          total: this.getGrantTotal(),
           pay: this.selectedPaymentMode,
           discount: this.finalDiscount,
           customer: this.customerData

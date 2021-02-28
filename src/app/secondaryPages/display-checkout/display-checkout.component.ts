@@ -3,6 +3,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { type } from 'os';
 import { DatabaseService } from 'src/app/services/database.service';
 import { SecondaryService } from 'src/app/services/secondary.service';
+import { DatePipe } from '@angular/common';
+
 let recieptPrint = [
   {
     type: 'text', value: 'hopefully it will work', style: `text-align:center;`
@@ -80,7 +82,7 @@ export class DisplayCheckoutComponent implements OnInit {
         let dateTime = new Date()
         console.log(dateTime)
         this.consoleData = {
-          type: 'transaction', data: this.data.data, paymentType: this.data.pay, total: this.data.total, discount: this.data.discount, time: dateTime, customer: this.data.customer
+          type: 'transaction', data: this.data.data, paymentType: this.data.pay, total: this.data.total, discount: this.data.discount, time: dateTime, customer: this.data.customer,typeOfTransaction : 'sale'
         }
         this.db.addTransaction(this.consoleData).then(x => {
           console.log(x)
@@ -109,72 +111,72 @@ export class DisplayCheckoutComponent implements OnInit {
 
   // function to print data
   printData() {
-    for (var index in this.data.data) {
-      let Temp:Array<any>
-      
-      Temp = [
-      this.data.data[index].name, this.data.data[index].quantity, this.data.data[index].mrp, this.data.data[index].total ]
-      this.things.push(Temp)
-    }
+  //   for (var index in this.data.data) {
+  //     let Temp: Array<any>
+
+  //     Temp = [
+  //       this.data.data[index].name, this.data.data[index].quantity, this.data.data[index].mrp, this.data.data[index].total]
+  //     this.things.push(Temp)
+  //   }
 
 
-    console.log( this.things)
-    let newDate = new Date().toDateString()
-    let a: string[][] = ['']['']
+  //   console.log(this.things)
+  //   let newDate = new Date().toDateString()
+  //   let a: string[][] = ['']['']
 
 
 
 
-    recieptPrint = [
-      {
-        type: 'text', value: this.headerfooter.header, style: `text-align:center;`
+  //   recieptPrint = [
+  //     {
+  //       type: 'text', value: this.headerfooter.header, style: `text-align:center;`
 
-      }, {
-        type: 'table',
+  //     }, {
+  //       type: 'table',
 
-        style: 'border: 0px',
-        tableHeader: [],
-        tableBody: [
-          ['Name of customer', this.consoleData.customer.name],
-          ['Date', newDate],
-          ['Payment Type', this.consoleData.paymentType.paymentName]
-        ],
-        tableFooter: [],
-        tableBodyStyle: 'border: 0px',
+  //       style: 'border: 0px',
+  //       tableHeader: [],
+  //       tableBody: [
+  //         ['Name of customer', this.consoleData.customer.name],
+  //         ['Date', newDate],
+  //         ['Payment Type', this.consoleData.paymentType.paymentName]
+  //       ],
+  //       tableFooter: [],
+  //       tableBodyStyle: 'border: 0px',
 
-      },
+  //     },
 
-      {
-        type: 'table',
+  //     {
+  //       type: 'table',
 
-        style: 'border: 1px solid #ddd',
-        tableHeader: ['description', 'Qty', 'total', 'net'],
-        tableBody: this.things
-        ,
-        tableFooter: ['description', 'Qty', 'total', 'net'],
-        tableBodyStyle: 'border: 0.5px solid #ddd',
+  //       style: 'border: 1px solid #ddd',
+  //       tableHeader: ['description', 'Qty', 'total', 'net'],
+  //       tableBody: this.things
+  //       ,
+  //       tableFooter: ['description', 'Qty', 'total', 'net'],
+  //       tableBodyStyle: 'border: 0.5px solid #ddd',
 
-      },
+  //     },
 
-      {
-        type: 'table',
+  //     {
+  //       type: 'table',
 
-        style: 'border: 0px',
-        tableHeader: [],
-        tableBody: [
-          ['dicount', this.consoleData.discount],
-          ['total', this.consoleData.total]
-        ],
-        tableFooter: [],
-        tableBodyStyle: 'border: 0px,display: none',
+  //       style: 'border: 0px',
+  //       tableHeader: [],
+  //       tableBody: [
+  //         ['dicount', this.consoleData.discount],
+  //         ['total', this.consoleData.total]
+  //       ],
+  //       tableFooter: [],
+  //       tableBodyStyle: 'border: 0px,display: none',
 
-      },
-      {
-        type: 'text', value: this.headerfooter.footer, style: `text-align:center;`
+  //     },
+  //     {
+  //       type: 'text', value: this.headerfooter.footer, style: `text-align:center;`
 
-      }
-    ];
-    console.log(recieptPrint)
-    this.db.printData(recieptPrint)
-  }
+  //     }
+  //   ];
+  //   console.log(recieptPrint)
+  //   this.db.printData(recieptPrint)
+   }
 }
