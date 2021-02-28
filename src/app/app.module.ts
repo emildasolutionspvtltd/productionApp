@@ -74,6 +74,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { EditTaxComponent } from './secondaryPages/edit-tax/edit-tax.component';
 import { EditPayComponent } from './secondaryPages/edit-pay/edit-pay.component';
 import { SearchItemComponent } from './secondaryPages/search-item/search-item.component';
+import { ExpieredComponent } from './secondaryPages/expiered/expiered.component';
 // const customLayouts: IKeyboardLayouts = {
 //   ...keyboardLayouts,
 //   'oh': {
@@ -121,6 +122,7 @@ import { SearchItemComponent } from './secondaryPages/search-item/search-item.co
     EditTaxComponent,
     EditPayComponent,
     SearchItemComponent,
+    ExpieredComponent,
   ],
   imports: [
     BrowserModule,

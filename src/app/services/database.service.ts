@@ -205,4 +205,14 @@ updatePay(id,data){
     enterUser(data){
       return this.electron.ipcRenderer.invoke('enterUser',data)
     }
+
+
+    register(data){
+      return this.electron.ipcRenderer.invoke('register',data)
+
+    }
+
+    isRegister(){
+      return this.electron.ipcRenderer.invoke('isRegister')
+    }
 }
