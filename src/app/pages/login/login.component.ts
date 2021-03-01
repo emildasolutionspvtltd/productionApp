@@ -32,16 +32,16 @@ loginForm= new FormGroup({
 
   Login(){
     if(this.loginForm.valid){
-      this.db.enterLogin(this.loginForm.value).then(x=>{
-         if(this.loginForm.value.password== x[0].password){
-           console.log('success')
-           this.secService.presentSanckBar('welcome to roza pos','success')
-           this.routersCall('')
-         }
-         else{
-           this.secService.presentSanckBar('please enter the correct password/email','ok')
-         }
-      })
+      // this.db.enterLogin(this.loginForm.value).then(x=>{
+      //    if(this.loginForm.value.password== x[0].password){
+      //      console.log('success')
+      //      this.secService.presentSanckBar('welcome to roza pos','success')
+      //      this.routersCall('')
+      //    }
+      //    else{
+      //      this.secService.presentSanckBar('please enter the correct password/email','ok')
+      //    }
+      // })
     }
   }
 }

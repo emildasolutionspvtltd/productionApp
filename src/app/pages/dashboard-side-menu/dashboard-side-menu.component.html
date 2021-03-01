@@ -27,12 +27,12 @@
           <p class='textMenu'>Items </p>
         </li>
         <li class="blockLi" fxLayout='coloumn' fxLayoutAlign='start center' fxLayoutGap='10' (click)="routersCall('reports')"
-        [ngClass]="{'active':  acitiveCheck()  === '/customers'}">
+        [ngClass]="{'active':  acitiveCheck()  === '/reports'}">
           <mat-icon aria-hidden="false">content_paste</mat-icon>
           <p class='textMenu'>Reports </p>
         </li>
         <li class="blockLi" fxLayout='coloumn' fxLayoutAlign='start center' fxLayoutGap='10' (click)="routersCall('customers')"
-        [ngClass]="{'active':  acitiveCheck()  === '/customer'}">
+        [ngClass]="{'active':  acitiveCheck()  === '/customers'}">
           <mat-icon aria-hidden="false">people_alt</mat-icon>
           <p class='textMenu'>Customer </p>
         </li>
@@ -45,7 +45,7 @@
 
 
         <li class="blockLi" fxLayout='coloumn' fxLayoutAlign='start center' fxLayoutGap='10' (click)="routersCall('settings')"
-          routerLinkActive="active">
+        [ngClass]="{'active':  acitiveCheck()  === '/settings'}">
           <mat-icon aria-hidden="false">settings</mat-icon>
           <p class='textMenu'>Settings </p>
         </li>

@@ -6,24 +6,7 @@ import { SecondaryService } from 'src/app/services/secondary.service';
 import { DatePipe } from '@angular/common';
 
 let recieptPrint = [
-  {
-    type: 'text', value: 'hopefully it will work', style: `text-align:center;`
-
-  }, {
-    type: 'table',
-
-    style: 'border: 1px solid #ddd',
-    tableHeader: ['description', 'Qty', 'total', 'net'],
-    tableBody: [
-      ['Cat', 2],
-      ['Dog', 4],
-      ['Horse', 12],
-      ['Pig', 4],
-    ],
-    tableFooter: ['Animal', 'Age'],
-    tableBodyStyle: 'border: 0.5px solid #ddd',
-
-  }
+ 
 ];
 
 @Component({
@@ -43,6 +26,10 @@ export class DisplayCheckoutComponent implements OnInit {
     console.log(data.total)
     console.log(data.discount)
     console.log(data.customer)
+
+
+
+
     this.db.getEnteredPrinter().then(x => {
       this.printerinfo = x[0]
     })
@@ -66,31 +53,45 @@ export class DisplayCheckoutComponent implements OnInit {
 
   // function to get whether success or failure 
   // this will be replaced by actual payment module that will send a tranction id 
-  outcome(group) {
+  checkout(group) {
     console.log(group)
-    if (group == "sucess") {
-      for (var index in this.data.data) {
-        console.log(this.data.data[index].inventory)
-        console.log(this.data.data[index].quantity)
-        console.log(this.data.data[index].id)
 
-        this.db.updateInventory(this.data.data[index].id, this.data.data[index].inventory - this.data.data[index].quantity).then(x => {
-          console.log('sucess')
-          this.printData()
-          this.dialogRef.close()
-        })
-        let dateTime = new Date()
+    for (var index in this.data.data) {
+    //update inventory
+    this.db.updateInventory(this.data.data[index].id, this.data.data[index].inventory - this.data.data[index].quantity).then(x => {
+      console.log('sucess')
+      
+    })
+  }
+
+
+    //writting in the database
+    let dateTime = new Date()
         console.log(dateTime)
         this.consoleData = {
-          type: 'transaction', data: this.data.data, paymentType: this.data.pay, total: this.data.total, discount: this.data.discount, time: dateTime, customer: this.data.customer,typeOfTransaction : 'sale'
+          type: 'transaction', data: this.data.data, paymentType: this.data.pay, total: this.data.total, discount: this.data.discount,tax:this.data.tax,subTotal:this.data.subTotal, time: dateTime, customer: this.data.customer,typeOfTransaction : 'sale'
         }
-        this.db.addTransaction(this.consoleData).then(x => {
-          console.log(x)
-        })
-      }
+
+    
+  
+    this.db.addTransaction(this.consoleData).then(x => {
+      console.log(x)
+    })
+
+
+    if (group == "print") {
+ 
+
+        this.printData()
+        this.secService.presentSanckBar('Transaction SucessFul', 'success')
+
+      
     }
     else {
-      this.secService.presentSanckBar('please try again', 'ok')
+
+      this.dialogRef.close()
+
+      this.secService.presentSanckBar('Transaction SucessFul', 'success')
     }
   }
 
@@ -111,72 +112,78 @@ export class DisplayCheckoutComponent implements OnInit {
 
   // function to print data
   printData() {
-  //   for (var index in this.data.data) {
-  //     let Temp: Array<any>
+    for (var index in this.data.data) {
+      let Temp: Array<any>
 
-  //     Temp = [
-  //       this.data.data[index].name, this.data.data[index].quantity, this.data.data[index].mrp, this.data.data[index].total]
-  //     this.things.push(Temp)
-  //   }
-
-
-  //   console.log(this.things)
-  //   let newDate = new Date().toDateString()
-  //   let a: string[][] = ['']['']
+      Temp = [
+        this.data.data[index].name.toUpperCase()+this.data.data[index].nameInArabic , this.data.data[index].quantity, this.data.data[index].price, (this.data.data[index].price*this.data.data[index].quantity)]
+      this.things.push(Temp)
+    }
 
 
+    console.log(this.things)
+    let newDate = new Date().toDateString()
+    let a: string[][] = ['']['']
 
 
-  //   recieptPrint = [
-  //     {
-  //       type: 'text', value: this.headerfooter.header, style: `text-align:center;`
 
-  //     }, {
-  //       type: 'table',
 
-  //       style: 'border: 0px',
-  //       tableHeader: [],
-  //       tableBody: [
-  //         ['Name of customer', this.consoleData.customer.name],
-  //         ['Date', newDate],
-  //         ['Payment Type', this.consoleData.paymentType.paymentName]
-  //       ],
-  //       tableFooter: [],
-  //       tableBodyStyle: 'border: 0px',
+    recieptPrint = [
+      {
+        type: 'text', value: 'test', style: `text-align:center;`
 
-  //     },
+      }, {
+        type: 'table',
 
-  //     {
-  //       type: 'table',
+        style: 'border: 0px',
+        tableHeader: [],
+        tableBody: [
+          ['Customer Name', this.consoleData.customer.name.toUpperCase()],
+          ['Date', newDate],
+          ['Payment Type', this.consoleData.paymentType]
+        ],
+        tableFooter: [],
+        tableBodyStyle: 'border: 0px',
 
-  //       style: 'border: 1px solid #ddd',
-  //       tableHeader: ['description', 'Qty', 'total', 'net'],
-  //       tableBody: this.things
-  //       ,
-  //       tableFooter: ['description', 'Qty', 'total', 'net'],
-  //       tableBodyStyle: 'border: 0.5px solid #ddd',
+      },
 
-  //     },
+      {
+        type: 'table',
 
-  //     {
-  //       type: 'table',
+        style: 'border: 1px solid #ddd',
+        tableHeader: ['Item Name', 'Qty', 'Net','Total'],
+        tableBody: this.things
+        ,
+        tableFooter: ['description', 'Qty', 'total', 'net'],
+        tableBodyStyle: 'border: 1px solid #ddd',
 
-  //       style: 'border: 0px',
-  //       tableHeader: [],
-  //       tableBody: [
-  //         ['dicount', this.consoleData.discount],
-  //         ['total', this.consoleData.total]
-  //       ],
-  //       tableFooter: [],
-  //       tableBodyStyle: 'border: 0px,display: none',
+      },
 
-  //     },
-  //     {
-  //       type: 'text', value: this.headerfooter.footer, style: `text-align:center;`
+      {
+        type: 'table',
 
-  //     }
-  //   ];
-  //   console.log(recieptPrint)
-  //   this.db.printData(recieptPrint)
+        style: 'border: 0px',
+        tableHeader: [],
+        tableBody: [
+          ['Tax', this.consoleData.tax],
+
+          ['Sub Total', this.consoleData.subTotal],
+
+          ['Dicount', this.consoleData.discount],
+          ['Grand Total',this.consoleData.total]
+         ,
+          []
+        ],
+        tableFooter: [],
+        tableBodyStyle: 'border: 0px,display: none',
+
+      },
+      {
+        type: 'text', value: 'no ides=a', style: `text-align:center;`
+
+      }
+    ];
+    console.log(recieptPrint)
+    this.db.printData(recieptPrint)
    }
 }

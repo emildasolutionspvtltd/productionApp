@@ -1,6 +1,7 @@
 const { app, ipcMain, ipcRenderer, BrowserWindow, } = require('electron');
 let win;
 const { PosPrinter } = require("electron-pos-printer");
+var licenseKey = require('license-key-gen');
 
 function createWindow() {
     win = new BrowserWindow({
@@ -35,21 +36,21 @@ app.on('activate', function () {
 
 const Datastore = require('nedb-promises')
 const path = require('path');
-var db = new Datastore({ filename: path.join(__dirname, 'pos.db'), autoload: true });
+var db = new Datastore({filename:path.join(__dirname, 'pos.db'), autoload:true});
 
-var itemDb = new Datastore({ filename: path.join(__dirname, 'item.db'), autoload: true });
+var itemDb = new Datastore({filename:path.join(__dirname, 'item.db'), autoload:true});
 
-var transactionDb = new Datastore({ filename: path.join(__dirname, 'transaction.db'), autoload: true });
+var transactionDb = new Datastore({filename:path.join(__dirname, 'transaction.db'), autoload:true});
 
-var customerDb = new Datastore({ filename: path.join(__dirname, 'customer.db'), autoload: true });
+var customerDb = new Datastore({filename:path.join(__dirname, 'customer.db'), autoload:true});
 
-var settingDb = new Datastore({ filename: path.join(__dirname, 'setting.db'), autoload: true });
+var settingDb = new Datastore({filename:path.join(__dirname, 'setting.db'), autoload:true});
 
-var categoryDb = new Datastore({ filename: path.join(__dirname, 'category.db'), autoload: true });
+var categoryDb = new Datastore({filename:path.join(__dirname, 'category.db'), autoload:true});
 
-var secondaryDb = new Datastore({ filename: path.join(__dirname, 'secondary.db'), autoload: true });
+var secondaryDb = new Datastore({filename:path.join(__dirname, 'secondary.db'), autoload:true});
 
-var userDb = new Datastore({ filename: path.join(__dirname, 'user.db'), autoload: true });
+var userDb = new Datastore({filename:path.join(__dirname, 'user.db'), autoload:true});
 
 
 
@@ -76,7 +77,7 @@ ipcMain.handle('getAllCategory', async (event) => {
 })
 // function to insert a single item 
 ipcMain.handle('insertSingleItem', async (event, data) => {
-    data.name = data.name.toLowerCase()
+    data.name=data.name.toLowerCase()
     return itemDb.insert(data, function (err, Newdata) {
 
     })
@@ -128,7 +129,7 @@ ipcMain.handle('getCat', async (event, id) => {
 })
 
 ipcMain.handle('editCat', async (event, id, name) => {
-    name = name.toLowerCase()
+    name=name.toLowerCase()
     return categoryDb.update({ _id: id }, { $set: { categoryName: name } }, {}, function (err, numReplaced) {
 
     });
@@ -145,7 +146,7 @@ ipcMain.handle('getItem', async (event, id,) => {
 
 //isRegister
 ipcMain.handle('isRegister', async (event, id,) => {
-    return itemDb.find({}, function (err, docs) {
+    return itemDb.find( {}, function (err, docs) {
 
     })
 })
@@ -153,11 +154,11 @@ ipcMain.handle('isRegister', async (event, id,) => {
 
 //searchingItem
 ipcMain.handle('searchItem', async (event, data) => {
-
-    data = data.toLowerCase()
-    temp = new RegExp(data)
-    //   console.log( temp)
-    return itemDb.find({ name: temp }, function (err, docs) {
+   
+    data=data.toLowerCase()
+    temp= new RegExp(data)
+//   console.log( temp)
+    return itemDb.find({ name:temp }, function (err, docs) {
     })
 })
 
@@ -165,7 +166,7 @@ ipcMain.handle('searchItem', async (event, data) => {
 
 
 ipcMain.handle('editItem', async (event, id, data) => {
-    data.name = data.name.toLowerCase()
+    data.name=data.name.toLowerCase()
     return itemDb.update({ _id: id }, {
         $set: {
             barcode: data.barcode,
@@ -186,7 +187,7 @@ ipcMain.handle('editItem', async (event, id, data) => {
 
 
 ipcMain.handle('insertCust', async (event, data) => {
-    data.name = data.name.toLowerCase()
+    data.name=data.name.toLowerCase()
     return customerDb.insert(data, function (err, Newdata) {
 
     })
@@ -198,10 +199,10 @@ ipcMain.handle('insertCust', async (event, data) => {
 //searchingCustomer
 ipcMain.handle('searchcust', async (event, data) => {
     // console.log(data)
-    data = data.toLowerCase()
-    temp = new RegExp(data)
-    //   console.log( temp)
-    return customerDb.find({ name: temp }, function (err, docs) {
+    data=data.toLowerCase()
+    temp= new RegExp(data)
+//   console.log( temp)
+    return customerDb.find({ name:temp }, function (err, docs) {
     })
 })
 
@@ -212,7 +213,7 @@ ipcMain.handle('getCust', async (event) => {
     return customerDb.find({ type: 'customer' })
 })
 
-ipcMain.handle('getindivisualCust', async (event, data) => {
+ipcMain.handle('getindivisualCust', async (event,data) => {
     return customerDb.find({ _id: data })
 })
 //customer Delte
@@ -227,8 +228,8 @@ ipcMain.handle('deleteCust', async (event, id) => {
 
 //updating Customer Database
 ipcMain.handle('updateCust', async (event, id, data) => {
-    data.name = data.name.toLowerCase()
-    return customerDb.update({ _id: id }, {
+    data.name=data.name.toLowerCase() 
+       return customerDb.update({ _id: id }, {
         $set: {
             barcode: data.barcode,
             name: data.name,
@@ -298,7 +299,7 @@ ipcMain.handle('getIndivisualTax', async (event, id,) => {
 
 //getting Payment Methods
 
-ipcMain.handle('insertPay', async (event, data) => {
+ipcMain.handle('insertPay', async (event,data) => {
     return settingDb.insert(data, function (err, Newdata) {
 
     })
@@ -343,16 +344,16 @@ ipcMain.handle('print', async (event, data) => {
     let printer = printersInfo.filter(printer => printer.isDefault === true)[0];
     const options = {
         preview: true,               // Preview in window or print
-        width: '170px',               //  width of content body
+        width: '210px',               //  width of content body
         margin: '0 0 0 0',            // margin of content body
         copies: 1,                    // Number of copies to print
         printerName: printer.name,        // printerName: string, check with webContent.getPrinters()
         timeOutPerLine: 400,
-        pageSize: { height: 301000, width: 71000 }  // page size
+        pageSize: { height: 71000, width: 71000 }  // page size
     }
     console.log(printer.name)
     PosPrinter.print(data, options)
-        .then(() => { return "sucess" })
+        .then(() => {return "sucess" })
         .catch((error) => {
             console.error(error);
         });
@@ -382,7 +383,7 @@ ipcMain.handle('registerKey', async (event, data) => {
 
 
 ipcMain.handle('validateKey', async (event, data) => {
-    return userDb.find({ type: 'license', license: data }, {}, function (err, numReplaced) {
+    return userDb.find({type:'license', license:data },  {}, function (err, numReplaced) {
 
     });
 })
@@ -405,7 +406,7 @@ ipcMain.handle('deleteTransaction', async (event, id) => {
 
 ipcMain.handle('getTransac', async (event, id) => {
 
-    return transactionDb.find({ _id: id }, {
+    return transactionDb.find({ _id: id },{
     });
 
 })
@@ -424,10 +425,10 @@ ipcMain.handle('getPrinter', async (event) => {
 
 
 //Sales Report
-ipcMain.handle('getBetweenDates', async (event, a, b) => {
+ipcMain.handle('getBetweenDates', async (event, a,b) => {
 
-    return transactionDb.find({ $and: [{ time: { $gte: a } }, { time: { $lt: b } }] }, function (err, docs) {
-    });
+    return transactionDb.find({ $and: [{ time: {$gte: a} }, { time: { $lt: b } }] }, function (err, docs) {
+      });
 })
 
 
@@ -474,7 +475,7 @@ ipcMain.handle('editTax', async (event, id, data) => {
         $set: {
             taxName: data.taxName,
             taxPercentage: data.taxPercentage,
-            inex: data.inex
+            inex : data.inex
         }
     }, {}, function (err, numReplaced) {
 
@@ -486,7 +487,7 @@ ipcMain.handle('editTax', async (event, id, data) => {
 
 ipcMain.handle('getInEx', async (event, tax) => {
 
-    return db.find({ taxName: tax }, {
+    return db.find({ taxName: tax },{
     });
 
 })
@@ -518,19 +519,15 @@ ipcMain.handle('getSelectPrinter', async (event, id,) => {
 
 })
 ipcMain.handle('getHeadFoot', async (event, id,) => {
-    return settingDb.find({ type: 'headerfooter' }, function (err, docs) {
+    return settingDb.find({ type:'headerfooter' }, function (err, docs) {
 
     })
 
 
 })
-ipcMain.handle('getKey', async (event) => {
-    return userDb.find({ type: 'license' }, function (err, docs) {
-
-    })
 
 
-})
+
 ipcMain.handle('getUser', async (event) => {
     return userDb.find({ type: 'userinfo' }, function (err, docs) {
 
@@ -539,41 +536,42 @@ ipcMain.handle('getUser', async (event) => {
 
 })
 
-var licenseKey = require('license-key-gen');
-ipcMain.handle('enterUser', async (event, data) => {
 
-    var userInfo = { name: data.name, email: data.email, phoneNumber: data.mobileNumber, company: data.shopName, password: data.password }
-    var licenseData = { info: userInfo, prodCode: "LEN100120", appVersion: "1.5", osType: 'IOS8' }
-    console.log(licenseData)
-    try {
-        var license = licenseKey.validateLicense(licenseData, data.serialKey);
-        console.log(license);
-        const now = new Date();
-        now.setFullYear(now.getFullYear() + 1);
-
-        console.log(now.toISOString().slice(0, 10))
-        data.expiryDate = now.toISOString().slice(0, 10)
-        return userDb.insert(data, function (err, Newdata) {
-
-
-        })
-
-    } catch (err) {
-        console.log(err);
-        return -1
-    }
-
-
-
-
-
-})
-
-ipcMain.handle('enterLogin', async (event,data) => {
-    return userDb.find({ email: data.email }, function (err, docs) {
+ipcMain.handle('enterUser', async (event,data) => {
+    return userDb.insert(data, function (err, Newdata) {
 
     })
 
 
 })
 
+
+ipcMain.handle('register', async (event,data) => {
+    return userDb.insert(data, function (err, Newdata) {
+
+    })
+
+})
+
+
+
+
+
+    ipcMain.handle('licenseKey', async (event,data) => {
+        
+        var licenseData = { info: userInfo, prodCode: "LEN100120", appVersion: "1.5", osType: 'IOS8' }
+
+
+       return licenseKey.validateLicense(licenseData,serialKey)
+
+    
+        })
+    
+
+
+
+
+    
+
+
+    // var licenseData = { info: userInfo, prodCode: "LEN100120", appVersion: "1.5", osType: 'IOS8' }

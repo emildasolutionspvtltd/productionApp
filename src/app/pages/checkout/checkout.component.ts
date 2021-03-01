@@ -299,7 +299,7 @@ if(results.length != 0){
 
 
   getdiscount(){
-    if(this.discountType =='percentage' ){
+    if(this.discountType=='percentage' ){
 
       return ((this.getTotal()*this.finalDiscount)/100)
            
@@ -485,13 +485,16 @@ console.log("ge")
     else{
       console.log(this.selectedPaymentMode)
       const dialogRef = this.dialog.open(DisplayCheckoutComponent, {
-        height: '400px',
-        width: '400px',
+        maxWidth: '450px',
+        width: '90%',
+        panelClass: 'dialogCss',
         data: {
           data: this.dataSource.filteredData,
           total: this.getGrantTotal(),
           pay: this.selectedPaymentMode,
-          discount: this.finalDiscount,
+          discount: this.getdiscount(),
+          subTotal:this.getTotal(),
+          tax:this.getTax(),
           customer: this.customerData
         }
       });
