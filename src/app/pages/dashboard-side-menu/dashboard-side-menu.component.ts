@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { CheckoutServiceService } from 'src/app/services/checkout-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { BagNotificationComponent } from 'src/app/secondaryPages/bag-notification/bag-notification.component';
+import { AuthServiceService } from 'src/app/auth/auth-service.service';
 
 @Component({
   selector: 'app-dashboard-side-menu',
@@ -14,7 +15,7 @@ import { BagNotificationComponent } from 'src/app/secondaryPages/bag-notificatio
 export class DashboardSideMenuComponent implements AfterViewInit {
   @ViewChild('drawer') public drawer: MatDrawer;
 bag =[]
-  constructor(private cs:CheckoutServiceService, private dialog : MatDialog, private router:Router,   @Inject(SecondaryService) private secService:SecondaryService) {
+  constructor(private auth : AuthServiceService,private cs:CheckoutServiceService, private dialog : MatDialog, private router:Router,   @Inject(SecondaryService) private secService:SecondaryService) {
 this.bag=this.cs.getBag
    }
 
@@ -40,10 +41,11 @@ this.bag=this.cs.getBag
 {
   this.cs.clearBag()
   this.router.navigate([paths])
+  
 
 }else{
 
-  
+
 
 }
 
@@ -63,6 +65,14 @@ this.bag=this.cs.getBag
    ngAfterViewInit(){
    this.secService.setDrawer(this.drawer)
    }
+
+
+  logout(){
+
+    this.auth.loggedIn=false
+    this.router.navigate(['login'])
+    this.secService.presentSanckBar("You Logged Out",'success')
+  }
 
   
   }
