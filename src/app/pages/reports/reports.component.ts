@@ -13,6 +13,7 @@ import { DatabaseService } from 'src/app/services/database.service';
 export class ReportsComponent implements OnInit {
 allItems
 allTransactions
+allCustomer
 disableSelect = false
 things: any[]
   constructor(@Inject(SecondaryService) private secService:SecondaryService,private db:DatabaseService) {
@@ -24,7 +25,10 @@ things: any[]
          console.log(x)
          this.allTransactions = x
        })
-
+       this.db.getCustomer().then(x=>{
+         console.log(x)
+         this.allCustomer =x
+       })
        this.things = [];
    }
 
@@ -48,9 +52,13 @@ things: any[]
           this.convertToCsv1(x)
         })
       }
-      else{
+      else if(this.reportForm.value.type == 'item'){
         console.log(this.reportForm)
         this.convertToCsv(this.allItems)
+      }
+      else{
+        console.log(this.reportForm)
+        this.convertToCsv(this.allCustomer)
       }
   }
 

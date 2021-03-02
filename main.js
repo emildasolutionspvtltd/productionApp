@@ -442,7 +442,7 @@ ipcMain.handle('getBetweenDates', async (event, a,b) => {
 //delete Item
 ipcMain.handle('delete', async (event, id) => {
 
-    return itemDb.remove({ _id: id }, {}, function (err, numRemoved) {
+    return settingDb.remove({ _id: id }, {}, function (err, numRemoved) {
     });
 
 })
