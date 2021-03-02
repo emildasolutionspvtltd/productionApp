@@ -1,11 +1,9 @@
 {"type":"items","barcode":"1661089","name":"rozana ginger powder 800 grams","nameInArabic":"مسحوق الزنجبيل روزانا 800 جرام","category":"Spices","mrp":250,"price":249,"tax":18,"inventory":10,"unit":"kg","_id":"05ILDIlaR8K3i2rK"}
 {"type":"items","barcode":"1661009","name":"dry fruits new same","nameInArabic":"الفواكه المجففة جديدة نفس","category":"Spices","mrp":2000,"price":150,"tax":18,"inventory":151,"unit":"kg","_id":"7xHZgfDyBlbBPGv0"}
 {"type":"items","barcode":"1661089","name":"cashew nut  - al zamil","nameInArabic":"مسحوق الزنجبيل روزانا 800 جرام","category":"Spices","mrp":34,"price":31,"tax":18,"inventory":500,"unit":"kg","_id":"8axAlNm1fQwaNE3f"}
-{"type":"items","barcode":"1661010","name":"old arabian dates","nameInArabic":"تمور عربية قديمة","category":"Spices","mrp":256,"price":200,"tax":18,"inventory":209,"unit":"kg","_id":"AZcw76olbi7c1OYf"}
+{"type":"items","barcode":"1661010","name":"old arabian dates","nameInArabic":"تمور عربية قديمة","category":"Spices","mrp":256,"price":200,"tax":18,"inventory":210,"unit":"kg","_id":"AZcw76olbi7c1OYf"}
 {"type":"items","barcode":"166100009","name":"red daal ","nameInArabic":"ريد دال","category":"Spices","mrp":20,"price":12,"tax":15,"inventory":10,"unit":"kg","_id":"JqN1dReSV9CbubbA"}
-{"type":"items","barcode":"1661009","name":"fresh arabian dates","nameInArabic":"تمور عربية طازجة","category":"Dry Fruits","mrp":256,"price":250,"tax":18,"inventory":106,"unit":"mg","_id":"NLJwxOVH7oyxRw8o"}
+{"type":"items","barcode":"1661009","name":"fresh arabian dates","nameInArabic":"تمور عربية طازجة","category":"Dry Fruits","mrp":256,"price":250,"tax":18,"inventory":107,"unit":"mg","_id":"NLJwxOVH7oyxRw8o"}
 {"type":"items","barcode":"1661011","name":"arabian indian masala chilli","nameInArabic":"ماسالا عربي هندي حار","category":"Spices","mrp":200,"price":15,"tax":18,"inventory":201,"unit":"kg","_id":"SDCvLmbmhgtmvnmq"}
 {"type":"items","barcode":"1661009","name":"dryfruits 800","nameInArabic":"فواكه مجففة 800","category":"Dry Fruits","mrp":250,"price":120,"tax":18,"inventory":200,"unit":"kg","_id":"tz3Y7mWQHpNQeBQ3"}
 {"type":"items","barcode":"1661012","name":"Ginger Powder","nameInArabic":"مسحوق الزنجبيل","category":"Spices","mrp":250,"price":100,"tax":18,"inventory":50,"unit":"kg","_id":"wZyKFRuNTxsvWQ1m"}
-{"type":"items","barcode":"1661010","name":"old arabian dates","nameInArabic":"تمور عربية قديمة","category":"Spices","mrp":256,"price":200,"tax":18,"inventory":210,"unit":"kg","_id":"AZcw76olbi7c1OYf"}
-{"type":"items","barcode":"1661009","name":"fresh arabian dates","nameInArabic":"تمور عربية طازجة","category":"Dry Fruits","mrp":256,"price":250,"tax":18,"inventory":107,"unit":"mg","_id":"NLJwxOVH7oyxRw8o"}
