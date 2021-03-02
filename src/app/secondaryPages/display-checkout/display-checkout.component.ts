@@ -84,12 +84,14 @@ export class DisplayCheckoutComponent implements OnInit {
 
         this.printData()
         this.secService.presentSanckBar('Transaction SucessFul', 'success')
-
+        console.log('close')
+        this.dialogRef.close('success')
       
     }
     else {
 
-      this.dialogRef.close()
+      this.dialogRef.close('success')
+      console.log('close')
 
       this.secService.presentSanckBar('Transaction SucessFul', 'success')
     }
@@ -116,7 +118,7 @@ export class DisplayCheckoutComponent implements OnInit {
       let Temp: Array<any>
 
       Temp = [
-        this.data.data[index].name.toUpperCase()+this.data.data[index].nameInArabic , this.data.data[index].quantity, this.data.data[index].price, (this.data.data[index].price*this.data.data[index].quantity)]
+        this.data.data[index].name.toUpperCase()+"/"+this.data.data[index].nameInArabic , this.data.data[index].quantity, this.data.data[index].price, (this.data.data[index].price*this.data.data[index].quantity)]
       this.things.push(Temp)
     }
 

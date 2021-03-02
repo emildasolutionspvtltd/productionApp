@@ -229,7 +229,6 @@ if(results.length != 0){
       maxWidth: '450px',
       width: '90%',
       panelClass: 'dialogCss'
-
     })
 
 
@@ -457,6 +456,7 @@ getGrantTotal(){
 
 this.checkService.clearBag()
 console.log("ge")
+this.customerData=null
   this.dataSource = new MatTableDataSource<CheckoutItem>(this.bag)
 
  }
@@ -500,7 +500,10 @@ console.log("ge")
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+console.log(result)
+        if(result == 'success'){
+          this.reset()
+        }
 
       });
     }
