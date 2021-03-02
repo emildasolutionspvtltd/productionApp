@@ -5,14 +5,14 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AcceptTransactionComponent } from 'src/app/secondaryPages/accept-transaction/accept-transaction.component';
 import { DatabaseService } from 'src/app/services/database.service';
 import { SecondaryService } from 'src/app/services/secondary.service';
-
+import {MatSort} from '@angular/material/sort';
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
   styleUrls: ['./transactions.component.scss']
 })
 export class TransactionsComponent implements OnInit {
-
+  @ViewChild(MatSort) sort: MatSort;
   @ViewChild('paginator') paginator: MatPaginator;
 // get all the transaction
   constructor(@Inject(SecondaryService) private secService:SecondaryService,private db:DatabaseService,private dialog: MatDialog) { 
@@ -20,7 +20,9 @@ export class TransactionsComponent implements OnInit {
   }
   displayedColumns: string[] = ['dateTime','orderId' ,'custid', 'cost','typetransaction','button'];
   dataSource:MatTableDataSource<any>
+  
   ngOnInit(): void {
+    
   }
 // funciton to get the transaction
   getTransaction(){
@@ -28,6 +30,13 @@ export class TransactionsComponent implements OnInit {
       console.log(x)
       this.dataSource = new MatTableDataSource(x)
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sortingDataAccessor = (x, property) => {
+        switch (property) {
+           case 'dateTime': return new Date(x.dateTime);
+           default: return x[property];
+        }
+      };
+      
     })
   }
   // funciton to return a single item
@@ -66,6 +75,7 @@ export class TransactionsComponent implements OnInit {
 
   
   updateFunction(id,inv,quan){
+    console.log(quan)
     console.log(id,inv+quan)
     this.db.increaseInventory(id,inv+quan).then(x=>{
       console.log(x)

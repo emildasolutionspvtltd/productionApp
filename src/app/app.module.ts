@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './pages/login/login.component';
 // import { IKeyboardLayouts, keyboardLayouts, MAT_KEYBOARD_LAYOUTS, MatKeyboardModule } from 'angular-onscreen-material-keyboard';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
+import {MatSortModule} from '@angular/material/sort';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatRippleModule} from '@angular/material/core';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
@@ -165,6 +165,7 @@ import { BagNotificationComponent } from './secondaryPages/bag-notification/bag-
     AutocompleteLibModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSortModule
 
   ],
   providers: [
