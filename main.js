@@ -342,14 +342,15 @@ ipcMain.handle('print', async (event, data) => {
     console.log(data)
     let printersInfo = win.webContents.getPrinters();
     let printer = printersInfo.filter(printer => printer.isDefault === true)[0];
+    
     const options = {
-        preview: true,               // Preview in window or print
-        width: '210px',               //  width of content body
+        preview: false,               // Preview in window or print
+        width: '300px',               //  width of content body
         margin: '0 0 0 0',            // margin of content body
         copies: 1,                    // Number of copies to print
-        printerName: printer.name,        // printerName: string, check with webContent.getPrinters()
+        printerName:printer,        // printerName: string, check with webContent.getPrinters()
         timeOutPerLine: 400,
-        pageSize: { height: 71000, width: 71000 }  // page size
+        pageSize: { height: 301000, width: 71000 }  // page size
     }
     console.log(printer.name)
     PosPrinter.print(data, options)
