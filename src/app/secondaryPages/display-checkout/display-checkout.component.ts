@@ -45,7 +45,12 @@ export class DisplayCheckoutComponent implements OnInit {
 
 
 
-
+  updateFunction(id,inv,quan){
+    console.log(id,inv,quan)
+    this.db.increaseInventory(id,inv-quan).then(x=>{
+      console.log(x)
+    }) 
+    }
 
 
 
@@ -57,11 +62,15 @@ export class DisplayCheckoutComponent implements OnInit {
     console.log(group)
 
     for (var index in this.data.data) {
+      console.log(this.data.data[index]._id,this.data.data[index].inventory,this.data.data[index].quantity)
     //update inventory
-    this.db.updateInventory(this.data.data[index].id, this.data.data[index].inventory - this.data.data[index].quantity).then(x => {
-      console.log('sucess')
+    let quan = this.data.data[index].quantity
+    this.db.updateInventory(this.data.data[index]._id, this.data.data[index].inventory - this.data.data[index].quantity).then(x => {
+      console.log(x)
+     this.updateFunction(x[0]._id,x[0].inventory ,quan)
+
       
-    })
+   })
   }
 
 

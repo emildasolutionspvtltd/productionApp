@@ -73,7 +73,7 @@ export class AcceptTransactionComponent implements OnInit {
   }
 
 updateFunction(id,inv,quan){
-  console.log(id,inv+quan)
+  console.log(id,inv,quan)
   this.db.increaseInventory(id,inv+quan).then(x=>{
     console.log(x)
   }) 
