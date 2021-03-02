@@ -21,11 +21,13 @@ export class SettingsComponent implements OnInit {
   dataSource1:MatTableDataSource<any>
   displayedColumns1: string[] = ['payName', 'paynotes','button'];
   printerName
+  userInfo
   // gets all the previous payment mode and taxes
   constructor(@Inject(SecondaryService) private secService:SecondaryService,private dialog:MatDialog,private db:DatabaseService) {
     this.getTax()
     this.getPay()
     this.getPrinter()
+    this.getUserInfo()
    }
    infoForm = new FormGroup({
      type : new FormControl('headerfooter'),
@@ -40,6 +42,16 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+
+
+   getUserInfo(){
+  this.db.isRegistered().then(result=>{
+this.userInfo = result
+  }  ).catch(error=>{
+    this.secService.presentSanckBar(error,'danger')
+  })
+  }
 
 // funciton to get al the taxes
   getTax(){

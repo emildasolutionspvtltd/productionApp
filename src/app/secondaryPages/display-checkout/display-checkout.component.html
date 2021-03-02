@@ -19,7 +19,7 @@
 <div fxLayout='row' fxLayoutAlign='space-between center' >
     <button  (click)="checkout('print')" mat-raised-button  id="rightMargin" color="accent"
     class="bigButton">Checkout with Print</button>
-    <button mat-button  id="rightMargin" color="danger"
+    <button  (click)="checkout('no-print')" mat-button  id="rightMargin" color="danger"
     class="bigButton">Checkout without Print</button>
 </div>
 

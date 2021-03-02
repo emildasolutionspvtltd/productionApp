@@ -18,7 +18,74 @@
         </div>
     </mat-toolbar>
     <mat-tab-group animationDuration="2000ms" mat-align-tabs="center">
-        <mat-tab label="User Settings">Content 2</mat-tab>
+        <mat-tab label="User Settings">
+            <div class="userInformation">
+            <p style="width: 200px; font-size: large; margin: 0px,0px,0px,0px;">
+                User Information
+            </p>
+
+            <mat-card style="max-width: 450px;">
+
+
+
+                <table class="infoTable" style="width: 100%"> 
+                    <tr>
+                        <th>Name </th>
+                        <td> : {{userInfo?.name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Shop Name </th>
+                        <td> : {{userInfo?.shopName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile Number  </th>
+                        <td> : {{userInfo?.mobileNumber}}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Email </th>
+                        <td> : {{userInfo?.email}}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Password </th>
+                        <td> : {{userInfo?.password}}</td>
+                    </tr>
+
+
+    
+                </table>
+            </mat-card>
+
+        </div>
+        <div class="userInformation">
+            <p style="width: 200px; font-size: large; margin: 0px,0px,0px,0px;">
+Software Information  </p>
+
+            <mat-card style="max-width: 450px;">
+
+
+
+                <table class="infoTable" style="width: 100%"> 
+                    <tr>
+                        <th>Expiry Date </th>
+                        <td> : {{userInfo?.expiryDate | date }}</td>
+                    </tr>
+                    <tr>
+                        <th>Version </th>
+                        <td> : 0.01</td>
+                    </tr>
+                  
+
+    
+                </table>
+            </mat-card>
+
+        </div>
+
+
+
+        </mat-tab>
         <mat-tab label="Checkout Settings">
             <div style="padding: 20px;">
                 <button mat-stroked-button (click)="addTax()"
