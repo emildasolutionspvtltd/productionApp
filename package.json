@@ -47,6 +47,7 @@
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "usb-barcode-scanner": "^1.0.2",
+    "wine": "^0.9.13",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -59,6 +60,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
+    "electron-installer-windows": "^3.0.0",
     "electron-packager": "^15.2.0",
     "firebase-tools": "^8.0.0",
     "fuzzy": "^0.1.3",
