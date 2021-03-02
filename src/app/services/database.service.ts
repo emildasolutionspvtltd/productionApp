@@ -215,4 +215,8 @@ updatePay(id,data){
     isRegistered(){
       return this.electron.ipcRenderer.invoke('getUser')
     }
+
+    increaseInventory(id,inv){
+      return this.electron.ipcRenderer.invoke('increaseInv',id,inv)
+    }
 }

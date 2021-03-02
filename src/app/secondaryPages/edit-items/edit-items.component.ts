@@ -11,7 +11,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./edit-items.component.scss']
 })
 export class EditItemsComponent implements OnInit {
-  units:Array<any>=[{
+  units:Array<any>=[
+    {
+    unitName:'Units',
+    unit:'Null'
+  },
+    {
     unitName:'Gram',
     unit:'g'
    },

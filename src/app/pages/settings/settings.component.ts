@@ -144,8 +144,8 @@ this.userInfo = result
     this.db.delete(id).then(x=>{
       console.log(x)
     })
-    this.db.getTax()
-    this.db.getPay()
+    this.getTax()
+    this.getPay()
   }
   addRecipetPrinter(){
     if(this.printerForm.valid){

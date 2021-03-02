@@ -42,6 +42,15 @@ export class TransactionsComponent implements OnInit {
   deleteTransaction(id){
     this.db.deleteTransaction(id).then(x=>{
       console.log(x)
+      for (var index in x[0].data) {
+       // update inventory
+       let quan =x[0].data[index].quantity
+        this.db.updateInventory(x[0].data[index]._id, x[0].data[index].inventory + x[0].data[index].quantity).then(x => {
+          console.log(x)
+          this.updateFunction(x[0]._id,x[0].inventory,quan)
+          
+        })
+      }
       let dateTime = new Date()
      this.deleteTrans = {time : dateTime, type :x[0].type,paymentType :x[0].paymentType,discount: x[0].discount,customer: x[0].customer, total :x[0].total,data:x[0].data,typeOfTransaction : 'cancel transaction'}
      this.deleteTrans.time = dateTime
@@ -53,7 +62,16 @@ export class TransactionsComponent implements OnInit {
      })
       this.getTransaction()
     })
-  }s
+  }
+
+  
+  updateFunction(id,inv,quan){
+    console.log(id,inv+quan)
+    this.db.increaseInventory(id,inv+quan).then(x=>{
+      console.log(x)
+    }) 
+    }
+
 
   ChangeTransaction(id){
     console.log(id)

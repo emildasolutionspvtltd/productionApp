@@ -17,6 +17,10 @@ export class AddSingleItemComponent implements OnInit {
 
 
   units:Array<any>=[{
+    unitName:'Units',
+    unit:'Null'
+  },
+    {
     unitName:'Gram',
     unit:'g'
    },

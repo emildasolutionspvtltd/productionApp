@@ -328,11 +328,17 @@ ipcMain.handle('getTransaction', async (event) => {
 //waste update inventory
 
 ipcMain.handle('updateInventory', async (event, id, inv) => {
-    return itemDb.update({ _id: id }, { $set: { inventory: inv } }, {}, function (err, numReplaced) {
+    return itemDb.find({ _id: id }, function (err, numReplaced) {
 
     });
 })
+ipcMain.handle('increaseInv', async (event, id, inv) => {
+    return itemDb.update({ _id: id }, {  $set: { inventory: inv } }, {}, function () {
+        // The fruits array didn't change
+        // If we had used a fruit not in the array, e.g. 'banana', it would have been added to the array
+      });
 
+    })
 
 
 
@@ -437,7 +443,7 @@ ipcMain.handle('getBetweenDates', async (event, a,b) => {
 //delete Item
 ipcMain.handle('delete', async (event, id) => {
 
-    return itemDb.remove({ _id: id }, {}, function (err, numRemoved) {
+    return settingDb.remove({ _id: id }, {}, function (err, numRemoved) {
     });
 
 })
