@@ -140,10 +140,15 @@ export class DisplayCheckoutComponent implements OnInit {
 
 
     recieptPrint = [
-      {
-        type: 'text', value: 'test', style: `text-align:center;`
+      
+        {
+          type: 'text',                                       // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+          value: 'adfsdadfasdf',
+          style: `text-align:center;`,
+          css: {"font-weight": "700", "font-size": "18px"}
+       }
 
-      }, {
+      , {
         type: 'table',
 
         style: 'border: 0px',
