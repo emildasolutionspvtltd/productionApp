@@ -12,7 +12,7 @@ import {MatSort} from '@angular/material/sort';
   styleUrls: ['./transactions.component.scss']
 })
 export class TransactionsComponent implements OnInit {
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort,{static: true}) sort: MatSort;
   @ViewChild('paginator') paginator: MatPaginator;
 // get all the transaction
   constructor(@Inject(SecondaryService) private secService:SecondaryService,private db:DatabaseService,private dialog: MatDialog) { 
@@ -20,7 +20,7 @@ export class TransactionsComponent implements OnInit {
   }
   displayedColumns: string[] = ['dateTime','orderId' ,'custid', 'cost','typetransaction','button'];
   dataSource:MatTableDataSource<any>
-  
+ 
   ngOnInit(): void {
     
   }
@@ -30,9 +30,10 @@ export class TransactionsComponent implements OnInit {
       console.log(x)
       this.dataSource = new MatTableDataSource(x)
       this.dataSource.paginator = this.paginator;
+      //this.dataSource.sort = this.sort
       this.dataSource.sortingDataAccessor = (x, property) => {
         switch (property) {
-           case 'dateTime': return new Date(x.dateTime);
+           case 'dateTime': return x.dateTime;
            default: return x[property];
         }
       };
