@@ -12,7 +12,7 @@ function createWindow() {
     })
 
     win.webContents.openDevTools()
-    win.loadURL(`file://${__dirname}/dist/Desktopapp/index.html`)
+    win.loadURL(`file://${__dirname}/dist/index.html`)
     win.on('closed', function () {
         win = null;
     })
