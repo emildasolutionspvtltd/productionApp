@@ -1,5 +1,7 @@
 {"type":"payment","paymentName":"GPay","notes":"Google Pay","_id":"AVW0i709onfQ67Os"}
+{"type":"tax","taxName":"VAT","taxPercentage":15,"inex":"inclusive","_id":"N8XLopzGFdu8lv8s"}
 {"type":"payment","paymentName":"Card ","notes":"Debit/ Credit Card","_id":"Q6SIUzHdb3ZeJoFK"}
+{"type":"payment","paymentName":"BharatPay","notes":"Bharth Pay ( 9442449431)","_id":"VKcK6ul1tRmHagR9"}
 {"type":"payment","paymentName":"Cash","notes":"Cash In Hand","_id":"cR1axlTDZ1zpKWif"}
 {"type":"tax","taxName":"IGST","taxPercentage":18,"inex":"exclusive","_id":"dN2WcB8oU9XvcmOi"}
 {"type":"tax","taxName":"Gst","taxPercentage":18,"inex":"inclusive","_id":"sflcZzkpXhnMwYHH"}

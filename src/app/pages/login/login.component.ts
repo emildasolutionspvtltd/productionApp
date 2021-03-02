@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/auth/auth-service.service';
 import { DatabaseService } from 'src/app/services/database.service';
 
 import { SecondaryService } from 'src/app/services/secondary.service';
@@ -19,7 +20,7 @@ loginForm= new FormGroup({
 
 
 
-  constructor(private secService : SecondaryService,private router: Router,private db: DatabaseService) { }
+  constructor(private secService : SecondaryService,private router: Router,private db: DatabaseService,private auth:AuthServiceService) { }
 
   ngOnInit(): void {
   }
@@ -30,8 +31,25 @@ loginForm= new FormGroup({
 
 
 
-  Login(){
+  async Login(){
     if(this.loginForm.valid){
+
+    let userData = await this.db.isRegistered()
+
+    if(userData.email === this.loginForm.value.email && userData.password === this.loginForm.value.password){
+
+      this.auth.loggedIn = true
+      this.loginForm.reset()
+      this.router.navigate([''])
+    
+    }else{
+      
+    this.secService.presentSanckBar('please enter the correct password/email','ok')
+
+    }
+    
+
+    //adsfasf
       // this.db.enterLogin(this.loginForm.value).then(x=>{
       //    if(this.loginForm.value.password== x[0].password){
       //      console.log('success')

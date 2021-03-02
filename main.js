@@ -529,7 +529,7 @@ ipcMain.handle('getHeadFoot', async (event, id,) => {
 
 
 ipcMain.handle('getUser', async (event) => {
-    return userDb.find({ type: 'userinfo' }, function (err, docs) {
+    return userDb.findOne({ type: 'userinfo' }, function (err, docs) {
 
     })
 

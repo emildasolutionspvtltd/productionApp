@@ -1,3 +1,1 @@
-{"type":"userinfo","name":"paul","shopName":"emilda","email":"paul@gmail.com","mobileNumber":"1234567890","password":"123456","rePassword":"123456","serialKey":"Z30V8-6A20H-7ZZH6-7B580-D1375-75708","_id":"8keLadfVMIhjNm2x"}
-{"type":"userinfo","name":"paul","shopName":"emilda","email":"paul@gmail.com","mobileNumber":"1234567890","password":"123456","rePassword":"123456","serialKey":"Z30V8-6A20H-7ZZH6-7B580-D1375-75708","expiryDate":"2022-02-28","_id":"S6ZRVOCz3MiAVhkg"}
-{"type":"userinfo","name":"paul","shopName":"emilda","email":"paul@gmail.com","mobileNumber":"1234567890","password":"123456","rePassword":"123456","serialKey":"Z30V8-6A20H-7ZZH6-7B580-D1375-75708","_id":"yvt2A235a2H1MuEq"}
+{"type":"userinfo","name":"paul","shopName":"emilda","email":"paul@gmail.com","mobileNumber":"1234567890","password":"123456","rePassword":"123456","serialKey":"Z30V8-6A20H-7ZZH6-7B580-D1375-75708","expiryDate":{"$$date":1646159400000},"_id":"B8lYme10HcnMozln"}

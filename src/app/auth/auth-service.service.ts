@@ -6,6 +6,8 @@ import { SecondaryService } from '../services/secondary.service';
 })
 export class AuthServiceService {
 
+
+  loggedIn:boolean = false
   constructor(private db: DatabaseService, private secService: SecondaryService) {
   }
   lisValid
@@ -35,42 +37,20 @@ export class AuthServiceService {
 
   public isAuthenticated(): boolean {
 
-    return true
-    // if(this.licenseValid()){
-    //  this.secService.presentSanckBar('welcome ', 'sucess')
-    //   return true
-    // }
-    // return false
+    return this.loggedIn
+   
   }
 
 
-  public licenseValid(): boolean {
-    return true
-    // if(this.isRegistered()){
-    //   this.db.getKey().then(x => {
-    //     console.log(x.length)
-    //     if (x.length > 0) {
-    //       return true
-    //     }
-    //   })
-    // }
-    // return false
-  }
 
-  public  isRegistered():boolean{
-    return true
-    //  await this.db.isRegistered().then(x=>{
+  public   isRegistered(){
 
 
-    // })
 
-    // return false
-  //   this.db.getUser().then(x => {
-  //     console.log(x.length)
-  //     if (x.length > 0) {
-  //       return true
-  //     }
-  //   })
-  //   return false
+
+
+
+     return this.db.isRegistered()
+
   }
 }

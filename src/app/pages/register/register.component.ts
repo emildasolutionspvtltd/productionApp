@@ -45,31 +45,41 @@ export class RegisterComponent implements OnInit {
         var userInfo = { name: this.registerForm.value.name, email: this.registerForm.value.email, phoneNumber: this.registerForm.value.mobileNumber, company: this.registerForm.value.shopName, password: this.registerForm.value.password }
         var licenseData = { info: userInfo, prodCode: "LEN100120", appVersion: "1.5", osType: 'IOS8' }
        
-       
-       
-       
-        try {
-          var license = licenseKey.validateLicense(licenseData, this.registerForm.value.serialKey);
-          console.log(license);
-          const now = new Date();
-    now.setFullYear(now.getFullYear() + 1);
+       this.keyValidator(licenseData).then(process=>{
+        
+        var d = new Date(Date.now());
+        var year = d.getFullYear();
+        var month = d.getMonth();
+        var day = d.getDate();
+        var expireDate = new Date(year + 1, month, day);
+        this.registerForm.value.expiryDate = expireDate;
 
-    console.log(now.toISOString().slice(0,10))
-    this.registerForm.value.expiryDate = now.toISOString().slice(0,10)
-    console.log(this.registerForm)
-    this.db.enterUser(this.registerForm.value).then(x=>{
-       console.log(x)
-    }).catch(err=>{
-      console.log(err)
-    })
 
-    this.router.navigate([''])
+        this.db.enterUser(this.registerForm.value).then(x=>{
           this.secService.presentSanckBar('Registration Successful', 'sucess')
 
-        } catch (err) {
-          console.log(err);
-          this.secService.presentSanckBar('License Invaild Please Try Again', 'ok')
-        }
+          this.router.navigate([''])
+
+        }).catch(err=>{
+          this.secService.presentSanckBar(err, 'danger')
+
+       })
+
+
+
+
+       }).catch(error=>{
+        this.secService.presentSanckBar(error, 'danger')
+
+       })
+       
+       
+       
+
+
+
+
+        } 
 
 
         //Validate Key 
@@ -107,8 +117,7 @@ export class RegisterComponent implements OnInit {
         //this.registerForm.reset()
         // this.db.registerUser(this.registerForm.valid)
 
-      }
-      else {
+       else {
         this.secService.presentSanckBar('Passwords do not match', 'danger')
       }
 
@@ -120,9 +129,22 @@ export class RegisterComponent implements OnInit {
 
 
   }
+
+
+
+
+
+
   routersCall(paths) {
     this.secService.toggle()
     this.router.navigate([paths])
+  }
+
+
+
+  async keyValidator(licenseData){
+    return   await licenseKey.validateLicense(licenseData, this.registerForm.value.serialKey);
+
   }
 
 

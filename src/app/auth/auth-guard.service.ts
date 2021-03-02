@@ -8,7 +8,7 @@ export class AuthGuardService implements CanActivate {
 
   constructor(public auth: AuthServiceService, public router: Router) { }
 
-  canActivate(): boolean {
+  async canActivate(): Promise<boolean> {
 
 
 
@@ -16,9 +16,12 @@ export class AuthGuardService implements CanActivate {
 
 
 
-    if (this.auth.isRegistered()) {
-     console.log('Registered')
-       if(this.auth.licenseValid()){
+    if (await this.auth.isRegistered() != null) {
+let userDb = await this.auth.isRegistered()
+let currentDate = new Date (Date.now())
+let expireDate = new Date (userDb.expiryDate)
+console.log(expireDate)
+       if(currentDate<expireDate){
         console.log('license')
 
 
