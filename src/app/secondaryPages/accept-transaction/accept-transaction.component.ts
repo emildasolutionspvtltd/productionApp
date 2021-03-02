@@ -58,16 +58,35 @@ export class AcceptTransactionComponent implements OnInit {
       this.secService.presentSanckBar('please select one', 'ok')
     }
     else {
-      console.log(this.otherData.data)
-      let dateTime = new Date()
-      this.newData = {time : dateTime, type : this.otherData.type,paymentType :this.otherData.paymentType,discount: this.otherData.discount,customer: this.otherData.customer, total :this.totalPrice,data:this.selectedOptions,typeOfTransaction : 'return'}
-      this.db.addTransaction(this.newData).then(x=>{
-console.log(x)
-      }).catch(err=>{
-        console.log(err)
-      })
+      console.log(this.selectedOptions)
+      
+      for (var index in this.selectedOptions) {
+        // update inventory
+         this.db.updateInventory(this.selectedOptions[index]._id, this.selectedOptions[index].inventory + this.selectedOptions[index].quantity).then(x => {
+           console.log(x)
+           this.updateFunction(x[0]._id,x[0].inventory,this.selectedOptions[index].quantity)
+         })
+      }
+      this.addToDb()
     }
 
+  }
+
+updateFunction(id,inv,quan){
+  console.log(id,inv+quan)
+  this.db.increaseInventory(id,inv+quan).then(x=>{
+    console.log(x)
+  }) 
+  }
+  addToDb(){
+    console.log(this.otherData.data)
+    let dateTime = new Date()
+    this.newData = {time : dateTime, type : this.otherData.type,paymentType :this.otherData.paymentType,discount: this.otherData.discount,customer: this.otherData.customer, total :this.totalPrice,data:this.selectedOptions,typeOfTransaction : 'return'}
+    this.db.addTransaction(this.newData).then(x=>{
+console.log(x)
+    }).catch(err=>{
+      console.log(err)
+    })
   }
 }
 
