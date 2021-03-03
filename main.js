@@ -5,7 +5,8 @@ var licenseKey = require('license-key-gen');
 
 function createWindow() {
     win = new BrowserWindow({
-        webPreferences: { nodeIntegration: true },
+        webPreferences: { nodeIntegration: true 
+        },
         height: 760,
         width: 1024,
         backgroundColor: '#ffffff'
@@ -320,7 +321,7 @@ ipcMain.handle('getIndivisualPay', async (event, id,) => {
 
 //getting Transactions
 ipcMain.handle('getTransaction', async (event) => {
-    return transactionDb.find({ type: 'transaction' })
+    return transactionDb.find({ type: 'transaction' }).sort({time:-1})
 })
 
 
