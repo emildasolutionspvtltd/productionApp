@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { CheckoutServiceService } from 'src/app/services/checkout-service.service';
+import { DatabaseService } from 'src/app/services/database.service';
 import { SecondaryService } from 'src/app/services/secondary.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class CheckOutItemComponent implements OnInit {
   tablePrice 
   tableQty
 
-  constructor(private sec:SecondaryService ,private dialog:MatDialog,private bottom:MatBottomSheet,@Inject(MAT_BOTTOM_SHEET_DATA) public data: any,private checkoutService : CheckoutServiceService) { 
+  constructor(private sec:SecondaryService ,private dialog:MatDialog,private bottom:MatBottomSheet,@Inject(MAT_BOTTOM_SHEET_DATA) public data: any,private checkoutService : CheckoutServiceService,private db: DatabaseService) { 
     this.tablePrice = data.price
     this.tableQty = data.quantity
   }
@@ -47,5 +48,25 @@ updateData
   removeItem(){
     this.updateData=this.checkoutService.removeItem(this.data)
     this.bottom.dismiss(this.updateData)
+  }
+
+
+  printData(){
+    console.log(this.data)
+    const printData = [{
+      type: 'text',                       // 'text' | 'barCode' | 'qrCode' | 'image' | 'table'
+      value: this.data.name,
+      style: `text-align:left`,
+      css: {"text-decoration": "bold", "font-size": "12px"}
+   },{
+      type: 'barCode',
+      value: this.data.barcode,
+      height: 12,                     // height of barcode, applicable only to bar and QR codes
+      width: 1,                       // width of barcode, applicable only to bar and QR codes
+      displayValue: true,             // Display value below barcode
+      fontsize: 8,
+   }]
+
+  this.db.printData(printData)
   }
 }

@@ -25,8 +25,8 @@
     "firebase": "^8.2.4",
     "license-key-gen": "^0.1.4",
     "nedb": "^1.8.0",
-    "nedb-promises": "^4.1.1"
-    
+    "nedb-promises": "^4.1.1",
+    "typescript": "~3.7.5"
   },
   "devDependencies": {
     "ngx-electron": "^2.2.0",

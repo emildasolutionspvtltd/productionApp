@@ -350,7 +350,7 @@ ipcMain.handle('print', async (event, data) => {
     let printer = printersInfo.filter(printer => printer.isDefault === true)[0];
     
     const options = {
-        preview: false,               // Preview in window or print
+        preview: true,               // Preview in window or print
         width: '300px',               //  width of content body
         margin: '0 0 0 0',            // margin of content body
         copies: 1,                    // Number of copies to print
