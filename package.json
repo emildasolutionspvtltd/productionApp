@@ -47,7 +47,8 @@
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "usb-barcode-scanner": "^1.0.2",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "typescript": "~3.7.5"
   },
   "devDependencies": {
     "@angular-devkit/architect": ">= 0.900 < 0.1200",
