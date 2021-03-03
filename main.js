@@ -1,11 +1,15 @@
 const { app, ipcMain, ipcRenderer, BrowserWindow, } = require('electron');
 let win;
+
+
+let appDocument = app.getPath('documents')
 const { PosPrinter } = require("electron-pos-printer");
 var licenseKey = require('license-key-gen');
 
 function createWindow() {
     win = new BrowserWindow({
-        webPreferences: { nodeIntegration: true },
+        webPreferences: { nodeIntegration: true 
+        },
         height: 760,
         width: 1024,
         backgroundColor: '#ffffff'
@@ -36,21 +40,21 @@ app.on('activate', function () {
 
 const Datastore = require('nedb-promises')
 const path = require('path');
-var db = new Datastore({filename:path.join(__dirname, 'pos.db'), autoload:true});
+var db = new Datastore({filename:path.join(appDocument, 'dataPos/pos.db'), autoload:true});
 
-var itemDb = new Datastore({filename:path.join(__dirname, 'item.db'), autoload:true});
+var itemDb = new Datastore({filename:path.join(appDocument, 'dataPos/item.db'), autoload:true});
 
-var transactionDb = new Datastore({filename:path.join(__dirname, 'transaction.db'), autoload:true});
+var transactionDb = new Datastore({filename:path.join(appDocument, 'dataPos/transaction.db'), autoload:true});
 
-var customerDb = new Datastore({filename:path.join(__dirname, 'customer.db'), autoload:true});
+var customerDb = new Datastore({filename:path.join(appDocument, 'dataPos/customer.db'), autoload:true});
 
-var settingDb = new Datastore({filename:path.join(__dirname, 'setting.db'), autoload:true});
+var settingDb = new Datastore({filename:path.join(appDocument, 'dataPos/setting.db'), autoload:true});
 
-var categoryDb = new Datastore({filename:path.join(__dirname, 'category.db'), autoload:true});
+var categoryDb = new Datastore({filename:path.join(appDocument, 'dataPos/category.db'), autoload:true});
 
-var secondaryDb = new Datastore({filename:path.join(__dirname, 'secondary.db'), autoload:true});
+var secondaryDb = new Datastore({filename:path.join(appDocument, 'dataPos/secondary.db'), autoload:true});
 
-var userDb = new Datastore({filename:path.join(__dirname, 'user.db'), autoload:true});
+var userDb = new Datastore({filename:path.join(appDocument, 'dataPos/user.db'), autoload:true});
 
 
 
@@ -320,7 +324,7 @@ ipcMain.handle('getIndivisualPay', async (event, id,) => {
 
 //getting Transactions
 ipcMain.handle('getTransaction', async (event) => {
-    return transactionDb.find({ type: 'transaction' })
+    return transactionDb.find({ type: 'transaction' }).sort({time:-1})
 })
 
 
