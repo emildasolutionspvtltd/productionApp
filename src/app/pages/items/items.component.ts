@@ -15,6 +15,7 @@ import { AddItemsCategoryComponent } from 'src/app/secondaryPages/add-items-cate
 import { MatSort } from '@angular/material/sort';
 import { EditItemsComponent } from 'src/app/secondaryPages/edit-items/edit-items.component';
 import { EditCategoryComponent } from 'src/app/secondaryPages/edit-category/edit-category.component';
+import { AddInventoryComponent } from 'src/app/secondaryPages/add-inventory/add-inventory.component';
 
 @Component({
   selector: 'app-items',
@@ -121,6 +122,40 @@ this.getCountCategory()
       this.itemscount = x
       this.getTabelAllItems()
     })
+
+
+  }
+
+
+
+  //Increase inventory
+
+  addInventory(id,inventory,unit){
+
+    let inventoryDialog =  this.dialog.open(AddInventoryComponent,{
+      maxWidth:'450px',
+      width:'90%',
+      panelClass:'dialogCss',
+      data:unit
+    })
+
+
+    inventoryDialog.afterClosed().subscribe( async result => {
+    console.log(result)
+       if (result) {
+let finalInventory:number= inventory+result
+        
+this.db.increaseInventory(id,finalInventory).then( x=>{
+  this.getAllCategory()
+  this.getTabelAllItems()
+  this.secService.presentSanckBar("Inventory Added Succcessfully",'success')
+}).catch(err=>{
+  this.secService.presentSanckBar(err,'Danger')
+})
+
+
+      }
+    });
 
 
   }

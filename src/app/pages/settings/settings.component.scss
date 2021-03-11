@@ -6,7 +6,7 @@
 
 .container{
   background: #ECEFF1;
-  height: 100%;
+  height: auto;
 }
 .custom-file-upload {
   width: 100px;
@@ -17,6 +17,17 @@
   padding: 6px 12px;
   cursor: pointer;
 }
+
+.formHolderInfo{
+  .example-full-width{
+    display: block;
+    width: 100%;
+  }
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+
 
 input[type="file"] {
   display: none;

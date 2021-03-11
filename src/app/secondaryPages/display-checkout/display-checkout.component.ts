@@ -30,9 +30,7 @@ export class DisplayCheckoutComponent implements OnInit {
 
 
 
-    this.db.getEnteredPrinter().then(x => {
-      this.printerinfo = x[0]
-    })
+    
     this.db.getEnterheadFoot().then(x => {
       this.headerfooter = x[0]
     })
@@ -141,14 +139,8 @@ export class DisplayCheckoutComponent implements OnInit {
 
     recieptPrint = [
       
-        {
-          type: 'text',                                       // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-          value: 'adfsdadfasdf',
-          style: `text-align:center;`,
-          css: {"font-weight": "700", "font-size": "18px"}
-       }
-
-      , {
+      
+       {
         type: 'table',
 
         style: 'border: 0px',
@@ -191,15 +183,13 @@ export class DisplayCheckoutComponent implements OnInit {
           []
         ],
         tableFooter: [],
-        tableBodyStyle: 'border: 0px,display: none',
-
-      },
-      {
-        type: 'text', value: 'no ides=a', style: `text-align:center;`
+        tableBodyStyle: 'border: 0px',
 
       }
     ];
     console.log(recieptPrint)
-    this.db.printData(recieptPrint)
+    this.db.printData(recieptPrint).then(xdescribe=>{
+
+    })
    }
 }

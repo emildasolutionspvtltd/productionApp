@@ -182,7 +182,7 @@ export class EditItemsComponent implements OnInit {
     mrp: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
     tax: new FormControl('', Validators.required),
-    inventory: new FormControl('', Validators.required),
+    inventory: new FormControl({ value: '', disabled: true }, Validators.required),
     unit: new FormControl('', Validators.required)
   }) 
   

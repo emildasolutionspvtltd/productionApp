@@ -6,8 +6,8 @@
     <button mat-icon-button (click)="drawerToggle()">
       <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">dehaze</mat-icon>
     </button>
-    <p class="toolbarHeading">
-      Rozana Al Riyadh </p>
+    <p style="text-transform: capitalize;" class="toolbarHeading">
+      Sales - {{userInfo?.shopName}} </p>
 
 
       <span class="example-spacer"></span>
@@ -133,7 +133,13 @@
 
       <br>
 
-
+     <div *ngIf='bag.length == 0' class="imageHolder">
+       <br>
+       <br>
+       <img src="assets/emptyCart.svg"  style='width: 30%;' alt="">
+       <br>
+       <p style="opacity: 0.6;">Your Cart seems empty! <br>Add Items by Barcode Scanning or Search Item</p>
+     </div>
 
     </mat-card>
 

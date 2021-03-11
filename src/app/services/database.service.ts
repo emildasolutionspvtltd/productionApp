@@ -137,8 +137,10 @@ updateInventory(id,inv){
   console.log(inv)
   return this.electron.ipcRenderer.invoke('updateInventory',id,inv)
 }
-printData(data){
-  return this.electron.ipcRenderer.invoke('print',data)
+async printData(data){
+
+  let printer = await this.getReceiptPrinter()
+  return this.electron.ipcRenderer.invoke('print',data,printer)
 }
 addTransaction(data){
   return this.electron.ipcRenderer.invoke('addTransaction',data)
@@ -181,16 +183,32 @@ updatePay(id,data){
       return this.electron.ipcRenderer.invoke('getInEx',tax)
     }
 
-    addPrinter(data){
-      return this.electron.ipcRenderer.invoke('addprinter',data)
+    addReceiptPrinter(data){
+      return this.electron.ipcRenderer.invoke('addReceiptPrinter',data)
     }
+
+
+    addLabelPrinter(data){
+      return this.electron.ipcRenderer.invoke('addLablePrinter',data)
+    }
+
+
+//getting
+    getReceiptPrinter(){
+      return this.electron.ipcRenderer.invoke('getReceiptPrinter')
+    }
+    getLabelPrinter(){
+      return this.electron.ipcRenderer.invoke('getLabelPrinter')
+    }
+
+
+
+
 
     addHeadFoot(data){
       return this.electron.ipcRenderer.invoke('addheadfoot',data)
     }
-    getEnteredPrinter(){
-       return this.electron.ipcRenderer.invoke('getSelectPrinter')
-    }
+   
     getEnterheadFoot(){
       return this.electron.ipcRenderer.invoke('getHeadFoot')
 
@@ -218,5 +236,12 @@ updatePay(id,data){
 
     increaseInventory(id,inv){
       return this.electron.ipcRenderer.invoke('increaseInv',id,inv)
+    }
+
+
+
+
+    logoImageOpen(){
+      return this.electron.ipcRenderer.invoke('receiptLogo')
     }
 }

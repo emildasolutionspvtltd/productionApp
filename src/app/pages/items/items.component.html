@@ -69,11 +69,15 @@
                         </button>
                         <mat-menu #menu="matMenu">
 
-
+                            <button (click)="addInventory(element._id,element.inventory,element.unit)"  mat-menu-item>
+                                <mat-icon>add_shopping_cart</mat-icon>
+                                <span>Add Inventory</span>
+                            </button>
                             <button (click)="editItem(element._id)"  mat-menu-item>
                                 <mat-icon>create</mat-icon>
                                 <span>Edit Item</span>
                             </button>
+                          
                             <button (click)="deleteItem(element._id)"  mat-menu-item>
                                 <!-- (click)="deleteItem(element._id)" -->
                                 <mat-icon style="color: red;">delete</mat-icon>

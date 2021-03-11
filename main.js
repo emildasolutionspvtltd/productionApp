@@ -1,5 +1,11 @@
-const { app, ipcMain, ipcRenderer, BrowserWindow, } = require('electron');
+const { app, ipcMain, ipcRenderer, BrowserWindow,dialog } = require('electron');
 let win;
+let fs = require('fs')
+
+
+
+const{fse} = require('fs-extra');
+
 
 
 let appDocument = app.getPath('documents')
@@ -180,7 +186,7 @@ ipcMain.handle('editItem', async (event, id, data) => {
             mrp: data.mrp,
             price: data.price,
             tax: data.tax,
-            inventory: data.inventory,
+        
             unit: data.unit
         }
     }, {}, function (err, numReplaced) {
@@ -348,17 +354,17 @@ ipcMain.handle('increaseInv', async (event, id, inv) => {
 
 
 //printing Option
-ipcMain.handle('print', async (event, data) => {
+ipcMain.handle('print', async (event, data,printer) => {
     console.log(data)
-    let printersInfo = win.webContents.getPrinters();
-    let printer = printersInfo.filter(printer => printer.isDefault === true)[0];
+    console.log(printer)
+    // let printer = printersInfo.filter(printer => printer.isDefault === true)[0];
     
     const options = {
-        preview: true,               // Preview in window or print
-        width: '300px',               //  width of content body
+        preview: false,               // Preview in window or print
+        width: printer.width,               //  width of content body
         margin: '0 0 0 0',            // margin of content body
         copies: 1,                    // Number of copies to print
-        printerName:printer,        // printerName: string, check with webContent.getPrinters()
+        printerName:'192.168.29.83',        // printerName: string, check with webContent.getPrinters()
         timeOutPerLine: 400,
         pageSize: { height: 301000, width: 71000 }  // page size
     }
@@ -507,37 +513,55 @@ ipcMain.handle('getInEx', async (event, tax) => {
 
 
 //printer 
-ipcMain.handle('addprinter', async (event, data) => {
+ipcMain.handle('addReceiptPrinter', async (event, data) => {
     console.log(data)
-    return settingDb.insert(data, function (err, Newdata) {
+    return settingDb.update({type:'recipetPrinter'}, data,{upsert:true}, function (err, Newdata) {
 
     })
 })
+
+
+
+//printer 
+ipcMain.handle('addLablePrinter', async (event, data) => {
+    console.log(data)
+    return settingDb.update({type:'labelPrinter'},data,{upsert:true},function (err, Newdata) {
+
+    })
+})
+
+
+
+ipcMain.handle('getReceiptPrinter', async (event, id,) => {
+    return settingDb.findOne({ type: 'recipetPrinter' }, function (err, docs) {
+
+    })
+})
+
+
+
+ipcMain.handle('getLabelPrinter', async (event, id,) => {
+    return settingDb.findOne({ type: 'labelPrinter' }, function (err, docs) {
+
+    })
+})
+
 
 
 //secdary
 ipcMain.handle('addheadfoot', async (event, data) => {
     console.log(data)
-    return settingDb.insert(data, function (err, Newdata) {
+    return settingDb.update( {type:'printData'},data,{upsert:true}, function (err, Newdata) {
 
     })
 })
-ipcMain.handle('getSelectPrinter', async (event, id,) => {
-    return settingDb.find({ type: 'printer' }, function (err, docs) {
-
-    })
 
 
-})
 ipcMain.handle('getHeadFoot', async (event, id,) => {
-    return settingDb.find({ type:'headerfooter' }, function (err, docs) {
+    return settingDb.findOne({ type:'printData' }, function (err, docs) {
 
     })
-
-
 })
-
-
 
 ipcMain.handle('getUser', async (event) => {
     return userDb.findOne({ type: 'userinfo' }, function (err, docs) {
@@ -577,12 +601,32 @@ ipcMain.handle('register', async (event,data) => {
 
     
         })
+
+
+
+       
+
+
+
+           ipcMain.handle('receiptLogo', async (event,data)=>{
+         
+       dialog.showOpenDialog({
+    properties:[ 'openFile'],
+    filters: [ { name: 'Images', extensions: ['jpg'] }]
+       
+      
+    }).then(paths=>{
+    console.log(paths)
+ if(paths.canceled == false){
+    console.log(path)
+fs.rename(paths.filePaths[0],path.join(appDocument,'dataPos/logo.jpg'),function(err){
+  console.log('asfasd')
+ 
+        
+           })}})})   
+
+
+
     
 
 
-
-
-    
-
-
-    // var licenseData = { info: userInfo, prodCode: "LEN100120", appVersion: "1.5", osType: 'IOS8' }

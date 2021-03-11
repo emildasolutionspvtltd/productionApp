@@ -18,6 +18,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CheckOutItemComponent } from 'src/app/secondaryPages/check-out-item/check-out-item.component';
 import { DisplayCheckoutComponent } from 'src/app/secondaryPages/display-checkout/display-checkout.component';
 import { SearchItemComponent } from 'src/app/secondaryPages/search-item/search-item.component';
+import { AuthServiceService } from 'src/app/auth/auth-service.service';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -72,10 +73,13 @@ export class CheckoutComponent implements OnInit {
 
   bag = []
 
+  userInfo
+
   // gets value for search bar and payment modes from settings
-  constructor(private matBottom: MatBottomSheet, private checkService: CheckoutServiceService, private dialog: MatDialog, private databaseService: DatabaseService, @Inject(SecondaryService) private secService: SecondaryService) {
-
-
+  constructor(private auth: AuthServiceService, private matBottom: MatBottomSheet, private checkService: CheckoutServiceService, private dialog: MatDialog, private databaseService: DatabaseService, @Inject(SecondaryService) private secService: SecondaryService) {
+this.auth.isRegistered().then(x=>{
+  this.userInfo = x
+})
 
     this.bag = this.checkService.getBag
 
@@ -457,6 +461,8 @@ getGrantTotal(){
 this.checkService.clearBag()
 console.log("ge")
 this.customerData=null
+this.finalDiscount=0
+this.discountType=''
   this.dataSource = new MatTableDataSource<CheckoutItem>(this.bag)
 
  }

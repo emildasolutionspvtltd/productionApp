@@ -1,4 +1,4 @@
-<div class="container">
+<div style="height: auto;" class="container">
 
     <mat-toolbar color='primary' class="mat-elevation-z3">
         <button mat-icon-button (click)="drawerToggle()">
@@ -17,71 +17,71 @@
             </button>
         </div>
     </mat-toolbar>
-    <mat-tab-group animationDuration="2000ms" mat-align-tabs="center">
+    <mat-tab-group animationDuration="500ms" mat-align-tabs="center">
         <mat-tab label="User Settings">
             <div class="userInformation">
-            <p style="width: 200px; font-size: large; margin: 0px,0px,0px,0px;">
-                User Information
-            </p>
+                <p style="width: 200px; font-size: large; margin: 0px,0px,0px,0px;">
+                    User Information
+                </p>
 
-            <mat-card style="max-width: 450px;">
-
-
-
-                <table class="infoTable" style="width: 100%"> 
-                    <tr>
-                        <th>Name </th>
-                        <td> : {{userInfo?.name}}</td>
-                    </tr>
-                    <tr>
-                        <th>Shop Name </th>
-                        <td> : {{userInfo?.shopName}}</td>
-                    </tr>
-                    <tr>
-                        <th>Mobile Number  </th>
-                        <td> : {{userInfo?.mobileNumber}}</td>
-                    </tr>
-
-                    <tr>
-                        <th>Email </th>
-                        <td> : {{userInfo?.email}}</td>
-                    </tr>
-
-                    <tr>
-                        <th>Password </th>
-                        <td> : {{userInfo?.password}}</td>
-                    </tr>
-
-
-    
-                </table>
-            </mat-card>
-
-        </div>
-        <div class="userInformation">
-            <p style="width: 200px; font-size: large; margin: 0px,0px,0px,0px;">
-Software Information  </p>
-
-            <mat-card style="max-width: 450px;">
+                <mat-card style="max-width: 450px;">
 
 
 
-                <table class="infoTable" style="width: 100%"> 
-                    <tr>
-                        <th>Expiry Date </th>
-                        <td> : {{userInfo?.expiryDate | date }}</td>
-                    </tr>
-                    <tr>
-                        <th>Version </th>
-                        <td> : 0.01</td>
-                    </tr>
-                  
+                    <table class="infoTable" style="width: 100%">
+                        <tr>
+                            <th>Name </th>
+                            <td> : {{userInfo?.name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Shop Name </th>
+                            <td> : {{userInfo?.shopName}}</td>
+                        </tr>
+                        <tr>
+                            <th>Mobile Number </th>
+                            <td> : {{userInfo?.mobileNumber}}</td>
+                        </tr>
 
-    
-                </table>
-            </mat-card>
+                        <tr>
+                            <th>Email </th>
+                            <td> : {{userInfo?.email}}</td>
+                        </tr>
 
-        </div>
+                        <tr>
+                            <th>Password </th>
+                            <td> : {{userInfo?.password}}</td>
+                        </tr>
+
+
+
+                    </table>
+                </mat-card>
+
+            </div>
+            <div class="userInformation">
+                <p style="width: 200px; font-size: large; margin: 0px,0px,0px,0px;">
+                    Software Information </p>
+
+                <mat-card style="max-width: 450px;">
+
+
+
+                    <table class="infoTable" style="width: 100%">
+                        <tr>
+                            <th>Expiry Date </th>
+                            <td> : {{userInfo?.expiryDate | date }}</td>
+                        </tr>
+                        <tr>
+                            <th>Version </th>
+                            <td> : 0.01</td>
+                        </tr>
+
+
+
+                    </table>
+                </mat-card>
+
+            </div>
 
 
 
@@ -203,68 +203,164 @@ Software Information  </p>
                     <p style="width: 200px; font-size: large; margin: 0px,0px,0px,0px;">
                         Printer
                     </p>
+                    <div fxLayoutAlign="space-between center" class="recieptHolder" fxLayout='row'>
+                        <mat-label>Reciept Printer</mat-label>
+                        <div class="formHolders">
 
-                    <mat-label>Reciept Printer</mat-label>
-                    <mat-form-field style="float: right;" appearance="fill">
-                        <mat-label>Reciept Printer Name</mat-label>
-                        <mat-select formControlName='recieptPrinter'>
-                            <mat-option *ngFor="let printer of printerName" [value]="printerName">
-                                {{printer.name}} </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <br>
+
+
+                            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                                <mat-label>Reciept Printer Name</mat-label>
+                                <mat-select formControlName='recieptPrinter'>
+                                    <mat-option *ngFor="let printer of printerName" [value]="printer.name">
+                                        {{printer.name}} </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                                <mat-label>Width in Px</mat-label>
+                                <input type="number" matInput formControlName="width">
+                            </mat-form-field>
+                            <button color='accent' (click)='addRecipetPrinter()' mat-stroked-button>Save</button>
+
+                        </div>
+                    </div>
                 </div>
-                <br>
-                <div style="padding: 20px;">
-                    <mat-label>Label Printer</mat-label>
-                    <mat-form-field style="float: right;" appearance="outline">
-                        <mat-label>Label Printer Name</mat-label>
-                        <mat-select formControlName='labelPrinter'>
-                            <mat-option *ngFor="let printer of printerName" [value]="printerName">
-                                {{printer.name}} </mat-option>
+            </form> 
 
-                        </mat-select>
-                    </mat-form-field>
-                    <br>
+    
+            <mat-divider></mat-divider>
+
+            <form [formGroup]="labelForm">
+
+                <div class="recieptHolder" fxLayout='row' style="padding: 20px;width: 100%;"
+                    fxLayoutAlign="space-between center">
+                    <mat-label>Label Printer</mat-label>
+
+                    <div class="labelPrinterHolder">
+
+
+                        <mat-form-field style="margin-right: 10px;" appearance="outline">
+                            <mat-label>Label Printer Name</mat-label>
+                            <mat-select formControlName='labelPrinter'>
+                                <mat-option *ngFor="let printer of printerName" [value]="printer.displayName">
+                                    {{printer.name}} </mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field style="margin-right: 10px;" appearance="outline">
+                            <mat-label>Width in Px</mat-label>
+                            <input type="number" matInput formControlName="width">
+                        </mat-form-field>
+                        <button color='accent' (click)='addLabelPrinter()' mat-stroked-button>Save</button>
+
+                    </div>
                 </div>
             </form>
+
+            <mat-divider></mat-divider>
+
+
+<br>
+
+            <mat-card style="max-width: 450px;margin: 0 auto;">
+
+
+
+                <table class="infoTable" style="width: 100%">
+                    <tr>
+                        <th>Reciept Printer Name </th>
+                        <td> : {{recieptPrinterData?.recieptPrinter}}</td>
+                    </tr>
+                    <tr>
+                        <th>Reciept Print Paper Width</th>
+                        <td> : {{recieptPrinterData?.width}} px</td>
+                    </tr>
+                    <tr>
+                        <th>Label Printer Name </th>
+                        <td> : {{labelPrinterData?.labelPrinter}}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Label Print Paper Width </th>
+                        <td> : {{labelPrinterData?.width}} px</td>
+                    </tr>
+                </table>
+            </mat-card>
+            <br>
+
+
 
             <div style="padding: 20px;">
                 <p style="width: 200px; font-size: large; margin: 0px,0px,0px,0px;">
                     Printer Info
                 </p>
-                <div>
-                    <img [src]="url" height="200"> <br />
+                <div fxLayout='row' fxLayoutAlign='space-between center'>
+
+    <mat-label>Shop Logo</mat-label>
+                    <!-- <img [src]="url" height="200"> <br />
                     <label class="custom-file-upload">
                         <input type="file" (change)="onSelectFile($event)" />
                         logo image
-                    </label>
-                    <br>
-                    <label class="custom-file-upload1">
-                        <input type="file" (change)="onSelectFile($event)" />
-                        <span class="material-icons">
-                            upload_file
-                            </span> upload image
-                    </label>                    
+                    </label> -->
+                    
+                <button mat-raised-button color='accent' (click)="onSelectFile()"> Upload Logo</button>
                 </div>
-                <br>
-                <form [formGroup]='infoForm'>
-                    <mat-form-field style="margin-right: 20px;" class="example-full-width">
-                      <mat-label>Header Info</mat-label>
-                      <input matInput formControlName='header'>
-                    </mat-form-field>
-                  
-                    <mat-form-field class="example-full-width">
-                      <mat-label>Footer Info</mat-label>
-                      <input matInput formControlName='footer'>
-                    </mat-form-field>
-                  </form>
-                  <button mat-stroked-button (click)="addInfo()"
-                    style="border-color: green;border-width: 2px; color: green; margin-left: 40%">
-                    Update
-                </button>
-            </div>
-        </mat-tab>
-    </mat-tab-group>
+<br>
+                <mat-divider></mat-divider>
 
-</div>
+                <br>
+                <div fxLayoutAlign="space-between center" fxLayout='row' style="width: 100%;" class="infoHolder">
+                    <mat-label>Reciept Information</mat-label>
+                    <div class="formHolderInfo">
+
+                
+                        <form [formGroup]='infoForm'>
+        
+                            <mat-form-field style="margin-right: 20px;" appearance="outline" class="example-full-width">
+                                <mat-label>Header Info</mat-label>
+                                <input matInput formControlName='header'>
+                            </mat-form-field>
+        
+        
+                            <mat-form-field style="margin-right: 20px;" appearance="outline" class="example-full-width">
+                                <mat-label>Sub Header Info</mat-label>
+                                <textarea matInput formControlName='subHeader'></textarea>
+        
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <mat-label>Sub Footer </mat-label>
+                                    <textarea matInput formControlName='subFooter'></textarea>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <mat-label>Footer Info</mat-label>
+                                    <textarea matInput formControlName='footer'></textarea>
+                                </mat-form-field>
+        
+        
+        
+        
+        
+                            
+                        </form>
+                        <button mat-stroked-button (click)="addHeaderFooter()" style="border-color: green;border-width: 2px; color: green; margin-left: 40%">
+                            Update
+                        </button>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+<br>
+<br>
+
+                <mat-card style="text-align: center; max-width: 450px;margin: 0 auto;">
+                <h3>{{headerFooterData?.header}}</h3>
+                <hr>
+                <p>{{headerFooterData?.subHeader}}</p>
+                <hr>
+               <p>{{headerFooterData?.subFooter}}</p> 
+               <hr>
+               <p>{{headerFooterData?.subFooter}}</p> 
+                </mat-card>
+         
+            </div>
+</mat-tab>  
+</mat-tab-group> </div>

@@ -1,0 +1,21 @@
+<div class="container">
+    <div fxLayout='row' fxLayoutAlign='space-between center' class="headingContainer">
+        <h3 class="heading3">Add Inventory</h3>
+        <button (click)='closeDialog()' mat-icon-button>
+            <mat-icon>highlight_off</mat-icon>
+        </button>
+    </div>  
+</div>
+
+<form [formGroup]='increaseInv'>
+    <mat-form-field appearance="outline">
+        <mat-label>Number of Quantity </mat-label>
+        <input formControlName='quantityNumber' id="codeInput" autofocus matInput type='number'>
+        <span matSuffix>{{unit}} &nbsp;</span>
+
+    </mat-form-field>
+    
+    <button  mat-raised-button (click)='addInventory()' color="accent" class="bigButton">Add to Inventory</button>
+    
+    
+    </form>

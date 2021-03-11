@@ -15,8 +15,12 @@ import { AuthServiceService } from 'src/app/auth/auth-service.service';
 export class DashboardSideMenuComponent implements AfterViewInit {
   @ViewChild('drawer') public drawer: MatDrawer;
 bag =[]
+userInfo
   constructor(private auth : AuthServiceService,private cs:CheckoutServiceService, private dialog : MatDialog, private router:Router,   @Inject(SecondaryService) private secService:SecondaryService) {
-this.bag=this.cs.getBag
+    this.auth.isRegistered().then(x=>{
+      this.userInfo=x
+    })
+    this.bag=this.cs.getBag
    }
 
    routersCall(paths){
