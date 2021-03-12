@@ -1,9 +1,9 @@
 {
-  "name": "desktopapp",
+  "name": "RozaPos",
   "version": "0.0.0",
   "main": "main.js",
-  "author": "kriti kadolkar",
-  "description": "asdfasdfsdaf",
+  "author": "Emilda Solutions Private Limited",
+  "description": "Roza offers complete solution for managing every aspect of your business. Simple design allows you to create orders, manage inventory, apply discounts and view sales with just few taps.  Roza works perfectly with a simple subscription plan.",
   "scripts": {
     "ng": "ng",
     "start": "electron-forge start",
@@ -104,8 +104,14 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
+            "authors":"Emilda Solutions Private Limited",
+            "description": "Roza offers complete solution for managing every aspect of your business. Simple design allows you to create orders, manage inventory, apply discounts and view sales with just few taps.  Roza works perfectly with a simple subscription plan.",
+            "iconUrl":"favicon.ico",
             "noMsi": false,
-            "name": "windowsX64_RozaPOS"
+            "name": "RozaPos",
+            "title":"Roza Pos-v0.01",
+            "version":"0.01"
+
           }
         },
         {

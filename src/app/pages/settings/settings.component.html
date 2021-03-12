@@ -212,7 +212,7 @@
                             <mat-form-field style="margin-right: 10px;" appearance="outline">
                                 <mat-label>Reciept Printer Name</mat-label>
                                 <mat-select formControlName='recieptPrinter'>
-                                    <mat-option *ngFor="let printer of printerName" [value]="printer.name">
+                                    <mat-option *ngFor="let printer of printerName" [value]="printer.displayName">
                                         {{printer.name}} </mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -342,9 +342,10 @@
         
                             
                         </form>
-                        <button mat-stroked-button (click)="addHeaderFooter()" style="border-color: green;border-width: 2px; color: green; margin-left: 40%">
+                        <button color='accent' mat-raised-button (click)="addHeaderFooter()" style="border-color: green;border-width: 2px; color: green; margin-left: 40%">
                             Update
                         </button>
+                    <br>
                     </div>
                 </div>
                 <mat-divider></mat-divider>
@@ -352,7 +353,9 @@
 <br>
 
                 <mat-card style="text-align: center; max-width: 450px;margin: 0 auto;">
-                <h3>{{headerFooterData?.header}}</h3>
+               
+               <img style='width:20%' [src]="logoPrint" alt="">
+                    <h3>{{headerFooterData?.header}}</h3>
                 <hr>
                 <p>{{headerFooterData?.subHeader}}</p>
                 <hr>

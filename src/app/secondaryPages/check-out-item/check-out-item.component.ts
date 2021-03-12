@@ -67,6 +67,6 @@ updateData
       fontsize: 8,
    }]
 
-  this.db.printData(printData)
+  this.db.printLabel(printData)
   }
 }

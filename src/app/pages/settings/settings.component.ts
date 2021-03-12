@@ -28,6 +28,7 @@ export class SettingsComponent implements OnInit {
   recieptPrinterData
   labelPrinterData
   headerFooterData
+  logoPrint
   // gets all the previous payment mode and taxes
   constructor(@Inject(SecondaryService) private secService:SecondaryService,private dialog:MatDialog,private db:DatabaseService) {
     this.getTax()
@@ -36,6 +37,7 @@ export class SettingsComponent implements OnInit {
     this.getUserInfo()
     this.selectedPrinterInfo()
     this.getHeaderFooter()
+    this.getLogoPath()
    }
    infoForm = new FormGroup({
      type : new FormControl('printData'),
@@ -210,6 +212,7 @@ this.getLabelPrinter()
     if(this.infoForm.valid){
       this.db.addHeadFoot(this.infoForm.value).then(x=>{
  this.infoForm.reset()
+ this.getHeaderFooter()
  this.secService.presentSanckBar('Header Footer Data Updated','success')
 
        })
@@ -247,6 +250,15 @@ console.log(result)
   getHeaderFooter(){
     this.db.getEnterheadFoot().then(result=>{
       this.headerFooterData=result
+    })
+  }
+
+
+
+  getLogoPath(){
+    this.db.getLogo().then(x=>{
+      console.log(x)
+    this.logoPrint =x      
     })
   }
 

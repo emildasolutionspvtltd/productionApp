@@ -1,10 +1,10 @@
-const { app, ipcMain, ipcRenderer, BrowserWindow,dialog } = require('electron');
+const { app, ipcMain, ipcRenderer, BrowserWindow, dialog } = require('electron');
 let win;
 let fs = require('fs')
 
 
 
-const{fse} = require('fs-extra');
+const { fse } = require('fs-extra');
 
 
 
@@ -14,7 +14,8 @@ var licenseKey = require('license-key-gen');
 
 function createWindow() {
     win = new BrowserWindow({
-        webPreferences: { nodeIntegration: true 
+        webPreferences: {
+            nodeIntegration: true
         },
         height: 760,
         width: 1024,
@@ -46,21 +47,21 @@ app.on('activate', function () {
 
 const Datastore = require('nedb-promises')
 const path = require('path');
-var db = new Datastore({filename:path.join(appDocument, 'dataPos/pos.db'), autoload:true});
+var db = new Datastore({ filename: path.join(appDocument, 'dataPos/pos.db'), autoload: true });
 
-var itemDb = new Datastore({filename:path.join(appDocument, 'dataPos/item.db'), autoload:true});
+var itemDb = new Datastore({ filename: path.join(appDocument, 'dataPos/item.db'), autoload: true });
 
-var transactionDb = new Datastore({filename:path.join(appDocument, 'dataPos/transaction.db'), autoload:true});
+var transactionDb = new Datastore({ filename: path.join(appDocument, 'dataPos/transaction.db'), autoload: true });
 
-var customerDb = new Datastore({filename:path.join(appDocument, 'dataPos/customer.db'), autoload:true});
+var customerDb = new Datastore({ filename: path.join(appDocument, 'dataPos/customer.db'), autoload: true });
 
-var settingDb = new Datastore({filename:path.join(appDocument, 'dataPos/setting.db'), autoload:true});
+var settingDb = new Datastore({ filename: path.join(appDocument, 'dataPos/setting.db'), autoload: true });
 
-var categoryDb = new Datastore({filename:path.join(appDocument, 'dataPos/category.db'), autoload:true});
+var categoryDb = new Datastore({ filename: path.join(appDocument, 'dataPos/category.db'), autoload: true });
 
-var secondaryDb = new Datastore({filename:path.join(appDocument, 'dataPos/secondary.db'), autoload:true});
+var secondaryDb = new Datastore({ filename: path.join(appDocument, 'dataPos/secondary.db'), autoload: true });
 
-var userDb = new Datastore({filename:path.join(appDocument, 'dataPos/user.db'), autoload:true});
+var userDb = new Datastore({ filename: path.join(appDocument, 'dataPos/user.db'), autoload: true });
 
 
 
@@ -87,7 +88,7 @@ ipcMain.handle('getAllCategory', async (event) => {
 })
 // function to insert a single item 
 ipcMain.handle('insertSingleItem', async (event, data) => {
-    data.name=data.name.toLowerCase()
+    data.name = data.name.toLowerCase()
     return itemDb.insert(data, function (err, Newdata) {
 
     })
@@ -139,7 +140,7 @@ ipcMain.handle('getCat', async (event, id) => {
 })
 
 ipcMain.handle('editCat', async (event, id, name) => {
-    name=name.toLowerCase()
+    name = name.toLowerCase()
     return categoryDb.update({ _id: id }, { $set: { categoryName: name } }, {}, function (err, numReplaced) {
 
     });
@@ -156,7 +157,7 @@ ipcMain.handle('getItem', async (event, id,) => {
 
 //isRegister
 ipcMain.handle('isRegister', async (event, id,) => {
-    return itemDb.find( {}, function (err, docs) {
+    return itemDb.find({}, function (err, docs) {
 
     })
 })
@@ -164,11 +165,11 @@ ipcMain.handle('isRegister', async (event, id,) => {
 
 //searchingItem
 ipcMain.handle('searchItem', async (event, data) => {
-   
-    data=data.toLowerCase()
-    temp= new RegExp(data)
-//   console.log( temp)
-    return itemDb.find({ name:temp }, function (err, docs) {
+
+    data = data.toLowerCase()
+    temp = new RegExp(data)
+    //   console.log( temp)
+    return itemDb.find({ name: temp }, function (err, docs) {
     })
 })
 
@@ -176,7 +177,7 @@ ipcMain.handle('searchItem', async (event, data) => {
 
 
 ipcMain.handle('editItem', async (event, id, data) => {
-    data.name=data.name.toLowerCase()
+    data.name = data.name.toLowerCase()
     return itemDb.update({ _id: id }, {
         $set: {
             barcode: data.barcode,
@@ -186,7 +187,7 @@ ipcMain.handle('editItem', async (event, id, data) => {
             mrp: data.mrp,
             price: data.price,
             tax: data.tax,
-        
+
             unit: data.unit
         }
     }, {}, function (err, numReplaced) {
@@ -197,7 +198,7 @@ ipcMain.handle('editItem', async (event, id, data) => {
 
 
 ipcMain.handle('insertCust', async (event, data) => {
-    data.name=data.name.toLowerCase()
+    data.name = data.name.toLowerCase()
     return customerDb.insert(data, function (err, Newdata) {
 
     })
@@ -209,10 +210,10 @@ ipcMain.handle('insertCust', async (event, data) => {
 //searchingCustomer
 ipcMain.handle('searchcust', async (event, data) => {
     // console.log(data)
-    data=data.toLowerCase()
-    temp= new RegExp(data)
-//   console.log( temp)
-    return customerDb.find({ name:temp }, function (err, docs) {
+    data = data.toLowerCase()
+    temp = new RegExp(data)
+    //   console.log( temp)
+    return customerDb.find({ name: temp }, function (err, docs) {
     })
 })
 
@@ -223,7 +224,7 @@ ipcMain.handle('getCust', async (event) => {
     return customerDb.find({ type: 'customer' })
 })
 
-ipcMain.handle('getindivisualCust', async (event,data) => {
+ipcMain.handle('getindivisualCust', async (event, data) => {
     return customerDb.find({ _id: data })
 })
 //customer Delte
@@ -238,8 +239,8 @@ ipcMain.handle('deleteCust', async (event, id) => {
 
 //updating Customer Database
 ipcMain.handle('updateCust', async (event, id, data) => {
-    data.name=data.name.toLowerCase() 
-       return customerDb.update({ _id: id }, {
+    data.name = data.name.toLowerCase()
+    return customerDb.update({ _id: id }, {
         $set: {
             barcode: data.barcode,
             name: data.name,
@@ -309,7 +310,7 @@ ipcMain.handle('getIndivisualTax', async (event, id,) => {
 
 //getting Payment Methods
 
-ipcMain.handle('insertPay', async (event,data) => {
+ipcMain.handle('insertPay', async (event, data) => {
     return settingDb.insert(data, function (err, Newdata) {
 
     })
@@ -330,7 +331,7 @@ ipcMain.handle('getIndivisualPay', async (event, id,) => {
 
 //getting Transactions
 ipcMain.handle('getTransaction', async (event) => {
-    return transactionDb.find({ type: 'transaction' }).sort({time:-1})
+    return transactionDb.find({ type: 'transaction' }).sort({ time: -1 })
 })
 
 
@@ -343,38 +344,136 @@ ipcMain.handle('updateInventory', async (event, id, inv) => {
     });
 })
 ipcMain.handle('increaseInv', async (event, id, inv) => {
-    return itemDb.update({ _id: id }, {  $set: { inventory: inv } }, {}, function () {
+    return itemDb.update({ _id: id }, { $set: { inventory: inv } }, {}, function () {
         // The fruits array didn't change
         // If we had used a fruit not in the array, e.g. 'banana', it would have been added to the array
-      });
+    });
 
-    })
-
-
+})
 
 
-//printing Option
-ipcMain.handle('print', async (event, data,printer) => {
-    console.log(data)
-    console.log(printer)
-    // let printer = printersInfo.filter(printer => printer.isDefault === true)[0];
-    
+ipcMain.handle('printLabel', async (event, data, printer)=>{
+
     const options = {
         preview: false,               // Preview in window or print
         width: printer.width,               //  width of content body
         margin: '0 0 0 0',            // margin of content body
         copies: 1,                    // Number of copies to print
-        printerName:'192.168.29.83',        // printerName: string, check with webContent.getPrinters()
+        printerName: printer.labelPrinter,        // printerName: string, check with webContent.getPrinters()
         timeOutPerLine: 400,
         pageSize: { height: 301000, width: 71000 }  // page size
     }
     console.log(printer.name)
+
     PosPrinter.print(data, options)
-        .then(() => {return "sucess" })
+        .then(() => { return "sucess" })
         .catch((error) => {
             console.error(error);
         });
-})
+
+  
+}  )
+
+
+
+
+
+//printing Option
+ipcMain.handle('print', async (event, data, printer) => {
+    //Add Header and Footer
+
+    let headerFooter = await settingDb.findOne({ type: 'printData' }, function (err, docs) { })
+
+
+    let topArray = []
+    if (headerFooter) {
+
+        topArray.push({
+            type: 'image',
+            path: path.join(appDocument, 'dataPos/logo.jpg'),     // file path
+            position: 'center',                                  // position of image: 'left' | 'center' | 'right'
+            width: '60px',                                           // width of image in px; default: auto
+            height: '60px',                                          // width of image in px; default: 50 or '50px'
+        })
+
+        if (headerFooter.header) {
+            topArray.push({
+                type: 'text',                                       // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+                value: headerFooter.header,
+                style: `text-align:center;`,
+                css: { "font-weight": "700", "font-size": "18px" }
+            })
+        }
+            if (headerFooter.subHeader) {
+                topArray.push({
+                    type: 'text',                                       // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+                    value: headerFooter.subHeader,
+                    style: `text-align:center;`,
+                    css: { "font-weight": "700", "font-size": "10px" }
+                })
+            }
+
+
+            //adding Data to table
+   topArray =topArray.concat(data)
+
+
+
+
+if (headerFooter.subFooter) {
+    topArray.push({
+        type: 'text',                                       // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+        value: headerFooter.subFooter,
+        style: `text-align:center;`,
+        css: { "font-weight": "700", "font-size": "10px" }
+    })
+}
+
+if (headerFooter.footer) {
+    topArray.push({
+        type: 'text',                                       // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+        value: headerFooter.footer,
+        style: `text-align:center;`,
+        css: { "font-weight": "700", "font-size": "10px" }
+    })
+}
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        console.log(topArray)
+        // let printer = printersInfo.filter(printer => printer.isDefault === true)[0];
+
+        const options = {
+            preview: false,               // Preview in window or print
+            width: printer.width,               //  width of content body
+            margin: '0 0 0 0',            // margin of content body
+            copies: 1,                    // Number of copies to print
+            printerName: printer.recieptPrinter,        // printerName: string, check with webContent.getPrinters()
+            timeOutPerLine: 400,
+            pageSize: { height: 301000, width: 71000 }  // page size
+        }
+        console.log(printer.name)
+
+        PosPrinter.print(topArray, options)
+            .then(() => { return "sucess" })
+            .catch((error) => {
+                console.error(error);
+            });
+    })
 
 
 
@@ -400,7 +499,7 @@ ipcMain.handle('registerKey', async (event, data) => {
 
 
 ipcMain.handle('validateKey', async (event, data) => {
-    return userDb.find({type:'license', license:data },  {}, function (err, numReplaced) {
+    return userDb.find({ type: 'license', license: data }, {}, function (err, numReplaced) {
 
     });
 })
@@ -423,7 +522,7 @@ ipcMain.handle('deleteTransaction', async (event, id) => {
 
 ipcMain.handle('getTransac', async (event, id) => {
 
-    return transactionDb.find({ _id: id },{
+    return transactionDb.find({ _id: id }, {
     });
 
 })
@@ -442,10 +541,10 @@ ipcMain.handle('getPrinter', async (event) => {
 
 
 //Sales Report
-ipcMain.handle('getBetweenDates', async (event, a,b) => {
+ipcMain.handle('getBetweenDates', async (event, a, b) => {
 
-    return transactionDb.find({ $and: [{ time: {$gte: a} }, { time: { $lt: b } }] }, function (err, docs) {
-      });
+    return transactionDb.find({ $and: [{ time: { $gte: a } }, { time: { $lt: b } }] }, function (err, docs) {
+    });
 })
 
 
@@ -492,7 +591,7 @@ ipcMain.handle('editTax', async (event, id, data) => {
         $set: {
             taxName: data.taxName,
             taxPercentage: data.taxPercentage,
-            inex : data.inex
+            inex: data.inex
         }
     }, {}, function (err, numReplaced) {
 
@@ -504,7 +603,7 @@ ipcMain.handle('editTax', async (event, id, data) => {
 
 ipcMain.handle('getInEx', async (event, tax) => {
 
-    return db.find({ taxName: tax },{
+    return db.find({ taxName: tax }, {
     });
 
 })
@@ -515,7 +614,7 @@ ipcMain.handle('getInEx', async (event, tax) => {
 //printer 
 ipcMain.handle('addReceiptPrinter', async (event, data) => {
     console.log(data)
-    return settingDb.update({type:'recipetPrinter'}, data,{upsert:true}, function (err, Newdata) {
+    return settingDb.update({ type: 'recipetPrinter' }, data, { upsert: true }, function (err, Newdata) {
 
     })
 })
@@ -525,7 +624,7 @@ ipcMain.handle('addReceiptPrinter', async (event, data) => {
 //printer 
 ipcMain.handle('addLablePrinter', async (event, data) => {
     console.log(data)
-    return settingDb.update({type:'labelPrinter'},data,{upsert:true},function (err, Newdata) {
+    return settingDb.update({ type: 'labelPrinter' }, data, { upsert: true }, function (err, Newdata) {
 
     })
 })
@@ -551,14 +650,14 @@ ipcMain.handle('getLabelPrinter', async (event, id,) => {
 //secdary
 ipcMain.handle('addheadfoot', async (event, data) => {
     console.log(data)
-    return settingDb.update( {type:'printData'},data,{upsert:true}, function (err, Newdata) {
+    return settingDb.update({ type: 'printData' }, data, { upsert: true }, function (err, Newdata) {
 
     })
 })
 
 
 ipcMain.handle('getHeadFoot', async (event, id,) => {
-    return settingDb.findOne({ type:'printData' }, function (err, docs) {
+    return settingDb.findOne({ type: 'printData' }, function (err, docs) {
 
     })
 })
@@ -572,7 +671,7 @@ ipcMain.handle('getUser', async (event) => {
 })
 
 
-ipcMain.handle('enterUser', async (event,data) => {
+ipcMain.handle('enterUser', async (event, data) => {
     return userDb.insert(data, function (err, Newdata) {
 
     })
@@ -581,7 +680,7 @@ ipcMain.handle('enterUser', async (event,data) => {
 })
 
 
-ipcMain.handle('register', async (event,data) => {
+ipcMain.handle('register', async (event, data) => {
     return userDb.insert(data, function (err, Newdata) {
 
     })
@@ -592,41 +691,50 @@ ipcMain.handle('register', async (event,data) => {
 
 
 
-    ipcMain.handle('licenseKey', async (event,data) => {
-        
-        var licenseData = { info: userInfo, prodCode: "LEN100120", appVersion: "1.5", osType: 'IOS8' }
+ipcMain.handle('licenseKey', async (event, data) => {
+
+    var licenseData = { info: userInfo, prodCode: "LEN100120", appVersion: "1.5", osType: 'IOS8' }
 
 
-       return licenseKey.validateLicense(licenseData,serialKey)
-
-    
-        })
+    return licenseKey.validateLicense(licenseData, serialKey)
 
 
-
-       
+})
 
 
 
-           ipcMain.handle('receiptLogo', async (event,data)=>{
-         
-       dialog.showOpenDialog({
-    properties:[ 'openFile'],
-    filters: [ { name: 'Images', extensions: ['jpg'] }]
-       
-      
-    }).then(paths=>{
-    console.log(paths)
- if(paths.canceled == false){
-    console.log(path)
-fs.rename(paths.filePaths[0],path.join(appDocument,'dataPos/logo.jpg'),function(err){
-  console.log('asfasd')
- 
-        
-           })}})})   
 
 
 
-    
+
+ipcMain.handle('receiptLogo', async (event, data) => {
+
+    dialog.showOpenDialog({
+        properties: ['openFile'],
+        filters: [{ name: 'Images', extensions: ['jpg'] }]
+
+
+    }).then(paths => {
+        console.log(paths)
+        if (paths.canceled == false) {
+            console.log(path)
+            fs.rename(paths.filePaths[0], path.join(appDocument, 'dataPos/logo.jpg'), function (err) {
+                console.log('asfasd')
+
+
+            })
+        }
+    })
+})
+
+
+
+ipcMain.handle('getLogo', async (event, data) => {
+    return path.join(appDocument, 'dataPos/logo.jpg')
+})
+
+
+
+
 
 

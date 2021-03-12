@@ -142,6 +142,16 @@ async printData(data){
   let printer = await this.getReceiptPrinter()
   return this.electron.ipcRenderer.invoke('print',data,printer)
 }
+
+
+
+async printLabel(data){
+  let printer = await this.getLabelPrinter()
+  return this.electron.ipcRenderer.invoke('printLabel',data,printer)
+}
+
+
+
 addTransaction(data){
   return this.electron.ipcRenderer.invoke('addTransaction',data)
 }
@@ -243,5 +253,9 @@ updatePay(id,data){
 
     logoImageOpen(){
       return this.electron.ipcRenderer.invoke('receiptLogo')
+    }
+
+    getLogo(){
+      return this.electron.ipcRenderer.invoke('getLogo')
     }
 }
