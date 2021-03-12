@@ -160,9 +160,8 @@ export class DisplayCheckoutComponent implements OnInit {
 
         style: 'border: 1px solid #ddd',
         tableHeader: ['Item Name', 'Qty', 'Net','Total'],
-        tableBody: this.things
-        ,
-        tableFooter: ['description', 'Qty', 'total', 'net'],
+        tableBody: this.things,
+        tableFooter: ['اسم العنصر', 'كمية', 'مجموع', 'صافي'],
         tableBodyStyle: 'border: 1px solid #ddd',
 
       },
