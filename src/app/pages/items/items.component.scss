@@ -24,7 +24,9 @@ overflow-y: hidden;
 .verticalCardContainer{
   height: 90%;
   overflow-y: hidden;
-
+width: 100%;
+max-width: 1200px;
+margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
 }

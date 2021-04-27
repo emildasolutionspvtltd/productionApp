@@ -77,6 +77,7 @@ import { SearchItemComponent } from './secondaryPages/search-item/search-item.co
 import { ExpieredComponent } from './secondaryPages/expiered/expiered.component';
 import { BagNotificationComponent } from './secondaryPages/bag-notification/bag-notification.component';
 import { AddInventoryComponent } from './secondaryPages/add-inventory/add-inventory.component';
+import { SupportComponent } from './secondaryPages/support/support.component';
 // const customLayouts: IKeyboardLayouts = {
 //   ...keyboardLayouts,
 //   'oh': {
@@ -127,6 +128,7 @@ import { AddInventoryComponent } from './secondaryPages/add-inventory/add-invent
     ExpieredComponent,
     BagNotificationComponent,
     AddInventoryComponent,
+    SupportComponent,
   ],
   imports: [
     BrowserModule,

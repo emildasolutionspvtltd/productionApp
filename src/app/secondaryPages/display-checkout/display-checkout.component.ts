@@ -25,8 +25,7 @@ export class DisplayCheckoutComponent implements OnInit {
     console.log(data.pay)
     console.log(data.total)
     console.log(data.discount)
-    console.log(data.customer)
-
+    console.log(data)
 
 
 
@@ -39,6 +38,15 @@ export class DisplayCheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    
+    if(this.data.popupOption == false){
+      if(this.data.defaultPrintOption == true){
+        this.checkout('print')
+      }else{
+        this.checkout('no-print')
+      }
+    }
   }
 
 

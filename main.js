@@ -15,18 +15,21 @@ var licenseKey = require('license-key-gen');
 function createWindow() {
     win = new BrowserWindow({
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            backgroundThrottling: false
         },
         height: 760,
         width: 1024,
         backgroundColor: '#ffffff'
     })
 
-    win.webContents.openDevTools()
+   
     win.loadURL(`file://${__dirname}/dist/index.html`)
     win.on('closed', function () {
         win = null;
     })
+
+    win.setMenuBarVisibility(false)
 
 
 }
@@ -88,7 +91,10 @@ ipcMain.handle('getAllCategory', async (event) => {
 })
 // function to insert a single item 
 ipcMain.handle('insertSingleItem', async (event, data) => {
+
+    
     data.name = data.name.toLowerCase()
+    data.type='items'
     return itemDb.insert(data, function (err, Newdata) {
 
     })
@@ -170,7 +176,7 @@ ipcMain.handle('searchItem', async (event, data) => {
     temp = new RegExp(data)
     //   console.log( temp)
     return itemDb.find({ name: temp }, function (err, docs) {
-    })
+    }).limit(20)
 })
 
 
@@ -214,8 +220,19 @@ ipcMain.handle('searchcust', async (event, data) => {
     temp = new RegExp(data)
     //   console.log( temp)
     return customerDb.find({ name: temp }, function (err, docs) {
-    })
+    }).limit(10)
 })
+
+
+ipcMain.handle('searchcustnumber', async (event, data) => {
+    // console.log(data)
+    
+    temp = new RegExp(data)
+    //   console.log( temp)
+    return customerDb.find({ phNumber: temp }, function (err, docs) {
+    }).limit(10)
+})
+
 
 
 

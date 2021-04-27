@@ -53,6 +53,7 @@ getInfo(){
     if(this.categoryName.valid){
       this.db.updateCategory(this.data,this.categoryName.value).then(x=>{
         console.log(x)
+        
         this.secService.presentSanckBar("👍 Category updated Successfully",'success')
        this.db.getAllCategory()
        this.db.getAllItems()

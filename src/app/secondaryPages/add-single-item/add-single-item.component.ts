@@ -17,8 +17,8 @@ export class AddSingleItemComponent implements OnInit {
 
 
   units:Array<any>=[{
-    unitName:'Units',
-    unit:'Null'
+    unitName:'Pieces',
+    unit:'pcs'
   },
     {
     unitName:'Gram',
@@ -211,9 +211,11 @@ this.taxes = x
   submit(){
     document.getElementById("codeInput").focus();
     if(this.itemForm.valid){
+      
       this.db.insertSingleItem(this.itemForm.value).then(x=>{
         console.log(x)
         this.secService.presentSanckBar("👍 Item added Successfully",'success')
+        this.itemForm.reset()
       })
     }else{
       //toast service 

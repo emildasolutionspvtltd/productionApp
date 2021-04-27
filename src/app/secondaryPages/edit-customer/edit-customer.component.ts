@@ -60,7 +60,8 @@ submit(){
   console.log(this.customerForm.value)
     if(this.customerForm.valid){
       this.db.updateCust(this.data,this.customerForm.value).then(x=>{
-        console.log(x)
+       
+        this.closeDialog()
         this.secService.presentSanckBar("👍 Item Updated Successfully",'success')
       }).catch(err=>{
         this.secService.presentSanckBar(err,'Ok')

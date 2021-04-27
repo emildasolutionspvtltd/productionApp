@@ -31,6 +31,7 @@ export class AddPaymentComponent implements OnInit {
     if(this.payForm.valid){
       this.db.insertPay(this.payForm.value).then(x=>{
         console.log(x)
+        this.closeDialog()
         this.secService.presentSanckBar("👍 Item added Successfully",'success')
       })
     }else{

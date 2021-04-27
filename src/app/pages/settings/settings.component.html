@@ -1,4 +1,4 @@
-<div style="height: auto;" class="container">
+<div  class="container">
 
     <mat-toolbar color='primary' class="mat-elevation-z3">
         <button mat-icon-button (click)="drawerToggle()">
@@ -17,8 +17,10 @@
             </button>
         </div>
     </mat-toolbar>
+
+<div class='insideContainer'>
     <mat-tab-group animationDuration="500ms" mat-align-tabs="center">
-        <mat-tab label="User Settings">
+        <mat-tab  label="User Settings">
             <div class="userInformation">
                 <p style="width: 200px; font-size: large; margin: 0px,0px,0px,0px;">
                     User Information
@@ -86,7 +88,7 @@
 
 
         </mat-tab>
-        <mat-tab label="Checkout Settings">
+        <mat-tab style='background-color: #ECEFF1;' label="Checkout Settings">
             <div style="padding: 20px;">
                 <button mat-stroked-button (click)="addTax()"
                     style="border-color: green;border-width: 2px; color: green; float: right;">
@@ -366,4 +368,7 @@
          
             </div>
 </mat-tab>  
-</mat-tab-group> </div>
+</mat-tab-group> 
+</div>
+
+ </div>

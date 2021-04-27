@@ -2,6 +2,6 @@ export interface customer {
     
     name: string,
     email?:string,
-    phNumber?:number,
+    phNumber?:any,
     notes?:string
 }

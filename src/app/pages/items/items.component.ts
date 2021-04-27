@@ -65,6 +65,7 @@ this.getCountCategory()
     })
     dialogRef.afterClosed().subscribe(result => {
       this.getAllCategory()
+      this.getCountItems()
     this.getTabelAllItems()
       console.log('The dialog was closed');
     });

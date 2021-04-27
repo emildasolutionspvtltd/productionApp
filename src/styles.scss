@@ -94,8 +94,8 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
 
 .successPanel{
-  background-color: green;
-  color: white;
+  background-color: rgb(180, 253, 180);
+  color: rgb(13, 65, 13);
 
 }
 
@@ -116,7 +116,7 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0;}
 
 
 

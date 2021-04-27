@@ -9,7 +9,17 @@ import { DataSource } from '@angular/cdk/table';
   providedIn: 'root'
 })
 export class CheckoutServiceService {
+  
 
+
+
+
+   checkoutSettings={
+     expressMode:true,
+     askForPrintOption:true,
+     defaultPrintOption:true
+   }
+  
   selectedCustomer: customer
   private bag = [];
   private cartItemCount = new BehaviorSubject(0);

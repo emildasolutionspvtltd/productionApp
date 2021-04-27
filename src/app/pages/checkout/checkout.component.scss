@@ -49,6 +49,9 @@ table{
   }
 .checkoutContainer{
     height: 100%;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     padding:18px;
 }
 
@@ -58,6 +61,9 @@ table{
     overflow:hidden;
 }
 .buttonsContainer{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     padding-bottom: 18px;
     padding-right: 18px;
     padding-left: 18px;

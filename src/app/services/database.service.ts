@@ -73,6 +73,11 @@ getItem(id){
 updateCategory(id,name){
   return this.electron.ipcRenderer.invoke('editCat',id,name)
 }
+
+searchcustnumber(data){
+  return this.electron.ipcRenderer.invoke('searchcustnumber',data)
+}
+
 updateitem(id,data){
 return this.electron.ipcRenderer.invoke('editItem',id,data)
 }

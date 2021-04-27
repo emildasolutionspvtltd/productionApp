@@ -37,6 +37,7 @@ export class EditTaxComponent implements OnInit {
       if(this.taxForm.valid){
         this.db.updateTax(this.data,this.taxForm.value).then(x=>{
           console.log(x)
+          this.closeDialog()
           this.secService.presentSanckBar("👍 Item Updated Successfully",'success')
         })
       }else{

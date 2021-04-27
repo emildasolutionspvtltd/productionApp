@@ -24,16 +24,8 @@ export class ListCustomerComponent implements OnInit {
 }
 
 
-searchCustomer(term){
+searchCustomer(term:string){
 
-  
-
-  this.db.searchCustomer(term).then(res=>{
-    this.searchResults= res
-    console.log(res)
-  }).catch(err=>{
-this.secService.presentSanckBar(err,'danger')
-  })
 
 }
 
@@ -72,15 +64,30 @@ this.secService.presentSanckBar(err,'danger')
   onChangeSearch(val) {
 
     
-    this.searchTerm=val
-    this.db.searchCustomer(val).then(x=>{
-      console.log(x)
-      this.searchResults=x
-    }).catch(error=>{
-      console.log(error)
-    })
-
-
+    console.log("hello")
+    const data = new RegExp(/[0-9]/g)
+    
+    console.log(val.match(data) )
+    
+      if(val.match(data) == null)
+    {
+      this.db.searchCustomer(val).then(res=>{
+        this.searchResults= res
+        console.log(res)
+      }).catch(err=>{
+    this.secService.presentSanckBar(err,'danger')
+      })
+    }else{
+      this.db.searchcustnumber(val).then(res=>{
+        this.searchResults= res
+        console.log(res)
+      }).catch(err=>{
+    this.secService.presentSanckBar(err,'danger')
+      })
+    }
+      
+    
+      
 
 
 

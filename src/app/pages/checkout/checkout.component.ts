@@ -19,12 +19,21 @@ import { CheckOutItemComponent } from 'src/app/secondaryPages/check-out-item/che
 import { DisplayCheckoutComponent } from 'src/app/secondaryPages/display-checkout/display-checkout.component';
 import { SearchItemComponent } from 'src/app/secondaryPages/search-item/search-item.component';
 import { AuthServiceService } from 'src/app/auth/auth-service.service';
+import { SupportComponent } from 'src/app/secondaryPages/support/support.component';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
+
+
+  //Express mode Guest Customer  Dummy Data
+
+  guestCustomer = { type: "customer", name: "Guest", email: "", phNumber: "" , notes: "", _id: "0000" }
+
+
+
   searchBar = new FormControl('')
   searchBarValue: string = ''
 
@@ -59,15 +68,15 @@ export class CheckoutComponent implements OnInit {
   indivisualTotal: number
   finalTotal: number
   finalDiscount: number = 0
-  discountType: any =''
+  discountType: any = ''
   totalCost: number = 0
   typesOfPayment = [];
   allTaxes
   inex
   finalTax: number = 0
   subtotal: number = 0
-
-// selevting the forst payment
+  checkoutSettings
+  // selevting the forst payment
   selectedOp
   //
 
@@ -77,9 +86,15 @@ export class CheckoutComponent implements OnInit {
 
   // gets value for search bar and payment modes from settings
   constructor(private auth: AuthServiceService, private matBottom: MatBottomSheet, private checkService: CheckoutServiceService, private dialog: MatDialog, private databaseService: DatabaseService, @Inject(SecondaryService) private secService: SecondaryService) {
-this.auth.isRegistered().then(x=>{
-  this.userInfo = x
-})
+    this.auth.isRegistered().then(x => {
+      this.userInfo = x
+    })
+
+
+    this.checkoutSettings = this.checkService.checkoutSettings
+
+
+
 
     this.bag = this.checkService.getBag
 
@@ -115,57 +130,62 @@ this.auth.isRegistered().then(x=>{
 
 
 
+expressCheckoutModeChange(term){
 
+  this.checkService.checkoutSettings.expressMode = term
+
+}
 
   /// this searches for the item when barcode is inserted
   searchBarcode(barcode) {
 
     console.log(barcode)
     this.databaseService.getItemBar(barcode).then(x => {
-let results:Array<any> = x
+      let results: Array<any> = x
 
-if(results.length != 0){
-  if(results.length >= 1){
-//double items
-    if (results.length >= 2) {
-
-
-      const dialogRef = this.dialog.open(AddCheckoutComponent, {
-        maxWidth: '450px',
-        width: '90%',
-        panelClass: 'dialogCss',
-        data: { data: results }
-      })
+      if (results.length != 0) {
+        if (results.length >= 1) {
+          //double items
+          if (results.length >= 2) {
 
 
-  dialogRef.afterClosed().subscribe(result => {
+            const dialogRef = this.dialog.open(AddCheckoutComponent, {
+              maxWidth: '450px',
+              width: '90%',
+              panelClass: 'dialogCss',
+              data: { data: results }
+            })
 
-      if(result){
-        this.addItem(result)
-        console.log(result)
-        this.searchBar.reset()
-      }else{
-        this.searchBar.reset()
-        console.log("nothing")
+
+            dialogRef.afterClosed().subscribe(result => {
+
+              if (result) {
+                this.addItem(result)
+                console.log(result)
+                this.searchBar.reset()
+              } else {
+                this.searchBar.reset()
+                console.log("nothing")
+              }
+
+
+            })
+
+
+
+
+
+
+
+
+
+          } else {
+            this.addItem(results[0])
+          }
+
+        }
       }
-
-
-  })
-
-
-
-
-
-
-
-
-
-  }else{
-    this.addItem(results[0])
-  }
-
-}
-}}
+    }
 
     ).catch(err => {
 
@@ -177,8 +197,8 @@ if(results.length != 0){
 
     this.databaseService.getCountBar(barcode).then(x => {
 
-      
-  
+
+
 
     })
   }
@@ -226,9 +246,9 @@ if(results.length != 0){
 
 
   }
-  
 
-  searchPopup(){
+
+  searchPopup() {
     let dialogRef = this.dialog.open(SearchItemComponent, {
       maxWidth: '450px',
       width: '90%',
@@ -240,7 +260,7 @@ if(results.length != 0){
     dialogRef.afterClosed().subscribe(result => {
       this.addItem(result.data)
     });
-    
+
   }
 
 
@@ -252,7 +272,7 @@ if(results.length != 0){
 
 
 
-  
+
 
 
 
@@ -301,13 +321,13 @@ if(results.length != 0){
 
 
 
-  getdiscount(){
-    if(this.discountType=='percentage' ){
+  getdiscount() {
+    if (this.discountType == 'percentage') {
 
-      return ((this.getTotal()*this.finalDiscount)/100)
-           
+      return ((this.getTotal() * this.finalDiscount) / 100)
+
     }
-    else{
+    else {
       return this.finalDiscount
     }
   }
@@ -355,18 +375,23 @@ if(results.length != 0){
 
 
 
-getGrantTotal(){
- 
+  getGrantTotal() {
+    return this.getTotal() - this.getdiscount()
+  }
 
 
-   
-   return this.getTotal()-this.getdiscount()
-  
 
 
-  
+//support Popup generation
+  support(){
+    const dialogRef = this.dialog.open(SupportComponent, {
+      maxWidth: '450px',
+      width: '90%',
+      panelClass: 'dialogCss'
+    })
 
-}
+    
+  }
 
 
 
@@ -395,21 +420,21 @@ getGrantTotal(){
   displayedColumns: string[] = ['barcode', 'name', 'quantity', 'cost', 'tax', 'total'];
   i = 0;
 
-  
 
 
 
 
 
-  
 
 
 
 
-  
 
 
-  
+
+
+
+
   changeModePayment(choice) {
     this.selectedPaymentMode = choice[0].paymentName
     console.log(choice[0].paymentName)
@@ -418,8 +443,8 @@ getGrantTotal(){
 
   //this is the bottom sheet for editing quantity and price and it returns the vale as well as recalulates the total by calling updateResults function
   options(data) {
-   //this.checkService.editItem(data)
-   //this.dataSource = new MatTableDataSource<CheckoutItem>(this.bag)
+    //this.checkService.editItem(data)
+    //this.dataSource = new MatTableDataSource<CheckoutItem>(this.bag)
     console.log(data)
     const bottomSheetRef = this.matBottom.open(CheckOutItemComponent, {
       data: data
@@ -455,17 +480,17 @@ getGrantTotal(){
   }
 
 
- reset(){
+  reset() {
 
 
-this.checkService.clearBag()
-console.log("ge")
-this.customerData=null
-this.finalDiscount=0
-this.discountType=''
-  this.dataSource = new MatTableDataSource<CheckoutItem>(this.bag)
-
- }
+    this.checkService.clearBag()
+  
+    this.customerData = null
+    this.finalDiscount = 0
+    this.discountType = ''
+    this.dataSource = new MatTableDataSource<CheckoutItem>(this.bag)
+console.log(this.dataSource)
+  }
 
 
 
@@ -473,22 +498,24 @@ this.discountType=''
 
 
   checkOut() {
+    if (this.checkoutSettings.expressMode == true) {
+      this.customerData = this.guestCustomer
+    }
 
-
-    if(this.customerData == undefined || this.dataSource == undefined || this.selectedPaymentMode == undefined){
-      if(this.dataSource==undefined){
-        this.secService.presentSanckBar('please enter items','ok')
-
-      }
-      if(this.customerData==undefined){
-        this.secService.presentSanckBar('please add customer','ok')
+    if (this.customerData == undefined || this.bag.length == 0  || this.selectedPaymentMode == undefined) {
+      if (this.bag.length == 0) {
+        this.secService.presentSanckBar(' 👨🏻‍✈️ No items Present in bill,Please add an items ', 'ok')
 
       }
-      if(this.selectedPaymentMode==undefined){
-        this.secService.presentSanckBar('select payment option','ok')
+      if (this.customerData == undefined) {
+        this.secService.presentSanckBar('👨🏻‍✈️ Please Add Customer to proceed', 'ok')
+
+      }
+      if (this.selectedPaymentMode == undefined) {
+        this.secService.presentSanckBar('👨🏻‍✈️ Select aleast one payment mode', 'ok')
       }
     }
-    else{
+    else {
       console.log(this.selectedPaymentMode)
       const dialogRef = this.dialog.open(DisplayCheckoutComponent, {
         maxWidth: '450px',
@@ -499,15 +526,17 @@ this.discountType=''
           total: this.getGrantTotal(),
           pay: this.selectedPaymentMode,
           discount: this.getdiscount(),
-          subTotal:this.getTotal(),
-          tax:this.getTax(),
-          customer: this.customerData
+          subTotal: this.getTotal(),
+          tax: this.getTax(),
+          customer: this.customerData,
+          popupOption:this.checkoutSettings.askForPrintOption,
+          defaultPrintOption:this.checkoutSettings.defaultPrintOption
         }
       });
-  
+
       dialogRef.afterClosed().subscribe(result => {
-console.log(result)
-        if(result == 'success'){
+        console.log(result)
+        if (result == 'success') {
           this.reset()
         }
 

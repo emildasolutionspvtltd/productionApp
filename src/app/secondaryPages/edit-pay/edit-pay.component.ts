@@ -33,6 +33,7 @@ Paynote
       if(this.payForm.valid){
         this.db.updatePay(this.data,this.payForm.value).then(x=>{
           console.log(x)
+          this.closeDialog()
           this.secService.presentSanckBar("👍 Item Updated Successfully",'success')
         })
       }else{

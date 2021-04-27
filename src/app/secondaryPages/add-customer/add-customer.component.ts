@@ -15,8 +15,8 @@ export class AddCustomerComponent implements OnInit {
   customerForm = new FormGroup({
     type: new FormControl('customer'),
     name:  new FormControl('',Validators.required),
-    email:new FormControl('',[Validators.required,Validators.email]),
-    phNumber: new FormControl('',[Validators.required,Validators.minLength(10)]),
+    email:new FormControl('',[Validators.email]),
+    phNumber: new FormControl('',[Validators.minLength(10)]),
     notes: new FormControl(''),
   })
 

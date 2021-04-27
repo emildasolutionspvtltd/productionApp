@@ -30,6 +30,7 @@ export class AddTaxesComponent implements OnInit {
     if(this.taxForm.valid){
       this.db.insertTax(this.taxForm.value).then(x=>{
         console.log(x)
+        this.closeDialog()
         this.secService.presentSanckBar("👍 Item added Successfully",'success')
       })
     }else{
