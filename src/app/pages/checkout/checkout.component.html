@@ -7,7 +7,7 @@
       <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">dehaze</mat-icon>
     </button>
     <p style="text-transform: capitalize;" class="toolbarHeading">
-      Sales - {{userInfo?.shopName}} </p>
+      {{'Dash.Sales' | translate}} - {{userInfo?.shopName}} </p>
 
 
       <span class="example-spacer"></span>
@@ -51,18 +51,18 @@
 
 
 
-        <button (click)="support()" *ngIf='checkoutSettings.expressMode'  mat-menu-item >
+        <button (click)="support()"   mat-menu-item >
           <mat-icon   aria-hidden="false" aria-label="Example user verified icon">
             info
        </mat-icon> 
-          Support
+        {{'CheckoutPage.Support' | translate}} 
          </button>
     
      <button (click)="expressCheckoutModeChange(false)" *ngIf='checkoutSettings.expressMode'  mat-menu-item >
       <mat-icon   aria-hidden="false" aria-label="Example user verified icon">
         flash_off
    </mat-icon> 
-      Disable Express Checkout
+  {{'CheckoutPage.dExpressCheckout' | translate}}
      </button>
 
 
@@ -70,11 +70,11 @@
       <mat-icon   aria-hidden="false" aria-label="Example user verified icon">
         flash_on
    </mat-icon> 
-      Enable Express Checkout
-     </button>
+  
+{{'CheckoutPage.eExpressCheckout' | translate}}  </button>
 
         <button  style="color: red;" (click)='reset()' mat-menu-item>
-          <mat-icon style="color: red;" aria-hidden="false" aria-label="Example user verified icon">delete</mat-icon>       Clear Entries</button>
+          <mat-icon style="color: red;" aria-hidden="false" aria-label="Example user verified icon">delete</mat-icon>    {{'CheckoutPage.clearEntries'| translate}}   </button>
       </mat-menu>
     </div>
   </mat-toolbar>
@@ -98,34 +98,34 @@
 
         <!-- Position Column -->
         <ng-container matColumnDef="barcode">
-          <th mat-header-cell *matHeaderCellDef>Barcode / Id</th>
+          <th mat-header-cell *matHeaderCellDef>{{'CheckoutPage.Barcode' | translate}}</th>
           <td mat-cell *matCellDef="let element"> {{element.barcode}} </td>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <th mat-header-cell *matHeaderCellDef>{{'CheckoutPage.ItemName' | translate}}</th>
           <td style="text-transform: capitalize;" mat-cell *matCellDef="let element"> {{element.name}}</td>
         </ng-container>
 
         <!-- Weight Column -->
         <ng-container matColumnDef="quantity">
-          <th mat-header-cell *matHeaderCellDef> Quantity </th>
+          <th mat-header-cell *matHeaderCellDef> {{'CheckoutPage.Quantity' | translate}} </th>
           <td mat-cell *matCellDef="let element"> {{element.quantity}} {{element.unit}}</td>
         </ng-container>
 
         <ng-container matColumnDef="cost">
-          <th mat-header-cell *matHeaderCellDef> Cost </th>
+          <th mat-header-cell *matHeaderCellDef> {{'CheckoutPage.Cost' | translate}} </th>
           <td mat-cell *matCellDef="let element"> {{element.price | currency :'':''}} </td>
         </ng-container>
 
         <ng-container matColumnDef="tax">
-          <th mat-header-cell *matHeaderCellDef> Tax </th>
+          <th mat-header-cell *matHeaderCellDef> {{'CheckoutPage.Tax' | translate}} </th>
           <td mat-cell *matCellDef="let element"> {{element.tax}}%</td>
         </ng-container>
 
         <ng-container matColumnDef="total">
-          <th mat-header-cell *matHeaderCellDef> Total </th>
+          <th mat-header-cell *matHeaderCellDef> {{'CheckoutPage.Total' | translate}} </th>
           <td mat-cell *matCellDef="let element"> {{element.quantity*element.price | currency:'SAR'}}</td>
         </ng-container>
         <!-- 
@@ -168,14 +168,14 @@
        <br>
        <img src="assets/emptyCart.svg"  style='width: 30%;' alt="">
        <br>
-       <p style="opacity: 0.6;">Your Cart seems empty! <br>Add Items by Barcode Scanning or Search Item</p>
+       <p style="opacity: 0.6;">{{'CheckoutPage.EmptyCart1' | translate}} <br>{{'CheckoutPage.EmptyCart2' | translate}}</p>
      </div>
 
     </mat-card>
 
     <div fxFlex='25' fxLayout='column' fxLayoutAlign='space-between' fxLayoutGap='18px' class="cartCard">
       <mat-card class="grandTotalContainer">
-        <p class='headingValues'>Grand Total</p>
+        <p class='headingValues'>{{'CheckoutPage.GrandTotal' | translate}}</p>
         <p class='totalValue'>{{getGrantTotal() | currency : '':''}} <span class="currency">SAR</span> </p>
       </mat-card>
 
@@ -183,7 +183,7 @@
       <div fxFlexAlign="none" class="paymentMode">
 
         <div class="headingValues">
-          Payment Mode
+          {{'CheckoutPage.PaymentMode' | translate }}
         </div>
         
         <div style='padding-bottom: 10px;' fxLayout='row' fxLayoutGap='10px' class="paymentContainer">
@@ -194,12 +194,25 @@
             fxLayout='column' fxLayoutAlign='center center' class="buttonOfPaymentMode">
             
           </div> -->
-          <mat-selection-list #shoes [(ngModel)]="selectedOp" (ngModelChange)="changeModePayment($event)" style=" display: flex;  
-          flex-wrap: wrap;width: 100%;" [multiple]="false">
-            <mat-list-option *ngFor="let pay of typesOfPayment"
-              [value]="pay">
+          <mat-selection-list  #list [(ngModel)]="selectedPaymentMode" (ngModelChange)="changeModePayment($event)" style=" display: flex; flex-wrap: wrap;width: 100%;" [multiple]="false">
+          <mat-list-option value="Cash">
+          <mat-icon mat-list-icon  >monetization_on</mat-icon>
+          <!-- (click)="changeModePayment(pay.selectedOptions.selected[0]?.value)"  -->
+         <div mat-line >Cash</div> 
+        </mat-list-option>
+        <mat-list-option 
+              value="Card" >
+              <mat-icon mat-list-icon  >credit_card</mat-icon>
+
               <!-- (click)="changeModePayment(pay.selectedOptions.selected[0]?.value)"  -->
-              {{pay.paymentName}}
+              <div mat-line>Card</div> 
+            </mat-list-option>
+            <mat-list-option   *ngFor='let pay of typesOfPayment'
+              value="{{pay.paymentName}}" >
+              <mat-icon mat-list-icon  >bookmark_on</mat-icon>
+
+              <!-- (click)="changeModePayment(pay.selectedOptions.selected[0]?.value)"  -->
+              <div mat-line>{{pay.paymentName}}</div> 
             </mat-list-option>
           </mat-selection-list>
         </div>
@@ -210,7 +223,7 @@
 
       <div class="subValuesContainer">
         <div class="subValuesHolder" fxLayout="row" fxLayoutAlign="space-between center">
-          <p class='subValuesField'>Discount </p>
+          <p class='subValuesField'>{{'CheckoutPage.Discount' | translate}} </p>
           <p *ngIf='discountType== "percentage" 'class='subValues'>{{  getdiscount() | currency:'SAR'}} <span style="font: size 7px;opacity: 60%;" *ngIf='discountType == "percentage"'> {{finalDiscount}}%</span> </p>
           <p *ngIf='discountType == "sar" 'class='subValues'>{{  getdiscount() | currency:'SAR'}}</p>
           <p *ngIf='discountType == "" 'class='subValues'>0</p>
@@ -218,13 +231,13 @@
         </div>
         <mat-divider></mat-divider>
         <div class="subValuesHolder" fxLayout="row" fxLayoutAlign="space-between center">
-          <p class='subValuesField'>Tax </p>
+          <p class='subValuesField'>{{'CheckoutPage.Tax' | translate}} </p>
           <p class='subValues'>{{
             getTax()  | currency : 'SAR' }}</p>
         </div>
         <mat-divider></mat-divider>
         <div style="padding-bottom:0px" class="subValuesHolder" fxLayout="row" fxLayoutAlign="space-between center">
-          <p class='subValuesField'>Sub Total </p>
+          <p class='subValuesField'>{{'CheckoutPage.SubTotal' | translate}} </p>
           <p class='subValues'>{{ getTotal() | currency : 'SAR'}}</p>
         </div>
       </div>
@@ -238,19 +251,19 @@
 
     <div fxFlex='75' fxLayout='row' fxLayoutAlign='space-between center' class="secondaryButton">
       <mat-form-field style="height: 45px;  top: -6px;" appearance="outline">
-        <mat-label>Barcode</mat-label>
+        <mat-label>{{'CheckoutPage.Barcode' | translate}}</mat-label>
         <input cdkFocusInitial id="codeInput" [formControl]='searchBar' matKeyboard='oh' autofocus matInput>
       </mat-form-field>
       <button (click)='addCustomer()' color="{{customerData? 'primary':'' }}" style="text-transform: capitalize;" fxFlex='25' class='buttonSeconday' mat-raised-button>
-        <mat-icon>people</mat-icon>&nbsp; {{ customerData ? customerData.name : ' Add Customer' }}
+        <mat-icon>people</mat-icon>&nbsp; {{ customerData ? customerData.name : ('CheckoutPage.AddCustomer' | translate) }}
       </button>
       <button (click)='addDiscount()' fxFlex='25' class='buttonSeconday' mat-raised-button>
-        <mat-icon>local_offer</mat-icon>&nbsp; Add Discount
+        <mat-icon>local_offer</mat-icon>&nbsp; {{'CheckoutPage.AddDiscount' | translate}}
       </button>
 
     </div>
     <div fxFlex='25' class="primaryButton">
-      <button (click)='checkOut()' color="accent" fxFlex='100' class='primarySeconday' mat-raised-button>Checkout</button>
+      <button (click)='checkOut()' color="accent" fxFlex='100' class='primarySeconday' mat-raised-button>{{'CheckoutPage.Checkout'  | translate}}</button>
 
     </div>
 
@@ -258,5 +271,8 @@
 
 
 
+
+
+  <ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
 
 </div>

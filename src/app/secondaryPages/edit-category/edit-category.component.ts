@@ -15,7 +15,7 @@ export class EditCategoryComponent implements OnInit {
   constructor(private router :Router,private dialog:MatDialog,private db:DatabaseService, @Inject(SecondaryService) private secService: SecondaryService,@Inject(MAT_DIALOG_DATA) public data: any) {
     this.getInfo()
    }
-   catname : any
+   catname : string
   a : any
    categoryName= new FormControl('',Validators.required)
   ngOnInit(): void {

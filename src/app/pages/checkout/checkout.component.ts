@@ -5,7 +5,7 @@ import { Items } from './../../services/types/items';
 import { AddCustomerComponent } from './../../secondaryPages/add-customer/add-customer.component';
 import { DatabaseService } from './../../services/database.service';
 import { SecondaryService } from './../../services/secondary.service';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ListCustomerComponent } from 'src/app/secondaryPages/list-customer/list-customer.component';
@@ -20,12 +20,14 @@ import { DisplayCheckoutComponent } from 'src/app/secondaryPages/display-checkou
 import { SearchItemComponent } from 'src/app/secondaryPages/search-item/search-item.component';
 import { AuthServiceService } from 'src/app/auth/auth-service.service';
 import { SupportComponent } from 'src/app/secondaryPages/support/support.component';
+import { ShortcutDetails } from 'electron/main';
+import { ShortcutEventOutput, ShortcutInput } from 'ng-keyboard-shortcuts';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements AfterViewInit {
 
 
   //Express mode Guest Customer  Dummy Data
@@ -39,7 +41,7 @@ export class CheckoutComponent implements OnInit {
 
 
 
-  selectedPaymentMode = 'Cash'
+  selectedPaymentMode = ["Cash"]
 
 
   itemCount
@@ -78,18 +80,21 @@ export class CheckoutComponent implements OnInit {
   checkoutSettings
   // selevting the forst payment
   selectedOp
-  //
 
   bag = []
 
   userInfo
+  shortcuts: ShortcutInput[] = [];
 
   // gets value for search bar and payment modes from settings
-  constructor(private auth: AuthServiceService, private matBottom: MatBottomSheet, private checkService: CheckoutServiceService, private dialog: MatDialog, private databaseService: DatabaseService, @Inject(SecondaryService) private secService: SecondaryService) {
+  constructor(  private auth: AuthServiceService, private matBottom: MatBottomSheet, private checkService: CheckoutServiceService, private dialog: MatDialog, private databaseService: DatabaseService, @Inject(SecondaryService) private secService: SecondaryService) {
     this.auth.isRegistered().then(x => {
       this.userInfo = x
     })
 
+
+
+    
 
     this.checkoutSettings = this.checkService.checkoutSettings
 
@@ -114,10 +119,8 @@ export class CheckoutComponent implements OnInit {
     // })
 
 
-    //getting the payment Methods
     this.databaseService.getPay().then(x => {
       this.typesOfPayment = x
-      this.selectedOp = x
     })
 
 
@@ -266,11 +269,6 @@ expressCheckoutModeChange(term){
 
 
 
-  ngOnInit(): void {
-
-  }
-
-
 
 
 
@@ -334,7 +332,23 @@ expressCheckoutModeChange(term){
 
 
 
+  addNewCustomer() {
+    let dialogRef = this.dialog.open(AddCustomerComponent, {
+      maxWidth: '450px',
+      width: '90%',
+      panelClass: 'dialogCss'
 
+    })
+
+
+    //getting Customer Data
+    dialogRef.afterClosed().subscribe(result => {
+      this.customerData = result
+      console.log(result)
+    });
+
+
+  }
 
 
 
@@ -436,8 +450,8 @@ expressCheckoutModeChange(term){
 
 
   changeModePayment(choice) {
-    this.selectedPaymentMode = choice[0].paymentName
-    console.log(choice[0].paymentName)
+    console.log(choice)
+console.log(this.selectedPaymentMode)
   }
 
 
@@ -502,7 +516,7 @@ console.log(this.dataSource)
       this.customerData = this.guestCustomer
     }
 
-    if (this.customerData == undefined || this.bag.length == 0  || this.selectedPaymentMode == undefined) {
+    if (this.customerData == undefined || this.bag.length == 0  || this.selectedPaymentMode.length == 0) {
       if (this.bag.length == 0) {
         this.secService.presentSanckBar(' 👨🏻‍✈️ No items Present in bill,Please add an items ', 'ok')
 
@@ -524,7 +538,7 @@ console.log(this.dataSource)
         data: {
           data: this.dataSource.filteredData,
           total: this.getGrantTotal(),
-          pay: this.selectedPaymentMode,
+          pay: this.selectedPaymentMode[0],
           discount: this.getdiscount(),
           subTotal: this.getTotal(),
           tax: this.getTax(),
@@ -542,5 +556,48 @@ console.log(this.dataSource)
 
       });
     }
+  }
+
+
+  ngAfterViewInit() {
+    this.shortcuts.push(
+      {
+        key: "c",
+        label: "List of Customer",
+        description: "Displays List of Customer to add to the checkout",
+        command: (e) => this.addCustomer(),
+        preventDefault: true
+      },
+      {
+        key: "cmd + c",
+        label: "Add New Customer",
+        description: "Displays List of Customer to add to the checkout",
+        command: (e) => this.addNewCustomer(),
+        preventDefault: true
+      },
+      {
+        key: "d",
+        label: "Add Discount",
+        description: "Displays List of Customer to add to the checkout",
+        command: (e) => this.addDiscount(),
+        preventDefault: true
+      },
+      {
+        key: "s",
+        label: "Add Discount",
+        description: "Displays List of Customer to add to the checkout",
+        command: (e) => this.searchPopup(),
+        preventDefault: true
+      },
+      {
+        key: "esc",
+        label: "Toggle Menu",
+        description: "Displays List of Customer to add to the checkout",
+        command: (e) => this.drawerToggle(),
+        preventDefault: true
+      }
+    
+
+    );
   }
 }

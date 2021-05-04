@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthServiceService } from 'src/app/auth/auth-service.service';
 import { DatabaseService } from 'src/app/services/database.service';
 
@@ -20,7 +21,9 @@ loginForm= new FormGroup({
 
 
 
-  constructor(private secService : SecondaryService,private router: Router,private db: DatabaseService,private auth:AuthServiceService) { }
+  constructor( private transulateServices : TranslateService,private secService : SecondaryService,private router: Router,private db: DatabaseService,private auth:AuthServiceService) { 
+    this.transulateServices.setDefaultLang('ar')
+  }
 
   ngOnInit(): void {
   }

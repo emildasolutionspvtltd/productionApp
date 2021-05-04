@@ -1,6 +1,6 @@
 <div class="container">
     <div fxLayout='row' fxLayoutAlign='space-between center' class="headingContainer">
-        <h3 class="heading3">Add New Customer</h3>
+        <h3 class="heading3">{{'AddNewCustomerPopup.AddNewCust' | translate }}</h3>
         <button (click)='closeDialog()'  mat-icon-button>
             <mat-icon>highlight_off</mat-icon>
         </button>
@@ -10,25 +10,25 @@
     <form [formGroup]='customerForm' >
 
         <mat-form-field appearance="outline">
-            <mat-label>Name</mat-label>
+            <mat-label>{{'AddNewCustomerPopup.Name' | translate}}</mat-label>
             <input style="text-transform: uppercase;" formControlName='name' autofocus matInput type='text'>
         </mat-form-field>
 
 
         <mat-form-field appearance="outline">
-            <mat-label>Email Id</mat-label>
+            <mat-label>{{'AddNewCustomerPopup.Mail' | translate}}</mat-label>
             <input formControlName='email' autofocus matInput type='email'>
         </mat-form-field>
 
 
         <mat-form-field appearance="outline">
-            <mat-label>Phone Number</mat-label>
+            <mat-label>{{'AddNewCustomerPopup.PhNo' | translate}}</mat-label>
             <input formControlName='phNumber' autofocus matInput type='tel'>
         </mat-form-field>
 
 
         <mat-form-field appearance="outline">
-            <mat-label>Notes</mat-label>
+            <mat-label>{{'AddNewCustomerPopup.Notes' | translate}}</mat-label>
             <input formControlName='notes' autofocus matInput type='text'>
         </mat-form-field>
 
@@ -40,7 +40,7 @@
 
 
 
-    <button (click)='submit()' mat-raised-button color="accent" class="bigButton">Save</button>
+    <button (click)='submit()' mat-raised-button color="accent" class="bigButton">{{'Buttons.Save' | translate}}</button>
 
 
 

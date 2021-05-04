@@ -1,0 +1,202 @@
+{
+	"AddCatergoryPopup": {
+		"AddCategory": "Add Category",
+		"NameofCatergory": "Name Of Catergory",
+		"Save": "Save"
+	},
+	"AddNewCustomerPopup": {
+		"AddNewCust": "Add New Customer",
+		"Mail": "Email",
+		"Name": "Name",
+		"Notes": "Notes",
+		"PhNo": "Phone Number"
+	},
+	"AddSingleItemPopup": {
+		"Category": "Category",
+		"InvenStock": "Inventory Stock",
+		"ItemId": "Item Id/Barcode",
+		"Name": "Item Name",
+		"NameInArabic": "Item Name in Arabic",
+		"RetailPrice": "Maximum Retail Price",
+		"Save": "Save",
+		"SellingPrice": "",
+		"Tax": "Tax",
+		"Unit": "Unit"
+	},
+	"AddTaxesPopup": {
+		"Save": "Save",
+		"TaxName": "Tax Name",
+		"TaxPercentages": "Tax Percentage",
+		"TypeofTax": "Type Of Tax"
+	},
+	"Buttons": {
+		"Save": "Save"
+	},
+	"CheckOutSettingsPaymentPopup": {
+		"Notes": "Notes",
+		"PaymentName": "Payment NAme"
+	},
+	"CheckOutSettingsPrinter": {
+		"LabelPrinter": "Label Printer",
+		"RecieptPrinter": "Reciept Printer"
+	},
+	"CheckOutSettingsTaxesPopup": {
+		"AddTax": "Add Tax",
+		"Inclu/Eclu": "Inclusive/Exclusive",
+		"Tax": "Taxes",
+		"TaxPercentage": "Tax Percentage",
+		"Taxes": "Tax Name"
+	},
+	"CheckoutPage": {
+		"AddCustomer": "Add Customer",
+		"AddDiscount": "Add Discount",
+		"Barcode": "Bar-code",
+		"Checkout": "Checkout",
+		"Cost": "Cost",
+		"Discount": "Discount",
+		"EmptyCart1": "Your Cart seems empty!",
+		"EmptyCart2": "Add Items by Barcode Scanning or Search Item\n\n",
+		"GrandTotal": "Grand Total",
+		"ItemName": "Item Name",
+		"PaymentMode": "Payment Mode",
+		"ProductName": "Product Name",
+		"Quantity": "Quantity",
+		"Sales": "Sales",
+		"SubTotal": "Subtotal",
+		"Support": "Support",
+		"Tax": "Tax",
+		"Total": "Total",
+		"clearEntries": "Clear Entries",
+		"dExpressCheckout": "Disable Express Checkout",
+		"discount": "Discount",
+		"eExpressCheckout": "Enable Express Checkout"
+	},
+	"CustomerDiscountPopup": {
+		"Discount": "Discount"
+	},
+	"CustomerPage": {
+		"ItemsPerPage": "Items Per Page",
+		"ListOfCustomers": "List of Customers",
+		"Mail": "Email",
+		"Name": "Customer Name",
+		"Notes": "Notes",
+		"PhNo": "Phone Number",
+		"Search": "Search",
+		"addNewCustomer": "Add New Customer",
+		"deleteCustomer": "Delete Customer",
+		"editCustomer": "Edit Customer"
+	},
+	"Dash": {
+		"Customer": "Customers",
+		"Items": "Items",
+		"Logout": "Logout",
+		"Reports": "Reports",
+		"Sales": "Sales",
+		"Settings": "Settings",
+		"Transactions": "Transactions"
+	},
+	"ItemPage": {
+		"AddCategories": "Add Categories",
+		"AddItemInBulk": "Add Item In Bulk",
+		"AddSingleItem": "Add Single Item",
+		"Inventory": "Inventory",
+		"ItemName": "Item Name",
+		"Price": "Price",
+		"Search": "Search",
+		"TotalNoOfCategories": "Total Number of Categories",
+		"TotalNoOfItems": "Total Number of Items",
+		"addItem": "Add Item",
+		"listOfCategories": "List of Categories",
+		"listOfItems": "List of Items"
+	},
+	"LabelPrinterPopup": {
+		"Printer": "Label Printer Name",
+		"Save": "Save",
+		"Width": "Width in Pixels"
+	},
+	"ListOfCatergories": {
+		"Items": "No.of Items",
+		"Items per page": "Items Per Page",
+		"Name": "Name"
+	},
+	"LogOutPage": {
+		"Login": "Login",
+		"Mail": "Email Id",
+		"Password": "Password"
+	},
+	"ReceiptInformation": {
+		"FooterInfo": "Footer Info",
+		"SubFooter": "Sub Footer",
+		"Update": "Update"
+	},
+	"ReceiptPrinterPopup": {
+		"PrinterName": "Receipt Printer Name",
+		"Save": "Save",
+		"Width": "Width in Pixels"
+	},
+	"ReportGeneration": {
+		"CustomerReport": "Customer Report",
+		"Download Report": "Download Report",
+		"End Date": "Enter a End Date",
+		"ItemsReport": "Items Report ",
+		"ReportGeneration": "Report Generation",
+		"SalesReport": "Sales Report",
+		"Start Date": "Enter a Start Date",
+		"TypeOfReport": "Type of Report"
+	},
+	"SettingsPage": {
+		"CheckoutSettings": "Checkout Settings",
+		"Settings": "Settings",
+		"UserSetting": "User Setting"
+	},
+	"ShopLogo": {
+		"HeaderInfo": "Header Logo",
+		"SubHeaderLogo": "Sub Header logo"
+	},
+	"TransactionPage": {
+		"Amount": "Amount",
+		"CustomerName": "Customer Name",
+		"Dates": "Date/Time",
+		"ItemPerPage": "Items per Page",
+		"ListOfTransaction": "List of Transaction",
+		"OrderId": "Order Id",
+		"Search": "Search",
+		"TypeOfTransaction": "Type of Transactions",
+		"acceptReturn": "Accept Return ",
+		"cancelTransactions": "Cancel Transactions"
+	},
+	"Type of Report Popup": {
+		"Customer": "Customer",
+		"Items": "Report Items",
+		"Report Sales": "Report Sales"
+	},
+	"UserSettingInfo": {
+		"ExpiryDate": "Expiry Date",
+		"Language": "Language",
+		"Mail": "Email Id",
+		"Name": "Name",
+		"Password": "Password",
+		"PhNo": "Mobile Number",
+		"ShopName": "Shop Name",
+		"SoftwareInfo": "Software Information",
+		"UserInformation": "User Information",
+		"Version": "Version"
+	},
+	"customerPopup": {
+		"Customer": "Customer Name/Number",
+		"NewCustomer": "Create New Customer",
+		"addCustomer": "Add Customer"
+	},
+	"editItems": "Edit Items",
+	"loginPage": {
+		"email": "Email Id",
+		"loginButton": "Login",
+		"password": "Password"
+	},
+	"newCustomerPopup": {
+		"Mail": "Email Id",
+		"Notes": "Notes",
+		"Save": "Save",
+		"name": " Name"
+	}
+}

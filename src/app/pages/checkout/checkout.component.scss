@@ -150,25 +150,34 @@ opacity: 0.95;
 
 
 
+
+
   mat-list-option[aria-selected="true"] {
     background: #FFB846;
     color: #000 !important;
-   
+    border: #FFB846 2.4px solid;
+
     border-radius: 5px;
     width: 45%;
     margin-left: 2.5%;
   }
 
 
-
+  .mat-list-text{
+    padding-left: 5px  !important;
+}
 
   mat-list-option{
+   
+    
+    font-weight: 800;
       text-transform: capitalize !important;
-      text-align: center !important;
+    //   text-align: center !important;
     border-radius: 5px !important;
-    color: #FFB846  ;
+    color: #919191  !important ;
+    background-color: #F8F8F8;
     font-size: 14px  !important;
-    border: #FFB846 2px solid;
+    border: #8B8B8B 2.4px solid;
     // padding: 0 5px !important;
     width: 45%  !important;
     margin-top:5px !important;

@@ -1,29 +1,36 @@
 <div class="container">
     <div fxLayout='row' fxLayoutAlign='space-between center' class="headingContainer">
-        <h3 class="heading3">Add Items</h3>
+        <h3 class="heading3">{{'ItemPage.addItem' | translate}} </h3>
         <button (click)='closeDialog()' mat-icon-button>
             <mat-icon>highlight_off</mat-icon>
         </button>
     </div>
     <br>
+
+
+
+
     <form [formGroup]='itemForm'>
     <mat-form-field appearance="outline">
-        <mat-label>Item Id / Barcode </mat-label>
+        <mat-label>{{'AddSingleItemPopup.ItemId' | translate}} </mat-label>
         <input formControlName='barcode' id="codeInput" autofocus matInput type='text'>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-        <mat-label>Item Name </mat-label>
+        <mat-label>{{'AddSingleItemPopup.Name' | translate}}
+        </mat-label>
         <input formControlName='name'   matInput type='text'>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-        <mat-label>Item Name in Arabic</mat-label>
+        <mat-label>{{'AddSingleItemPopup.NameInArabic' | translate}}
+        </mat-label>
         <input formControlName='nameInArabic'  matInput type='text'>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-        <mat-label>Cateogry</mat-label>
+        <mat-label>    {{'AddSingleItemPopup.Category' | translate}}
+        </mat-label>
         <mat-select formControlName='category'>
             <mat-option *ngFor="let category of categories" [value]="category.categoryName">
                 {{category.categoryName}} </mat-option>
@@ -31,19 +38,22 @@
         </mat-select>
     </mat-form-field>
     <mat-form-field id="rightMargin"  appearance="outline">
-        <mat-label>Maximum Retial Price </mat-label>
+        <mat-label>{{'AddSingleItemPopup.RetailPrice' | translate}}
+        </mat-label>
         <input formControlName='mrp'  matInput type='number'>
 
     </mat-form-field>
     <mat-form-field id="leftMargin" appearance="outline">
-        <mat-label>Selling Price</mat-label>
+        <mat-label>{{'AddSingleItemPopup.SellingPrice' | translate}}
+        </mat-label>
         <input formControlName='price'  matInput type='number'>
 
     </mat-form-field>
 
 
     <mat-form-field appearance="outline">
-         <mat-label>Tax</mat-label>
+         <mat-label>{{'AddSingleItemPopup.Tax' | translate}}
+        </mat-label>
          <mat-select formControlName='tax'>
             <mat-option *ngFor="let tax of taxes" [value]="tax.taxPercentage">
                 {{tax.taxName}} </mat-option>
@@ -53,14 +63,16 @@
 
 
     <mat-form-field id="rightMargin" appearance="outline">
-        <mat-label>Inventory Stock</mat-label>
+        <mat-label>{{'AddSingleItemPopup.InvenStock' | translate}}
+        </mat-label>
         <input formControlName='inventory'  matInput type='number'>
 
     </mat-form-field>
 
 
     <mat-form-field id="leftMargin" appearance="outline">
-        <mat-label>Unit</mat-label>
+        <mat-label>{{'AddSingleItemPopup.Unit' | translate}}
+        </mat-label>
         <mat-select  formControlName='unit'>
             <mat-option *ngFor='let unit of units' value="{{unit.unit}}">
                 {{unit.unitName}} </mat-option>
@@ -71,5 +83,6 @@
 </form>
 
 <!-- (click)='submit()' -->
-    <button  mat-raised-button (click)='submit()' color="accent" class="bigButton">Save</button>
+    <button  mat-raised-button (click)='submit()' color="accent" class="bigButton">{{'AddSingleItemPopup.Save' | translate}}
+    </button>
 </div>

@@ -1,6 +1,6 @@
 import { DatabaseService } from './../../services/database.service';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SecondaryService } from 'src/app/services/secondary.service';
 
@@ -20,7 +20,7 @@ export class AddCustomerComponent implements OnInit {
     notes: new FormControl(''),
   })
 
-  constructor(private dialog:MatDialog,private db: DatabaseService,private secService:SecondaryService) { }
+  constructor(private dialogRef:MatDialogRef<AddCustomerComponent>,   private dialog:MatDialog,private db: DatabaseService,private secService:SecondaryService) { }
 
   ngOnInit(): void {
   }
@@ -37,8 +37,9 @@ if(this.customerForm.valid) {
 
   this.db.insertCustomer(this.customerForm.value).then(x=>{
     this.secService.presentSanckBar(' 👍 Customer Add SuccessFully','success')
+    this.dialogRef.close(this.customerForm.value)
+
     this.customerForm.reset()
-    this.closeDialog()
     
   })
  

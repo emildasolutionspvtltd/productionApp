@@ -18,28 +18,28 @@
         <li  class="blockLi" fxLayout='coloumn' fxLayoutAlign='start center' fxLayoutGap='10' (click)="routersCall('')"
         [ngClass]="{'active':  acitiveCheck()  === '/'}">
           <mat-icon aria-hidden="false">shopping_cart</mat-icon>
-          <p class='textMenu'>Sales </p>
+          <p class='textMenu'>{{'Dash.Sales' | translate}} </p>
         </li>
 
         <li  class="blockLi" fxLayout='coloumn' fxLayoutAlign='start center' fxLayoutGap='10' (click)="routersCall('items')"
         [ngClass]="{'active':  acitiveCheck()  === '/items'}">
           <mat-icon aria-hidden="false">list_alt</mat-icon>
-          <p class='textMenu'>Items </p>
+          <p class='textMenu'>{{'Dash.Items' | translate}} </p>
         </li>
         <li class="blockLi" fxLayout='coloumn' fxLayoutAlign='start center' fxLayoutGap='10' (click)="routersCall('reports')"
         [ngClass]="{'active':  acitiveCheck()  === '/reports'}">
           <mat-icon aria-hidden="false">content_paste</mat-icon>
-          <p class='textMenu'>Reports </p>
+          <p class='textMenu'>{{'Dash.Reports' | translate}} </p>
         </li>
         <li class="blockLi" fxLayout='coloumn' fxLayoutAlign='start center' fxLayoutGap='10' (click)="routersCall('customers')"
         [ngClass]="{'active':  acitiveCheck()  === '/customers'}">
           <mat-icon aria-hidden="false">people_alt</mat-icon>
-          <p class='textMenu'>Customer </p>
+          <p class='textMenu'>{{'Dash.Customer' | translate}} </p>
         </li>
         <li class="blockLi" fxLayout='coloumn' fxLayoutAlign='start center' fxLayoutGap='10' (click)="routersCall('transactions')"
         [ngClass]="{'active':   acitiveCheck()  === '/transactions'}">
           <mat-icon aria-hidden="false">payments</mat-icon>
-          <p class='textMenu'>Transactions </p>
+          <p class='textMenu'>{{'Dash.Transactions' | translate}} </p>
         </li>
 
 
@@ -47,12 +47,12 @@
         <li class="blockLi" fxLayout='coloumn' fxLayoutAlign='start center' fxLayoutGap='10' (click)="routersCall('settings')"
         [ngClass]="{'active':  acitiveCheck()  === '/settings'}">
           <mat-icon aria-hidden="false">settings</mat-icon>
-          <p class='textMenu'>Settings </p>
+          <p class='textMenu'>{{'Dash.Settings' | translate}} </p>
         </li>
 
         <li class="blockLi" fxLayout='coloumn' fxLayoutAlign='start center' fxLayoutGap='10' (click)="logout()">
           <mat-icon aria-hidden="false">lock</mat-icon>
-          <p class='textMenu'>Logout </p>
+          <p class='textMenu'>{{'Dash.Logout' | translate}} </p>
         </li>
 
       </ul>
@@ -69,7 +69,7 @@
 
 
   </mat-drawer>
-  <mat-drawer-content class="container">
+  <mat-drawer-content style="background-color:#ECEFF1 ;" class="container">
 
     <router-outlet></router-outlet>
   </mat-drawer-content>

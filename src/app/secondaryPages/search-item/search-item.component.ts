@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
@@ -8,11 +9,13 @@ import { DatabaseService } from 'src/app/services/database.service';
   styleUrls: ['./search-item.component.scss']
 })
 export class SearchItemComponent implements OnInit {
-
+language
 
 searchTerm
 searchResults=[]
-  constructor(private dialogRef:MatDialogRef<SearchItemComponent>,   private dialog:MatDialog,private databaseService:DatabaseService) { }
+  constructor(private trasnulateService: TranslateService  ,private dialogRef:MatDialogRef<SearchItemComponent>,   private dialog:MatDialog,private databaseService:DatabaseService) { 
+
+  }
 
   ngOnInit(): void {
   }
@@ -26,10 +29,22 @@ searchResults=[]
   onChangeSearch(term){
 console.log(term)
 
-    this.databaseService.searchItem(term).then(result=>{
-      console.log(result)
-      this.searchResults = result
-    })
+
+
+
+if(  this.trasnulateService.getDefaultLang() == 'en'){
+  this.databaseService.searchItem(term).then(result=>{
+    console.log(result)
+    this.searchResults = result
+  })
+}else{
+  this.databaseService.searchItemArabic(term).then(result=>{
+    console.log(result)
+    this.searchResults = result
+  })
+}
+
+    
     
 
   }

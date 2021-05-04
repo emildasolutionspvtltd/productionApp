@@ -1,7 +1,7 @@
 <div>
 
     <div fxLayout='row' fxLayoutAlign='space-between center' class="headingContainer">
-        <h3 class="heading3">Add Discount</h3>
+        <h3 class="heading3">{{'CheckoutPage.AddDiscount' | translate}}</h3>
         <button (click)='closeDialog()'  mat-icon-button>
             <mat-icon>highlight_off</mat-icon>
         </button>
@@ -11,7 +11,7 @@
 
    
     <mat-form-field appearance="outline" style="width:275px; margin-right: 10px;">
-    <mat-label>Discount</mat-label>
+    <mat-label>{{'CheckoutPage.Discount' | translate}}</mat-label>
 <input  autofocus='true'  [(ngModel)]="discount" matInput type='number'>
 </mat-form-field>
 
@@ -27,4 +27,4 @@
 </div>
 <br>
 <button mat-raised-button (click)="getDiscount(group.value)" id="rightMargin" color="accent"
-    class="bigButton">Add Discount</button>
+    class="bigButton">{{'CheckoutPage.AddDiscount' | translate}}</button>

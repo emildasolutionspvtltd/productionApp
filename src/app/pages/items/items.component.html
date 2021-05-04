@@ -4,7 +4,20 @@
             <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">dehaze</mat-icon>
         </button>
         <p class="toolbarHeading">
-            Items</p>
+            {{'Dash.Items'  | translate}}
+            
+          </p>
+
+
+            
+
+
+
+
+
+
+
+
 
 
         <span class="example-spacer"></span>
@@ -18,14 +31,14 @@
     </mat-toolbar>
 
     <br>
-    <div fxLayout='row' fxLayoutGap='20px' fxLayoutAlign='space-between stretch' class="verticalCardContainer">
+    <div fxLayout='row' fxLayoutGap='20px' fxLayoutAlign='space-between stretch' style="padding-top: 0px;" class="verticalCardContainer">
 
-        <mat-card fxFlex='70%' style="overflow-y: scroll;height: 100%;" class="itemsCard">
+        <mat-card fxFlex='70%' style="overflow-y: scroll;height: 100%; padding-top: 0px;" class="itemsCard hideScroll ">
             <div fxLayout='row' fxLayoutAlign='space-between center' class="hedingContainer">
-                <h3 style="color:#2C2C2C  ;" class="heading3">List of Items</h3>
+                <h3 style="color:#2C2C2C  ;" class="heading3">{{'ItemPage.listOfItems' | translate}}</h3>
                 <mat-form-field appearance="legacy">
 
-                    <input style="width: 200px;" matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+                    <input style="width: 200px;" matInput (keyup)="applyFilter($event)" placeholder="{{'ItemPage.Search' | translate}}" #input>
             
                 <mat-icon matSuffix class="" aria-hidden="false" aria-label="Example user verified icon">search</mat-icon>
             </mat-form-field>
@@ -44,20 +57,20 @@
 
                 <!-- Position Column -->
                 <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef>Item Name</th>
+                    <th mat-header-cell *matHeaderCellDef>{{'ItemPage.ItemName' | translate}}</th>
                     <td style="text-transform: capitalize;" mat-cell *matCellDef="let element"> {{element.name}} 
                     </td>
                 </ng-container>
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="inventory">
-                    <th mat-header-cell *matHeaderCellDef> Inventory </th>
+                    <th mat-header-cell *matHeaderCellDef> {{'ItemPage.Inventory' | translate}} </th>
                     <td mat-cell *matCellDef="let element"> {{element.inventory}} {{element.unit}} </td>
                 </ng-container>
 
                 <!-- Weight Column -->
                 <ng-container matColumnDef="price">
-                    <th mat-header-cell *matHeaderCellDef> Price </th>
+                    <th mat-header-cell *matHeaderCellDef> {{'ItemPage.Price' | translate}} </th>
                     <td mat-cell *matCellDef="let element"> {{element.price | currency : 'SAR'}} </td>
                 </ng-container>
 
@@ -89,40 +102,45 @@
                     </td>
                 </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 
             </table>
             <mat-paginator #paginator [length]="5"
-                                   [pageSize]="5"
-                                   [pageSizeOptions]="[5, 10, 25, 100]">
+                                   [pageSize]="10"
+                                   [pageSizeOptions]="[ 10, 20,30, 100]">
                     </mat-paginator>
         </mat-card>
         <div fxFlex='30%' fxLayout='column' fxLayoutGap='20px' fxLayoutAlign='space-between stretch'
             class="subCardContainer">
-            <mat-card fxFlex='15%' >
-                <h5 style="font-weight:700">Total Number Of Items : <span class="heading3" >  {{itemscount}}</span> </h5>
+            <mat-card fxLayout='column' fxLayoutAlign='space-around center' style="text-align: center;" fxFlex='15%' >
+                 <p class="heading3" style="font-size: 36px;" >  {{itemscount}}</p> 
+                 <h3 style="font-weight:800;color: orange; opacity: 0.7;">{{'ItemPage.TotalNoOfItems' | translate }}</h3> 
                 
             </mat-card>
 
-            <mat-card fxFlex='15%' >
-                <h5 style="font-weight:700">Total Number Of Categories : <span class="heading3">  {{categorycount}}</span></h5>
+            <mat-card fxLayout='column' fxLayoutAlign='space-around center' style="text-align: center;" fxFlex='15%' >
+                <p class="heading3" style="font-size: 36px;">  {{categorycount}}</p>
+                <h3 style="font-weight:800  !important;color: orange; opacity: 0.7;">{{'ItemPage.TotalNoOfCategories' | translate }}  </h3>
            
             </mat-card>
-            <mat-card fxFlex='70%'>
+            <mat-card style="overflow-y: scroll;height: 100%; padding-top: 0px;"  fxFlex='70%'>
 
 
-                <h3 style="color:#2C2C2C  ;" class="heading3">List of Categories</h3>
+                <h3 style="color:#2C2C2C  ;" class="heading3">{{'ItemPage.listOfCategories' | translate }}
+                </h3>
 
                 <table style="width: 100%;" mat-table [dataSource]="categoryData">
 
 
+
                     <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef> Name </th>
+                        <th mat-header-cell *matHeaderCellDef> {{'ListOfCatergories.Name' | translate }} </th>
                         <td mat-cell *matCellDef="let element"> {{element.categoryName }} </td>
                     </ng-container>
                     <ng-container matColumnDef="count">
-                        <th mat-header-cell *matHeaderCellDef> No .of Items </th>
+                        <th mat-header-cell *matHeaderCellDef>{{'ListOfCatergories.Items' | translate }}
+                        </th>
                         <td mat-cell *matCellDef="let element">  </td>
                     </ng-container>
 
@@ -147,11 +165,11 @@
 
                         </mat-menu> </td>
                     </ng-container>
-                    <tr mat-header-row *matHeaderRowDef="displayedColumnsCategory"></tr>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsCategory;sticky: true"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumnsCategory;"></tr>
                     
                 </table>
-                <mat-paginator #paginatorU [length]="5"
+                <mat-paginator #paginatorU
                                    [pageSize]="5"
                                    [pageSizeOptions]="[5, 10, 25, 100]">
                     </mat-paginator>
@@ -166,28 +184,28 @@
 <button mat-raised-button [matMenuTriggerFor]="menu" color="accent"
 style="position: fixed; max-width: 150px; bottom: 10px;right: 10px;" class="bigButton">
 <mat-icon>add_circle_outline</mat-icon>
-&nbsp;&nbsp;Add Item </button>
+&nbsp;&nbsp;{{'ItemPage.addItem' | translate}} </button>
 <mat-menu #menu="matMenu">
     <mat-nav-list>
         <mat-list-item (click)="routeToSingle()" >
             <mat-icon matListIcon>add_box
             </mat-icon>
     
-            <p matLine> Add Single Item </p>
+            <p matLine> {{'ItemPage.AddSingleItem' | translate }}</p>
         
         </mat-list-item>
         <mat-divider></mat-divider>
     
         <mat-list-item (click)="routeToBulk()">
             <mat-icon matListIcon>add_to_photos</mat-icon>
-            <p matLine> Add Items In Bulk </p>
+            <p matLine> {{'ItemPage.AddItemInBulk' | translate }} </p>
              </mat-list-item>
             <mat-divider></mat-divider>
     
         <mat-list-item (click)="routeToCategory()">
     
             <mat-icon matListIcon>add_task</mat-icon>
-            <p matLine> Add Categories </p>
+            <p matLine> {{'ItemPage.AddCategories' | translate }} </p>
        
     </mat-list-item>
     </mat-nav-list>

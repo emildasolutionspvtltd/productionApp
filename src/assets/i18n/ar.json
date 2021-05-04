@@ -1,0 +1,202 @@
+{
+	"AddCatergoryPopup": {
+		"AddCategory": "إضافة فئة",
+		"NameofCatergory": "اسم كاترجوري",
+		"Save": "حفظ"
+	},
+	"AddNewCustomerPopup": {
+		"AddNewCust": "إضافة عميل جديد",
+		"Mail": "البريد الإلكتروني",
+		"Name": "اسم",
+		"Notes": "ملاحظات",
+		"PhNo": "رقم الهاتف"
+	},
+	"AddSingleItemPopup": {
+		"Category": "الفئة",
+		"InvenStock": "مخزون المخزون",
+		"ItemId": "معرف العنصر / الباركود",
+		"Name": "اسم العنصر",
+		"NameInArabic": "اسم العنصر بالعربية",
+		"RetailPrice": "الحد الأقصى لسعر التجزئة",
+		"Save": "حفظ",
+		"SellingPrice": "ضريبة",
+		"Tax": "ضريبة",
+		"Unit": "وحدة"
+	},
+	"AddTaxesPopup": {
+		"Save": "",
+		"TaxName": "الاسم الضريبي",
+		"TaxPercentages": "نسبة الضريبة",
+		"TypeofTax": "نوع الضريبة"
+	},
+	"Buttons": {
+		"Save": "حفظ"
+	},
+	"CheckOutSettingsPaymentPopup": {
+		"Notes": "ملاحظات",
+		"PaymentName": "دفع نعمه"
+	},
+	"CheckOutSettingsPrinter": {
+		"LabelPrinter": "طابعة ملصقات",
+		"RecieptPrinter": "طابعة استلام"
+	},
+	"CheckOutSettingsTaxesPopup": {
+		"AddTax": "أضف ضريبة",
+		"Inclu/Eclu": "شاملة حصرية",
+		"Tax": "الضرائب",
+		"TaxPercentage": "نسبة الضريبة",
+		"Taxes": "الاسم الضريبي"
+	},
+	"CheckoutPage": {
+		"AddCustomer": "إضافة العملاء",
+		"AddDiscount": "إضافة خصم",
+		"Barcode": "الباركود",
+		"Checkout": "الدفع",
+		"Cost": "كلفة",
+		"Discount": "خصم",
+		"EmptyCart1": "سلة التسوق الخاصة بك تبدو فارغة!",
+		"EmptyCart2": "إضافة عناصر عن طريق مسح الباركود أو البحث عن عنصر\n\n",
+		"GrandTotal": "المجموع الكلي",
+		"ItemName": "اسم العنصر",
+		"PaymentMode": "طريقة الدفع",
+		"ProductName": "اسم المنتج",
+		"Quantity": "كمية",
+		"Sales": "مبيعات",
+		"SubTotal": "حاصل الجمع",
+		"Support": "الدعم",
+		"Tax": "ضريبة",
+		"Total": "مجموع",
+		"clearEntries": "مداخل واضحة",
+		"dExpressCheckout": "تعطيل Express Checkout",
+		"discount": "خصم",
+		"eExpressCheckout": "تمكين Express Checkout  "
+	},
+	"CustomerDiscountPopup": {
+		"Discount": "خصم"
+	},
+	"CustomerPage": {
+		"ItemsPerPage": "مواد لكل صفحة",
+		"ListOfCustomers": "قائمة العملاء",
+		"Mail": "البريد الإلكتروني",
+		"Name": "اسم الزبون",
+		"Notes": "ملاحظات",
+		"PhNo": "رقم الهاتف",
+		"Search": "بحث",
+		"addNewCustomer": "إضافة عميل جديد",
+		"deleteCustomer": "حذف العملاء",
+		"editCustomer": "تحرير العملاء"
+	},
+	"Dash": {
+		"Customer": "الزبائن",
+		"Items": "العناصر",
+		"Logout": "الخروج",
+		"Reports": "تقارير",
+		"Sales": "مبيعات",
+		"Settings": "الإعدادات",
+		"Transactions": "المعاملات"
+	},
+	"ItemPage": {
+		"AddCategories": "أضف فئات",
+		"AddItemInBulk": "إضافة عنصر بكميات كبيرة",
+		"AddSingleItem": "إضافة عنصر واحد",
+		"Inventory": "المخزون",
+		"ItemName": "اسم العنصر",
+		"Price": "السعر",
+		"Search": "بحث",
+		"TotalNoOfCategories": "العدد الإجمالي للفئات",
+		"TotalNoOfItems": "العدد الإجمالي للعناصر",
+		"addItem": "اضافة عنصر",
+		"listOfCategories": "قائمة الفئات",
+		"listOfItems": "قائمة العناصر"
+	},
+	"LabelPrinterPopup": {
+		"Printer": "اسم طابعة التسمية",
+		"Save": "",
+		"Width": "العرض بالبكسل"
+	},
+	"ListOfCatergories": {
+		"Items": "عدد العناصر",
+		"Items per page": "مواد لكل صفحة",
+		"Name": "اسم"
+	},
+	"LogOutPage": {
+		"Login": "تسجيل الدخول",
+		"Mail": "عنوان الايميل",
+		"Password": "كلمه السر"
+	},
+	"ReceiptInformation": {
+		"FooterInfo": "معلومات التذييل",
+		"SubFooter": "تذييل فرعي",
+		"Update": "تحديث"
+	},
+	"ReceiptPrinterPopup": {
+		"PrinterName": "اسم طابعة الإيصال",
+		"Save": "",
+		"Width": "العرض بالبكسل"
+	},
+	"ReportGeneration": {
+		"CustomerReport": "تقرير العميل",
+		"Download Report": "تحميل التقرير",
+		"End Date": "أدخل تاريخ الانتهاء",
+		"ItemsReport": "تقرير العناصر",
+		"ReportGeneration": "إنشاء التقرير",
+		"SalesReport": "تقرير المبيعات",
+		"Start Date": "أدخل تاريخ البدء",
+		"TypeOfReport": "نوع التقرير"
+	},
+	"SettingsPage": {
+		"CheckoutSettings": "إعدادات الخروج",
+		"Settings": "الإعدادات",
+		"UserSetting": "إعداد المستخدم"
+	},
+	"ShopLogo": {
+		"HeaderInfo": "رأس الشعار",
+		"SubHeaderLogo": "شعار العنوان الفرعي"
+	},
+	"TransactionPage": {
+		"Amount": "كمية",
+		"CustomerName": "اسم الزبون",
+		"Dates": "التاريخ / الوقت",
+		"ItemPerPage": "مواد لكل صفحة",
+		"ListOfTransaction": "قائمة المعاملات",
+		"OrderId": "رقم التعريف الخاص بالطلب",
+		"Search": "بحث",
+		"TypeOfTransaction": "نوع المعاملات",
+		"acceptReturn": "قبول العودة",
+		"cancelTransactions": "إلغاء المعاملات"
+	},
+	"Type of Report Popup": {
+		"Customer": "زبون",
+		"Items": "عناصر التقرير",
+		"Report Sales": "تقرير المبيعات"
+	},
+	"UserSettingInfo": {
+		"ExpiryDate": "تاريخ الانتهاء",
+		"Language": "لغة",
+		"Mail": "عنوان الايميل",
+		"Name": "اسم",
+		"Password": "كلمه السر",
+		"PhNo": "رقم الهاتف المحمول",
+		"ShopName": "اسم المحل",
+		"SoftwareInfo": "معلومات البرنامج",
+		"UserInformation": "معلومات المستخدم",
+		"Version": "الإصدار"
+	},
+	"customerPopup": {
+		"Customer": "اسم العميل / الرقم",
+		"NewCustomer": "إنشاء عميل جديد",
+		"addCustomer": "إضافة العملاء"
+	},
+	"editItems": "تعديل البنود",
+	"loginPage": {
+		"email": "عنوان الايميل",
+		"loginButton": "تسجيل الدخول",
+		"password": "كلمه السر"
+	},
+	"newCustomerPopup": {
+		"Mail": "عنوان الايميل",
+		"Notes": "ملاحظات",
+		"Save": "حفظ",
+		"name": " اسم"
+	}
+}

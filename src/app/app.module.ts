@@ -35,10 +35,10 @@ import {MatListModule} from '@angular/material/list';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatBadgeModule} from '@angular/material/badge';
-import { RouterModule } from "@angular/router";
 
 import { NgxElectronModule } from 'ngx-electron';
 
+import { KeyboardShortcutsModule }     from 'ng-keyboard-shortcuts';  
 
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -78,6 +78,22 @@ import { ExpieredComponent } from './secondaryPages/expiered/expiered.component'
 import { BagNotificationComponent } from './secondaryPages/bag-notification/bag-notification.component';
 import { AddInventoryComponent } from './secondaryPages/add-inventory/add-inventory.component';
 import { SupportComponent } from './secondaryPages/support/support.component';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+
+
+
+
+
+
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+
 // const customLayouts: IKeyboardLayouts = {
 //   ...keyboardLayouts,
 //   'oh': {
@@ -133,9 +149,21 @@ import { SupportComponent } from './secondaryPages/support/support.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     AngularFireAuthModule,
     FlexLayoutModule,
-  
+    KeyboardShortcutsModule.forRoot()  ,
+
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+        
+
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [HttpClient]
+      }
+  }),
     NgxElectronModule,
     ReactiveFormsModule,
     AngularFireDatabaseModule,

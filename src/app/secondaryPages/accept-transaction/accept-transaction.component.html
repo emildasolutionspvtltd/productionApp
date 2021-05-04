@@ -7,14 +7,12 @@
     </div>
     <mat-selection-list #shoes [(ngModel)]="selectedOptions" (ngModelChange)="onNgModelChange($event)">
         <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
-            <table>
-            <tr>
-                <td>{{shoe.barcode}}</td>
-                <td>{{shoe.name}}</td>
-                <td>{{shoe.quantity}}</td>
-                <td>{{shoe.price}}</td>
-              </tr>
-            </table>
+           
+                
+             <div mat-line > {{shoe.name}}</div>  
+             <div mat-line >   {{shoe.quantity}}{{shoe.unit}}</div>
+             <div mat-line >  {{shoe.price | currency :'SAR'}}</div>
+          
         </mat-list-option>
       </mat-selection-list>
       

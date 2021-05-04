@@ -1,19 +1,22 @@
 <div class="container">
 <div  fxLayout='row' fxLayoutAlign='space-between center' class="headingContainer">
-<h3 class="heading3">Add Cateogry</h3>
+<h3 class="heading3">
+  {{'AddCatergoryPopup.AddCategory' | translate}}</h3>
 <button (click)='closeDialog()'  mat-icon-button>
     <mat-icon>highlight_off</mat-icon>
   </button>
 </div>
 <br>
     <mat-form-field appearance="outline">
-        <mat-label>Name of Category </mat-label>
+        <mat-label>      {{'AddCatergoryPopup.NameofCatergory' | translate}}
+        </mat-label>
         <input [formControl]='categoryName' autofocus matInput type='text' >
       </mat-form-field>
 
 
 
+      
+      
 
-
-    <button (click)='submit()' mat-raised-button color="accent" class="bigButton">Save</button>
+    <button (click)='submit()' mat-raised-button color="accent" class="bigButton">{{'AddCatergoryPopup.Save' | translate}}</button>
 </div>

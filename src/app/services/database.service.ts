@@ -37,6 +37,12 @@ deleteItem(id){
     return this.electron.ipcRenderer.invoke('searchItem',data)
   }
 
+
+
+  searchItemArabic(data){
+    return this.electron.ipcRenderer.invoke('searchItemArabic',data)
+  }
+
   getAllItems(){
     return this.electron.ipcRenderer.invoke('getTabelAllItems')
   }
@@ -145,7 +151,8 @@ updateInventory(id,inv){
 async printData(data){
 
   let printer = await this.getReceiptPrinter()
-  return this.electron.ipcRenderer.invoke('print',data,printer)
+  console.log(printer)
+  return await this.electron.ipcRenderer.invoke('print',data,printer)
 }
 
 
@@ -262,5 +269,10 @@ updatePay(id,data){
 
     getLogo(){
       return this.electron.ipcRenderer.invoke('getLogo')
+    }
+
+
+    changePassword(newPassword){
+      return this.electron.ipcRenderer.invoke('changePassword',newPassword)
     }
 }

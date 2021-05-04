@@ -15,7 +15,7 @@ export class CheckoutServiceService {
 
 
    checkoutSettings={
-     expressMode:true,
+     expressMode:false,
      askForPrintOption:true,
      defaultPrintOption:true
    }
@@ -23,7 +23,14 @@ export class CheckoutServiceService {
   selectedCustomer: customer
   private bag = [];
   private cartItemCount = new BehaviorSubject(0);
-  constructor(private matBottom: MatBottomSheet) { }
+  constructor(  private matBottom: MatBottomSheet) { 
+
+
+
+  }
+
+
+ 
 
 
 

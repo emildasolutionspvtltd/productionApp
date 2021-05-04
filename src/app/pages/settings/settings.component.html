@@ -5,7 +5,7 @@
             <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">dehaze</mat-icon>
         </button>
         <p class="toolbarHeading">
-            Settings </p>
+            {{'SettingsPage.Settings' | translate}} </p>
 
 
         <span class="example-spacer"></span>
@@ -20,10 +20,13 @@
 
 <div class='insideContainer'>
     <mat-tab-group animationDuration="500ms" mat-align-tabs="center">
-        <mat-tab  label="User Settings">
+        <mat-tab  label="{{'SettingsPage.UserSetting' | translate}}">
             <div class="userInformation">
                 <p style="width: 200px; font-size: large; margin: 0px,0px,0px,0px;">
-                    User Information
+
+
+{{'UserSettingInfo.UserInformation' | translate }}
+
                 </p>
 
                 <mat-card style="max-width: 450px;">
@@ -32,37 +35,52 @@
 
                     <table class="infoTable" style="width: 100%">
                         <tr>
-                            <th>Name </th>
+                            <th>{{'UserSettingInfo.Name' | translate }} </th>
                             <td> : {{userInfo?.name}}</td>
                         </tr>
                         <tr>
-                            <th>Shop Name </th>
+                            <th>{{'UserSettingInfo.ShopName' | translate }}</th>
                             <td> : {{userInfo?.shopName}}</td>
                         </tr>
                         <tr>
-                            <th>Mobile Number </th>
+                            <th>{{'UserSettingInfo.PhNo' | translate }}
+                            </th>
                             <td> : {{userInfo?.mobileNumber}}</td>
                         </tr>
 
                         <tr>
-                            <th>Email </th>
+                            <th>{{'UserSettingInfo.Mail' | translate }}
+                            </th>
                             <td> : {{userInfo?.email}}</td>
                         </tr>
 
-                        <tr>
-                            <th>Password </th>
-                            <td> : {{userInfo?.password}}</td>
+                        <tr> 
+                            <th>{{'UserSettingInfo.Password' | translate }}
+                            </th>
+                            <td fxLayout='row' fxLayoutAlign='space-between center' > : {{userInfo?.password}}  
+                                <button *ngIf='!changePasswordDisplay' (click)="displayChangePassword(true) "mat-button color="accent" >Change Password</button>
+                                </td>
                         </tr>
 
 
 
                     </table>
+                    <div *ngIf='changePasswordDisplay' class="changePassword">
+                        <mat-form-field   class="example-full-width">
+                            <mat-label>New Password</mat-label>
+                            <input matInput placeholder="******" [(ngModel)] = "newPassword">
+                          </mat-form-field>
+                          <button style='margin-left: 20px;' (click)='saveNewPassword()' mat-raised-button color="accent" >Save</button>
+
+                          <button mat-button style="color: red; " (click)="displayChangePassword(false)">Cancel</button>
+
+                    </div>
                 </mat-card>
 
             </div>
             <div class="userInformation">
                 <p style="width: 200px; font-size: large; margin: 0px,0px,0px,0px;">
-                    Software Information </p>
+                    {{'UserSettingInfo.SoftwareInfo' | translate}} </p>
 
                 <mat-card style="max-width: 450px;">
 
@@ -70,12 +88,22 @@
 
                     <table class="infoTable" style="width: 100%">
                         <tr>
-                            <th>Expiry Date </th>
+                            <th>{{'UserSettingInfo.ExpiryDate' | translate }}
+                            </th>
                             <td> : {{userInfo?.expiryDate | date }}</td>
                         </tr>
                         <tr>
-                            <th>Version </th>
+                            <th>{{'UserSettingInfo.Version' | translate }}
+                            </th>
                             <td> : 0.01</td>
+                        </tr>
+                        <tr>
+                            <th>{{'UserSettingInfo.Language' | translate}} </th> 
+                            <td fxLayout='row' fxLayoutAlign='space-between center' > :{{defaultLanguage == 'en' ? 'English' : 'Arabic'}} <button mat-button color="accent" [matMenuTriggerFor]="menu">Change Language</button>
+                                <mat-menu #menu="matMenu">
+                                  <button (click)="changeLanguage('en')" mat-menu-item>English</button>
+                                  <button (click)="changeLanguage('ar')" mat-menu-item>Arabic</button>
+                                </mat-menu> </td>
                         </tr>
 
 
@@ -88,32 +116,84 @@
 
 
         </mat-tab>
-        <mat-tab style='background-color: #ECEFF1;' label="Checkout Settings">
-            <div style="padding: 20px;">
-                <button mat-stroked-button (click)="addTax()"
-                    style="border-color: green;border-width: 2px; color: green; float: right;">
-                    Add Taxes
-                </button>
+        <mat-tab style='background-color: #ECEFF1;' label="{{'SettingsPage.CheckoutSettings' | translate}}">
+
+
+            <div class="userInformation">
+                <p style="width: 450px; font-size: large; margin: 0px,0px,0px,0px;">
+                    Express Checkout Settings </p>
+
+                <mat-card style="max-width: 450px;">
+
+
+
+                    <table class="infoTable" style="width: 100%">
+                        <tr>
+                            <th>Express Checkout Settings Mode</th>
+                            <td><mat-button-toggle-group    [(ngModel)]="tempCheckoutService.expressMode"   >
+                                <mat-button-toggle [value]="true">Enable</mat-button-toggle>
+                                <mat-button-toggle [value]="false">Disable</mat-button-toggle>
+                              </mat-button-toggle-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Ask for Printing Prefernece
+                            </th>
+                            <td> 
+                                <mat-button-toggle-group [disabled]='tempCheckoutService.expressMode'  [(ngModel)]="tempCheckoutService.askForPrintOption"  >
+                                    <mat-button-toggle [value]="true">Always</mat-button-toggle>
+                                    <mat-button-toggle [value]="false">Never</mat-button-toggle>
+                                  </mat-button-toggle-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Default Printing Mode </th> 
+                            <td>
+                                <mat-button-toggle-group [disabled]='tempCheckoutService.askForPrintOption || tempCheckoutService.expressMode ' [(ngModel)]="tempCheckoutService.defaultPrintOption" >
+                                    <mat-button-toggle [value]="true">With Print</mat-button-toggle>
+                                    <mat-button-toggle [value]="false">Without Print</mat-button-toggle>
+                                  </mat-button-toggle-group>
+                                 </td>
+                        </tr>
+
+
+
+                    </table>
+
+
+                    <button color='accent' mat-raised-button (click)="updateExpressCheckout()" style="border-color: green;border-width: 2px; color: white; ">
+                        Save Setting
+                    </button>
+                </mat-card>
+
+            </div>
+<br>
+
+
+            <div fxLayout='row' fxLayoutAlign='space-between center' style="padding: 20px; max-width: 450px;">
+              
                 <p style="width: 200px; font-size: large; margin: 0px,0px,0px,0px;">
-                    Taxes
+                    {{'CheckOutSettingsTaxesPopup.Tax' | translate}}
                 </p>
-                <br>
+                <button   mat-raised-button (click)="addTax()"
+                color='accent'>
+{{'CheckOutSettingsTaxesPopup.AddTax' | translate}}                </button>
             </div>
             <div style="padding-left: 20px;padding-right: 20px;">
-                <mat-card fxFlex='100%'>
+                <mat-card style="max-width: 450px;" >
                     <table style="width: 100%;" mat-table [dataSource]="dataSource">
 
 
                         <ng-container matColumnDef="taxName">
-                            <th mat-header-cell *matHeaderCellDef> Tax Name </th>
+                            <th mat-header-cell *matHeaderCellDef> {{'CheckOutSettingsTaxesPopup.Taxes' | translate}} </th>
                             <td mat-cell *matCellDef="let element"> {{element.taxName}} </td>
                         </ng-container>
                         <ng-container matColumnDef="taxPercentage">
-                            <th mat-header-cell *matHeaderCellDef> Tax Percentage </th>
+                            <th mat-header-cell *matHeaderCellDef> {{'CheckOutSettingsTaxesPopup.TaxPercentage' | translate}} </th>
                             <td mat-cell *matCellDef="let element"> {{element.taxPercentage}} </td>
                         </ng-container>
                         <ng-container matColumnDef="inex">
-                            <th mat-header-cell *matHeaderCellDef> Inclusive/Eclusive </th>
+                            <th mat-header-cell *matHeaderCellDef> {{'CheckOutSettingsTaxesPopup.Inclu/Eclu' | translate}} </th>
                             <td mat-cell *matCellDef="let element"> {{element.inex}} </td>
                         </ng-container>
                         <ng-container matColumnDef="button">
@@ -157,7 +237,7 @@
                 <br>
             </div>
             <div style="padding-left: 20px;padding-right: 20px;">
-                <mat-card fxFlex='100%'>
+                <mat-card style="max-width: 450px;"  fxFlex='100%'>
                     <table style="width: 100%;" mat-table [dataSource]="dataSource1">
 
 
@@ -214,7 +294,7 @@
                             <mat-form-field style="margin-right: 10px;" appearance="outline">
                                 <mat-label>Reciept Printer Name</mat-label>
                                 <mat-select formControlName='recieptPrinter'>
-                                    <mat-option *ngFor="let printer of printerName" [value]="printer.displayName">
+                                    <mat-option *ngFor="let printer of printerName" [value]="printer.name">
                                         {{printer.name}} </mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -244,7 +324,7 @@
                         <mat-form-field style="margin-right: 10px;" appearance="outline">
                             <mat-label>Label Printer Name</mat-label>
                             <mat-select formControlName='labelPrinter'>
-                                <mat-option *ngFor="let printer of printerName" [value]="printer.displayName">
+                                <mat-option *ngFor="let printer of printerName" [value]="printer.name">
                                     {{printer.name}} </mat-option>
 
                             </mat-select>
@@ -344,7 +424,7 @@
         
                             
                         </form>
-                        <button color='accent' mat-raised-button (click)="addHeaderFooter()" style="border-color: green;border-width: 2px; color: green; margin-left: 40%">
+                        <button color='accent' mat-raised-button (click)="addHeaderFooter()" style="border-color: green;border-width: 2px; color: white; margin-left: 40%">
                             Update
                         </button>
                     <br>

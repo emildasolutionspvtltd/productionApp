@@ -1,17 +1,16 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { timeStamp } from 'node:console';
+import { TranslateService } from '@ngx-translate/core';
 import { AddPaymentComponent } from 'src/app/secondaryPages/add-payment/add-payment.component';
 
 import { AddTaxesComponent } from 'src/app/secondaryPages/add-taxes/add-taxes.component';
 import { EditPayComponent } from 'src/app/secondaryPages/edit-pay/edit-pay.component';
 import { EditTaxComponent } from 'src/app/secondaryPages/edit-tax/edit-tax.component';
+import { CheckoutServiceService } from 'src/app/services/checkout-service.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { SecondaryService } from 'src/app/services/secondary.service';
-import { isThisTypeNode } from 'typescript';
 
 @Component({
   selector: 'app-settings',
@@ -24,13 +23,20 @@ export class SettingsComponent implements OnInit {
   dataSource1:MatTableDataSource<any>
   displayedColumns1: string[] = ['payName', 'paynotes','button'];
   printerName
+  
   userInfo
   recieptPrinterData
   labelPrinterData
   headerFooterData
   logoPrint
+  test=true
+test1='true'
+newPassword=''
+changePasswordDisplay=false
+  defaultLanguage
+  tempCheckoutService
   // gets all the previous payment mode and taxes
-  constructor(@Inject(SecondaryService) private secService:SecondaryService,private dialog:MatDialog,private db:DatabaseService) {
+  constructor(public checkoutService:CheckoutServiceService, private translateService: TranslateService,    @Inject(SecondaryService) private secService:SecondaryService,private dialog:MatDialog,private db:DatabaseService) {
     this.getTax()
     this.getPay()
     this.getPrinter()
@@ -38,7 +44,63 @@ export class SettingsComponent implements OnInit {
     this.selectedPrinterInfo()
     this.getHeaderFooter()
     this.getLogoPath()
-   }
+  this.getExpressSettings()
+  this.defaultLanguage =  this.translateService.getDefaultLang()
+    
+
+
+  }
+  onValChange(data){
+    console.log(data)
+  }
+
+
+
+  saveNewPassword(){
+    if(this.newPassword != '' && this.newPassword.length  > 5){
+      this.db.changePassword(this.newPassword).then(res=>{
+        this.secService.presentSanckBar("Password Updated",'success')
+this.newPassword=''
+this.changePasswordDisplay=false
+this.getUserInfo()
+      })
+
+
+    }else{
+      this.secService.presentSanckBar("Please enter a valid input minimum of 6 Characters",'danger')
+
+    }
+  }
+
+  displayChangePassword(data){
+    this.changePasswordDisplay = data
+  }
+getExpressSettings(){
+this.tempCheckoutService=this.checkoutService.checkoutSettings
+console.log(this.tempCheckoutService)
+}
+
+
+updateExpressCheckout(){
+   console.log(this.tempCheckoutService)
+}
+
+
+
+
+
+  changeLanguage(lang){
+    this.translateService.setDefaultLang(lang)
+    this.defaultLanguage = lang
+  }
+
+
+  
+
+
+
+
+
    infoForm = new FormGroup({
      type : new FormControl('printData'),
      header : new FormControl('',Validators.required),

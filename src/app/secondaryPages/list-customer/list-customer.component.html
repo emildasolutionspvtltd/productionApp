@@ -1,14 +1,17 @@
 <div class="container">
-
+    
+    
+    
+    
     <div fxLayout='row' fxLayoutAlign='space-between center' class="headingContainer">
-        <h3 class="heading3">Add Customer</h3>
+        <h3 class="heading3">{{'customerPopup.addCustomer' | translate }}</h3>
         <button (click)='closeDialog()'  mat-icon-button>
             <mat-icon>highlight_off</mat-icon>
         </button>
     </div>
 <br>
  <mat-form-field appearance="outline">
-    <mat-label>Customer Name / Number</mat-label>
+    <mat-label>{{'customerPopup.Customer' | translate }}</mat-label>
 <input style="text-transform: uppercase;" autofocus='true' 
 (input)='onChangeSearch($event.target.value)'  
  matInput type='text'>
@@ -49,6 +52,6 @@
 
 
 <p *ngIf='!searchTerm'  style="text-align: center;font-size: 16px;opacity: 70%;">Or</p>
-<button *ngIf='searchResults.length == 0 || !searchTerm  '   (click)='newCustomerModal()' mat-raised-button color="accent" class="bigButton">Create New Customer</button>
+<button *ngIf='searchResults.length == 0 || !searchTerm  '   (click)='newCustomerModal()' mat-raised-button color="accent" class="bigButton">{{'customerPopup.NewCustomer' | translate }}</button>
 
 </div>

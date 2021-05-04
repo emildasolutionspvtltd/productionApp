@@ -1,14 +1,14 @@
 <div class="container">
     <div  fxLayout='row' fxLayoutAlign='space-between center' class="headingContainer">
-    <h3 class="heading3">Add Cateogry</h3>
+    <h3 class="heading3">Edit Cateogry</h3>
     <button (click)='closeDialog()'  mat-icon-button>
         <mat-icon>highlight_off</mat-icon>
       </button>
     </div>
     <br>
-        <mat-form-field appearance="outline">
+        <mat-form-field style='width:100%' appearance="outline">
             <mat-label>Name of Category</mat-label>
-            <input [formControl]='categoryName' autofocus matInput type='text' >
+            <input [formControl]='categoryName' autofocus [(ngModel)]="catname" matInput type='text' >
 
           </mat-form-field>
     

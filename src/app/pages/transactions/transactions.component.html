@@ -5,58 +5,67 @@
             <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">dehaze</mat-icon>
         </button>
         <p class="toolbarHeading">
-            Transactions </p>
+            {{'Dash.Transactions' | translate}} </p>
 
         <span class="example-spacer"></span>
-        
+
         <div class="buttonHolder">
-       
+
             <button mat-icon-button>
                 <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">more_vert</mat-icon>
             </button>
         </div>
     </mat-toolbar>
     <div style="padding: 20px;">
-        <mat-card style="margin: 0 auto;width: 80%;" >
+        <mat-card style="margin: 0 auto;width: 80%;">
 
 
             <div fxLayout='row' fxLayoutAlign='space-between center' class="hedingContainer">
-                <h3 style="color:#2C2C2C  ;" class="heading3">List of Transactions</h3>
+                <h3 style="color:#2C2C2C  ;" class="heading3">    {{'TransactionPage.ListOfTransaction' | translate }}
+                </h3>
                 <mat-form-field appearance="legacy">
 
-                    <input style="width: 200px;" matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
-            
-                <mat-icon matSuffix class="" aria-hidden="false" aria-label="Example user verified icon">search</mat-icon>
-            </mat-form-field>
-                
-               
-            </div>  
-         
-            <table style="width: 100%;"  mat-table [dataSource]="dataSource" matSort>
+                    <input style="width: 200px;" matInput (keyup)="applyFilter($event)" placeholder="    {{'TransactionPage.Search' | translate }}" #input>
+
+                    <mat-icon matSuffix class="" aria-hidden="false" aria-label="Example user verified icon">search
+                    </mat-icon>
+                </mat-form-field>
+
+
+            </div>
+
+            <table style="width: 100%;" mat-table [dataSource]="dataSource" matSort>
 
 
                 <ng-container matColumnDef="dateTime">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>  Date/time </th>
-                    <td style="opacity: 60%;font-size: small;" mat-cell *matCellDef="let element"> {{element.time | date :'short'}} </td>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>     {{'TransactionPage.Dates' | translate }}
+                    </th>
+                    <td style="opacity: 60%;font-size: small;" mat-cell *matCellDef="let element"> {{element.time | date
+                        :'short'}} </td>
                 </ng-container>
                 <ng-container matColumnDef="orderId">
-                    <th mat-header-cell *matHeaderCellDef >  Order Id </th>
+                    <th mat-header-cell *matHeaderCellDef>     {{'TransactionPage.OrderId' | translate }}
+                    </th>
                     <td mat-cell *matCellDef="let element"> {{element._id}} </td>
                 </ng-container>
                 <ng-container matColumnDef="custid">
-                    <th mat-header-cell *matHeaderCellDef > Customer Name </th>
-                    <td style="text-transform: capitalize;" mat-cell *matCellDef="let element"> {{element.customer.name}}</td>
+                    <th mat-header-cell *matHeaderCellDef>     {{'TransactionPage.CustomerName' | translate }}
+                    </th>
+                    <td style="text-transform: capitalize;" mat-cell *matCellDef="let element">
+                        {{element.customer.name}}</td>
                 </ng-container>
                 <!-- {{element.customer.name}} -->
                 <ng-container matColumnDef="cost">
-                    <th mat-header-cell *matHeaderCellDef > Amount </th>
+                    <th mat-header-cell *matHeaderCellDef>     {{'TransactionPage.Amount' | translate }}
+                    </th>
                     <td mat-cell *matCellDef="let element"> {{element.total | currency :'SAR' }} </td>
                 </ng-container>
-                <ng-container matColumnDef="typetransaction" >
-                    <th mat-header-cell *matHeaderCellDef> type of Transactions </th>
+                <ng-container matColumnDef="typetransaction">
+                    <th mat-header-cell *matHeaderCellDef>     {{'TransactionPage.TypeOfTransaction' | translate }}
+                    </th>
                     <td mat-cell *matCellDef="let element"> {{element.typeOfTransaction}} </td>
                 </ng-container>
-                
+
                 <ng-container matColumnDef="button">
                     <th mat-header-cell *matHeaderCellDef> </th>
                     <td mat-cell *matCellDef="let element"> <button [matMenuTriggerFor]="menu" mat-icon-button>
@@ -68,12 +77,14 @@
 
                             <button (click)="ChangeTransaction(element._id)" mat-menu-item>
                                 <mat-icon>swap_horiz</mat-icon>
-                                <span>Accept Return Item</span>
+                                <span>    {{'TransactionPage.acceptReturn' | translate }}
+                                </span>
                             </button>
-                            <button (click)="deleteTransaction(element._id)"  mat-menu-item>
+                            <button (click)="deleteTransaction(element._id)" mat-menu-item>
                                 <!-- (click)="deleteTransaction(element._id)" -->
                                 <mat-icon style="color: red;">highlight_off</mat-icon>
-                                <span style="color: red;">Cancel Transactions</span>
+                                <span style="color: red;">    {{'TransactionPage.cancelTransactions' | translate }}
+                                </span>
                             </button>
 
 
@@ -82,13 +93,10 @@
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                
+
             </table>
-            <mat-paginator #paginator [length]="5"
-                                   [pageSize]="5"
-                                   [pageSizeOptions]="[5, 10, 25, 100]">
-                    </mat-paginator>
+            <mat-paginator #paginator [length]="5" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
         </mat-card>
     </div>
-    </div>
-    
+</div>

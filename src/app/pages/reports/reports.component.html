@@ -5,7 +5,10 @@
       <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">dehaze</mat-icon>
     </button>
     <p class="toolbarHeading">
-      Reports </p>
+      {{'Dash.Reports' | translate}} </p>
+
+
+
 
 
     <span class="example-spacer"></span>
@@ -21,36 +24,40 @@
 
 
   <div class="main-div">
-    <mat-card style="max-width: 50%;">
+    <mat-card style="max-width: 450px;width: 100%;">
 
 
-      <h3 class="heading3">Report Generation </h3>
+      <h3 class="heading3">{{'ReportGeneration.ReportGeneration' | translate}}</h3>
       <br>
       <form [formGroup]="reportForm">
         <mat-form-field style='width: 100%;'appearance="outline">
-          <mat-label>Type of Report</mat-label>
+          <mat-label>{{'ReportGeneration.TypeOfReport'  | translate}}
+          </mat-label>
           <mat-select (selectionChange)="doSomething($event)" formControlName="type" matNativeControl required>
-            <mat-option value="sales">Report Sales</mat-option>
-            <mat-option value="item">Items</mat-option>
-            <mat-option value="customer">Customer</mat-option>
+            <mat-option value="sales">{{'ReportGeneration.SalesReport' | translate}} </mat-option>
+            <mat-option value="item">{{'ReportGeneration.ItemsReport' | translate}}</mat-option>
+            <mat-option value="customer">{{'ReportGeneration.CustomerReport' | translate}}</mat-option>
           </mat-select>
         </mat-form-field>
         <br>
-        <mat-form-field appearance="outline">
-          <mat-label>Enter a start date</mat-label>
+        <mat-form-field style='width: 100%;' appearance="outline">
+          <mat-label>{{'ReportGeneration.Start Date'  | translate}}
+          </mat-label>
           <input formControlName="startdate" matInput [matDatepicker]="mydatepicker" [disabled]="disableSelect">
           <mat-datepicker-toggle [for]="mydatepicker" matSuffix></mat-datepicker-toggle>
           <mat-datepicker #mydatepicker></mat-datepicker>
         </mat-form-field>
         <br>
-        <mat-form-field appearance="outline">
-          <mat-label>Enter a end date</mat-label>
+        <mat-form-field style='width: 100%;' appearance="outline">
+          <mat-label>{{'ReportGeneration.End Date'  | translate}}
+          </mat-label>
           <input formControlName="enddate" matInput [matDatepicker]="mydatepicker1" [disabled]="disableSelect">
           <mat-datepicker-toggle [for]="mydatepicker1" matSuffix></mat-datepicker-toggle>
           <mat-datepicker #mydatepicker1></mat-datepicker>
         </mat-form-field>
       </form>
-      <button (click)='submit()' mat-raised-button color="accent" class="bigButton">Download Report</button>
+      <button (click)='submit()' mat-raised-button color="accent" class="bigButton">      {{'ReportGeneration.Download Report'  | translate}}
+      </button>
     </mat-card>
   </div>
 

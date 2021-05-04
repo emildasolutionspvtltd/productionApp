@@ -14,13 +14,16 @@ var licenseKey = require('license-key-gen');
 
 function createWindow() {
     win = new BrowserWindow({
+        show:false,
         webPreferences: {
+
             nodeIntegration: true,
             backgroundThrottling: false
         },
         height: 760,
         width: 1024,
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
+        icon: __dirname + '/favicon.ico',
     })
 
    
@@ -31,7 +34,8 @@ function createWindow() {
 
     win.setMenuBarVisibility(false)
 
-
+win.maximize()
+win.show()
 }
 
 app.on('ready', createWindow)
@@ -178,6 +182,19 @@ ipcMain.handle('searchItem', async (event, data) => {
     return itemDb.find({ name: temp }, function (err, docs) {
     }).limit(20)
 })
+
+
+
+ipcMain.handle('searchItemArabic', async (event, data) => {
+
+console.log("Arabic Search")
+    temp = new RegExp(data)
+    //   console.log( temp)
+    return itemDb.find({ nameInArabic: temp }, function (err, docs) {
+    }).limit(20)
+})
+
+
 
 
 
@@ -478,12 +495,15 @@ if (headerFooter.footer) {
             preview: false,               // Preview in window or print
             width: printer.width,               //  width of content body
             margin: '0 0 0 0',            // margin of content body
-            copies: 1,                    // Number of copies to print
-            printerName: printer.recieptPrinter,        // printerName: string, check with webContent.getPrinters()
+            copies: 1,  
+            silent:true,                  // Number of copies to print
+            printerName:printer.recieptPrinter,        // printerName: string, check with webContent.getPrinters()
             timeOutPerLine: 400,
             pageSize: { height: 301000, width: 71000 }  // page size
         }
         console.log(printer.name)
+console.log("heloo ++++++++")
+console.log(printer)
 
         PosPrinter.print(topArray, options)
             .then(() => { return "sucess" })
@@ -491,6 +511,11 @@ if (headerFooter.footer) {
                 console.error(error);
             });
     })
+
+
+
+
+
 
 
 
@@ -576,6 +601,11 @@ ipcMain.handle('delete', async (event, id) => {
 
 
 
+
+
+
+
+
 //getting info of a product
 ipcMain.handle('getInfo', async (event, id,) => {
     return itemDb.find({ _id: id }, function (err, docs) {
@@ -584,6 +614,10 @@ ipcMain.handle('getInfo', async (event, id,) => {
 
 
 })
+
+
+
+
 
 
 
@@ -688,6 +722,9 @@ ipcMain.handle('getUser', async (event) => {
 })
 
 
+
+
+
 ipcMain.handle('enterUser', async (event, data) => {
     return userDb.insert(data, function (err, Newdata) {
 
@@ -751,7 +788,9 @@ ipcMain.handle('getLogo', async (event, data) => {
 })
 
 
-
+ipcMain.handle('changePassword', async (event, data) => {
+    return userDb.update({ type: 'userinfo' },{$set :{"password":data}}, { upsert: true })
+})
 
 
 

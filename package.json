@@ -24,6 +24,8 @@
   "private": true,
   "dependencies": {
     "@electron-forge/maker-wix": "^6.0.0-beta.54",
+    "@ngx-translate/core": "^13.0.0",
+    "@ngx-translate/http-loader": "^6.0.0",
     "angular-material-icons": "^0.7.1",
     "electron-pos-printer": "^1.2.4",
     "electron-reload": "^1.5.0",
@@ -34,6 +36,7 @@
     "material-design-icons": "^3.0.1",
     "nedb": "^1.8.0",
     "nedb-promises": "^4.1.1",
+    "ng-keyboard-shortcuts": "^10.1.17",
     "ngx-electron": "^2.2.0",
     "node-abi": "^2.21.0",
     "node-hid": "^0.7.9",
