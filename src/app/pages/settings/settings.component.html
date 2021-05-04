@@ -140,7 +140,7 @@
                             <th>Ask for Printing Prefernece
                             </th>
                             <td> 
-                                <mat-button-toggle-group [disabled]='tempCheckoutService.expressMode'  [(ngModel)]="tempCheckoutService.askForPrintOption"  >
+                                <mat-button-toggle-group [disabled]='!tempCheckoutService.expressMode'  [(ngModel)]="tempCheckoutService.askForPrintOption"  >
                                     <mat-button-toggle [value]="true">Always</mat-button-toggle>
                                     <mat-button-toggle [value]="false">Never</mat-button-toggle>
                                   </mat-button-toggle-group>
@@ -149,7 +149,7 @@
                         <tr>
                             <th>Default Printing Mode </th> 
                             <td>
-                                <mat-button-toggle-group [disabled]='tempCheckoutService.askForPrintOption || tempCheckoutService.expressMode ' [(ngModel)]="tempCheckoutService.defaultPrintOption" >
+                                <mat-button-toggle-group [disabled]='tempCheckoutService.askForPrintOption || !tempCheckoutService.expressMode ' [(ngModel)]="tempCheckoutService.defaultPrintOption" >
                                     <mat-button-toggle [value]="true">With Print</mat-button-toggle>
                                     <mat-button-toggle [value]="false">Without Print</mat-button-toggle>
                                   </mat-button-toggle-group>

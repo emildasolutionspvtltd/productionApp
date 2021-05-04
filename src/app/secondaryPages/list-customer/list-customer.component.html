@@ -12,7 +12,7 @@
 <br>
  <mat-form-field appearance="outline">
     <mat-label>{{'customerPopup.Customer' | translate }}</mat-label>
-<input style="text-transform: uppercase;" autofocus='true' 
+<input matInputAutofocus cdkFocusInitial autofocus style="text-transform: uppercase;" 
 (input)='onChangeSearch($event.target.value)'  
  matInput type='text'>
 <mat-icon matSuffix>search</mat-icon>
@@ -34,7 +34,7 @@
         </ng-template>  -->
 
 
-     <mat-list *ngIf='searchTerm != ""  ' role="list">
+     <mat-list *ngIf='searchTerm != ""  ' role="list" >
           <div  *ngFor='let customer of searchResults ' class="div">
             <mat-list-item  (click)="selectCustomer(customer)" > <div mat-line style='text-transform:capitalize'> {{customer.name}} </div> 
                 <div mat-line> {{customer.phNumber}} </div>

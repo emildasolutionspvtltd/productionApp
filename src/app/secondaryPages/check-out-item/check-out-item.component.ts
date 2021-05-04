@@ -39,6 +39,9 @@ export class CheckOutItemComponent implements OnInit {
       this.data.price = this.checkOutForm.value.price
       this.data.quantity = this.checkOutForm.value.quantity
       // this.data.tax = this.checkOutForm.value.tax
+
+      this.bottom.dismiss(this.updateData)
+
     }
     else{
       this.sec.presentSanckBar('Please Fill a Valid input','danger')

@@ -359,6 +359,8 @@ expressCheckoutModeChange(term){
     let dialogRef = this.dialog.open(ListCustomerComponent, {
       maxWidth: '450px',
       width: '90%',
+      maxHeight:'90%',
+     
       panelClass: 'dialogCss'
 
     })
@@ -595,7 +597,15 @@ console.log(this.dataSource)
         description: "Displays List of Customer to add to the checkout",
         command: (e) => this.drawerToggle(),
         preventDefault: true
+      },
+      {
+        key: "enter",
+        label: "Toggle Menu",
+        description: "Displays List of Customer to add to the checkout",
+        command: (e) => this.checkOut(),
+        preventDefault: true
       }
+
     
 
     );

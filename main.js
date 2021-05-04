@@ -389,7 +389,8 @@ ipcMain.handle('increaseInv', async (event, id, inv) => {
 ipcMain.handle('printLabel', async (event, data, printer)=>{
 
     const options = {
-        preview: false,               // Preview in window or print
+        preview: false,
+        silent:true,               // Preview in window or print
         width: printer.width,               //  width of content body
         margin: '0 0 0 0',            // margin of content body
         copies: 1,                    // Number of copies to print
