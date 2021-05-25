@@ -160,7 +160,7 @@ export class AddSingleItemComponent implements OnInit {
     name: new FormControl('', Validators.required),
     nameInArabic: new FormControl('', Validators.required),
     category: new FormControl('', Validators.required),
-    mrp: new FormControl('', Validators.required),
+    supplierPrice: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
     tax: new FormControl('', Validators.required),
     inventory: new FormControl('', Validators.required),

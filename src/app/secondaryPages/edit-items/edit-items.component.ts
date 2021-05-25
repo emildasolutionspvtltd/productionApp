@@ -148,10 +148,13 @@ export class EditItemsComponent implements OnInit {
    ]
    
   constructor(private router :Router,private dialog:MatDialog,private db:DatabaseService, @Inject(SecondaryService) private secService: SecondaryService,@Inject(MAT_DIALOG_DATA) public data: any) {
+  
     this.getAllCategory()
     this.getInfo()
     this.getTax()
-   }
+   
+  
+  }
 
 
 
@@ -166,7 +169,7 @@ export class EditItemsComponent implements OnInit {
    itemname
    itemarabic
    itemcat
-   itemmrp
+   itemsupplierPrice
    itemprice
    itemtax
    iteminven
@@ -179,7 +182,7 @@ export class EditItemsComponent implements OnInit {
     name: new FormControl('', Validators.required),
     nameInArabic: new FormControl('', Validators.required),
     category: new FormControl('', Validators.required),
-    mrp: new FormControl('', Validators.required),
+    supplierPrice: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
     tax: new FormControl('', Validators.required),
     inventory: new FormControl({ value: '', disabled: true }, Validators.required),
@@ -215,7 +218,7 @@ export class EditItemsComponent implements OnInit {
    this.itemname = this.a.name,
    this.itemarabic = this.a.nameInArabic,
    this.itemcat  = this.a.category
-   this.itemmrp = this.a.mrp,
+   this.itemsupplierPrice = this.a.supplierPrice,
    this.itemprice = this.a.price,
    this.itemtax = this.a.tax
    this.iteminven = this.a.inventory

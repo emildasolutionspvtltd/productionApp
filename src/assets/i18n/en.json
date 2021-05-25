@@ -17,9 +17,9 @@
 		"ItemId": "Item Id/Barcode",
 		"Name": "Item Name",
 		"NameInArabic": "Item Name in Arabic",
-		"RetailPrice": "Maximum Retail Price",
+		"RetailPrice": "Supplier Price",
 		"Save": "Save",
-		"SellingPrice": "",
+		"SellingPrice": "Selling Price",
 		"Tax": "Tax",
 		"Unit": "Unit"
 	},

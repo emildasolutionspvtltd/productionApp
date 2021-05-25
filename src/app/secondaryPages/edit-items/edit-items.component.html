@@ -30,17 +30,23 @@
                
         </mat-select>
     </mat-form-field>
-    <mat-form-field id="rightMargin"  appearance="outline">
+
+
+
+    <mat-form-field   id="rightMargin"   appearance="outline">
         <mat-label>{{'AddSingleItemPopup.RetailPrice' | translate}} </mat-label>
-        <input formControlName='mrp' placeholder="{{itemmrp}}" autofocus matInput type='number' [(ngModel)]="itemmrp">
+        <input formControlName='supplierPrice' placeholder="{{itemsupplierPrice}}" autofocus matInput type='number' [(ngModel)]="itemsupplierPrice">
 
     </mat-form-field>
+
+
     <mat-form-field id="leftMargin" appearance="outline">
         <mat-label>{{'AddSingleItemPopup.SellingPrice' | translate}}</mat-label>
         <input formControlName='price'placeholder="{{itemprice}}" autofocus matInput type='number' placeholder="{{itemprice}}"[(ngModel)]="itemprice">
 
     </mat-form-field>
 
+   
     <mat-form-field appearance="outline">
          <mat-label>{{'AddSingleItemPopup.Tax' | translate}}</mat-label>
          <mat-select formControlName='tax' [(ngModel)]="itemtax">
