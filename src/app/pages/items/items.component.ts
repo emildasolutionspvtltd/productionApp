@@ -73,7 +73,11 @@ this.getCountCategory()
   async routeToBulk(){
  
 
-    const dialogRef =  await this.dialog.open(AddItemsBulkComponent)
+    const dialogRef =  await this.dialog.open(AddItemsBulkComponent,{
+      maxWidth:'450px',
+      width:'90%',
+      panelClass:'dialogCss'
+    })
 
     dialogRef.afterClosed().subscribe(result => {
       this.getAllCategory()

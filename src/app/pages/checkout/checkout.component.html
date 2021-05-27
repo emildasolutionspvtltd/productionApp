@@ -10,7 +10,7 @@
       {{'Dash.Sales' | translate}} - {{userInfo?.shopName}} </p>
 
 
-      <span class="example-spacer"></span>
+    <span class="example-spacer"></span>
 
     <!-- 
     <mat-form-field  > -->
@@ -21,8 +21,8 @@
 
 
 
-      
-      <!-- <ng-autocomplete [data]="data" [searchKeyword]="keyword" (selected)='selectEvent($event)'
+
+    <!-- <ng-autocomplete [data]="data" [searchKeyword]="keyword" (selected)='selectEvent($event)'
         (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
         [notFoundTemplate]="notFoundTemplate">
       </ng-autocomplete>
@@ -39,11 +39,11 @@
 
 
 
-      <button   (click)="searchPopup()" mat-icon-button>
+      <button (click)="searchPopup()" mat-icon-button>
         <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">search</mat-icon>
       </button>
-      
-      <button  [matMenuTriggerFor]="menu" mat-icon-button>
+
+      <button [matMenuTriggerFor]="menu" mat-icon-button>
         <mat-icon class="" aria-hidden="false" aria-label="Example user verified icon">more_vert</mat-icon>
       </button>
 
@@ -51,30 +51,33 @@
 
 
 
-        <button (click)="support()"   mat-menu-item >
-          <mat-icon   aria-hidden="false" aria-label="Example user verified icon">
+        <button (click)="support()" mat-menu-item>
+          <mat-icon aria-hidden="false" aria-label="Example user verified icon">
             info
-       </mat-icon> 
-        {{'CheckoutPage.Support' | translate}} 
-         </button>
-    
-     <button (click)="expressCheckoutModeChange(false)" *ngIf='checkoutSettings.expressMode'  mat-menu-item >
-      <mat-icon   aria-hidden="false" aria-label="Example user verified icon">
-        flash_off
-   </mat-icon> 
-  {{'CheckoutPage.dExpressCheckout' | translate}}
-     </button>
+          </mat-icon>
+          {{'CheckoutPage.Support' | translate}}
+        </button>
+
+        <button (click)="expressCheckoutModeChange(false)" *ngIf='checkoutSettings.expressMode' mat-menu-item>
+          <mat-icon aria-hidden="false" aria-label="Example user verified icon">
+            flash_off
+          </mat-icon>
+          {{'CheckoutPage.dExpressCheckout' | translate}}
+        </button>
 
 
-     <button (click)="expressCheckoutModeChange(true)"  *ngIf='!checkoutSettings.expressMode'   mat-menu-item >
-      <mat-icon   aria-hidden="false" aria-label="Example user verified icon">
-        flash_on
-   </mat-icon> 
-  
-{{'CheckoutPage.eExpressCheckout' | translate}}  </button>
+        <button (click)="expressCheckoutModeChange(true)" *ngIf='!checkoutSettings.expressMode' mat-menu-item>
+          <mat-icon aria-hidden="false" aria-label="Example user verified icon">
+            flash_on
+          </mat-icon>
 
-        <button  style="color: red;" (click)='reset()' mat-menu-item>
-          <mat-icon style="color: red;" aria-hidden="false" aria-label="Example user verified icon">delete</mat-icon>    {{'CheckoutPage.clearEntries'| translate}}   </button>
+          {{'CheckoutPage.eExpressCheckout' | translate}}
+        </button>
+
+        <button style="color: red;" (click)='reset()' mat-menu-item>
+          <mat-icon style="color: red;" aria-hidden="false" aria-label="Example user verified icon">delete</mat-icon>
+          {{'CheckoutPage.clearEntries'| translate}}
+        </button>
       </mat-menu>
     </div>
   </mat-toolbar>
@@ -163,13 +166,14 @@
 
       <br>
 
-     <div *ngIf='bag.length == 0' class="imageHolder">
-       <br>
-       <br>
-       <img src="assets/emptyCart.svg"  style='width: 30%;' alt="">
-       <br>
-       <p style="opacity: 0.6;">{{'CheckoutPage.EmptyCart1' | translate}} <br>{{'CheckoutPage.EmptyCart2' | translate}}</p>
-     </div>
+      <div *ngIf='bag.length == 0' class="imageHolder">
+        <br>
+        <br>
+        <img src="assets/emptyCart.svg" style='width: 30%;' alt="">
+        <br>
+        <p style="opacity: 0.6;">{{'CheckoutPage.EmptyCart1' | translate}} <br>{{'CheckoutPage.EmptyCart2' | translate}}
+        </p>
+      </div>
 
     </mat-card>
 
@@ -179,71 +183,82 @@
         <p class='totalValue'>{{getGrantTotal() | currency : '':''}} <span class="currency">SAR</span> </p>
       </mat-card>
 
-<mat-card fxFlex='100' fxLayout='column' fxLayoutAlign='space-between' > 
-      <div fxFlexAlign="none" class="paymentMode">
+      <mat-card fxFlex='100' fxLayout='column' fxLayoutAlign='space-between'>
+        <div fxFlexAlign="none" class="paymentMode">
 
-        <div class="headingValues">
-          {{'CheckoutPage.PaymentMode' | translate }}
-        </div>
-        
-        <div style='padding-bottom: 10px;' fxLayout='row' fxLayoutGap='10px' class="paymentContainer">
+          <div class="headingValues">
+            {{'CheckoutPage.PaymentMode' | translate }}
+          </div>
+
+          <div style='padding-bottom: 10px;' fxLayout='row' fxLayoutGap='10px' class="paymentContainer">
 
 
-          <!-- <div (click)="changeModePayment('cash')"
+            <!-- <div (click)="changeModePayment('cash')"
             [ngClass]="selectedPaymentMode == 'cash' ? 'selectedButtonOfPaymentMode': ''" matRipple fxFlex='50'
             fxLayout='column' fxLayoutAlign='center center' class="buttonOfPaymentMode">
             
           </div> -->
-          <mat-selection-list  #list [(ngModel)]="selectedPaymentMode" (ngModelChange)="changeModePayment($event)" style=" display: flex; flex-wrap: wrap;width: 100%;" [multiple]="false">
-          <mat-list-option value="Cash">
-          <mat-icon mat-list-icon  >monetization_on</mat-icon>
-          <!-- (click)="changeModePayment(pay.selectedOptions.selected[0]?.value)"  -->
-         <div mat-line >Cash</div> 
-        </mat-list-option>
-        <mat-list-option 
-              value="Card" >
-              <mat-icon mat-list-icon  >credit_card</mat-icon>
+            <mat-selection-list #list [(ngModel)]="selectedPaymentMode" (ngModelChange)="changeModePayment($event)"
+              style=" display: flex; flex-wrap: wrap;width: 100%;" [multiple]="false">
+              <mat-list-option value="Cash">
+                <mat-icon mat-list-icon>monetization_on</mat-icon>
+                <!-- (click)="changeModePayment(pay.selectedOptions.selected[0]?.value)"  -->
+                <div mat-line>Cash</div>
+              </mat-list-option>
+              <mat-list-option value="Card">
+                <mat-icon mat-list-icon>credit_card</mat-icon>
 
-              <!-- (click)="changeModePayment(pay.selectedOptions.selected[0]?.value)"  -->
-              <div mat-line>Card</div> 
-            </mat-list-option>
-            <mat-list-option   *ngFor='let pay of typesOfPayment'
-              value="{{pay.paymentName}}" >
-              <mat-icon mat-list-icon  >bookmark_on</mat-icon>
+                <!-- (click)="changeModePayment(pay.selectedOptions.selected[0]?.value)"  -->
+                <div mat-line>Card</div>
+              </mat-list-option>
+              <mat-list-option *ngFor='let pay of typesOfPayment' value="{{pay.paymentName}}">
+                <mat-icon mat-list-icon>bookmark_on</mat-icon>
 
-              <!-- (click)="changeModePayment(pay.selectedOptions.selected[0]?.value)"  -->
-              <div mat-line>{{pay.paymentName}}</div> 
-            </mat-list-option>
-          </mat-selection-list>
+                <!-- (click)="changeModePayment(pay.selectedOptions.selected[0]?.value)"  -->
+                <div mat-line>{{pay.paymentName}}</div>
+              </mat-list-option>
+            </mat-selection-list>
+          </div>
+
+          <div *ngIf="selectedPaymentMode[0] == 'Cash'" class="cashMode">
+            <mat-form-field style="width: 95%;
+            margin: 0px 5px;" appearance="outline">
+              <mat-label>Cash Collected</mat-label>
+              <input [(ngModel)]="cashCollected" (ngModelChange)="changePaymentCollected($event)" matInput type="number" placeholder="0.00 SAR">
+            
+              <mat-hint>Balance <b>{{getTotal() - cashCollected | currency :'':''}}</b> </mat-hint>
+            </mat-form-field>
+          </div>
         </div>
-      </div>
 
 
 
 
-      <div class="subValuesContainer">
-        <div class="subValuesHolder" fxLayout="row" fxLayoutAlign="space-between center">
-          <p class='subValuesField'>{{'CheckoutPage.Discount' | translate}} </p>
-          <p *ngIf='discountType== "percentage" 'class='subValues'>{{  getdiscount() | currency:'SAR'}} <span style="font: size 7px;opacity: 60%;" *ngIf='discountType == "percentage"'> {{finalDiscount}}%</span> </p>
-          <p *ngIf='discountType == "sar" 'class='subValues'>{{  getdiscount() | currency:'SAR'}}</p>
-          <p *ngIf='discountType == "" 'class='subValues'>0</p>
-        
+        <div class="subValuesContainer">
+          <div class="subValuesHolder" fxLayout="row" fxLayoutAlign="space-between center">
+            <p class='subValuesField'>{{'CheckoutPage.Discount' | translate}} </p>
+            <p *ngIf='discountType== "percentage" ' class='subValues'>{{ getdiscount() | currency:'SAR'}} <span
+                style="font: size 7px;opacity: 60%;" *ngIf='discountType == "percentage"'> {{finalDiscount}}%</span>
+            </p>
+            <p *ngIf='discountType == "sar" ' class='subValues'>{{ getdiscount() | currency:'SAR'}}</p>
+            <p *ngIf='discountType == "" ' class='subValues'>0</p>
+
+          </div>
+          <mat-divider></mat-divider>
+          <div class="subValuesHolder" fxLayout="row" fxLayoutAlign="space-between center">
+            <p class='subValuesField'>{{'CheckoutPage.Tax' | translate}} </p>
+            <p class='subValues'>{{
+              getTax() | currency : 'SAR' }}</p>
+          </div>
+          <mat-divider></mat-divider>
+          <div style="padding-bottom:0px" class="subValuesHolder" fxLayout="row" fxLayoutAlign="space-between center">
+            <p class='subValuesField'>{{'CheckoutPage.SubTotal' | translate}} </p>
+            <p class='subValues'>{{ getTotal() | currency : 'SAR'}}</p>
+          </div>
         </div>
-        <mat-divider></mat-divider>
-        <div class="subValuesHolder" fxLayout="row" fxLayoutAlign="space-between center">
-          <p class='subValuesField'>{{'CheckoutPage.Tax' | translate}} </p>
-          <p class='subValues'>{{
-            getTax()  | currency : 'SAR' }}</p>
-        </div>
-        <mat-divider></mat-divider>
-        <div style="padding-bottom:0px" class="subValuesHolder" fxLayout="row" fxLayoutAlign="space-between center">
-          <p class='subValuesField'>{{'CheckoutPage.SubTotal' | translate}} </p>
-          <p class='subValues'>{{ getTotal() | currency : 'SAR'}}</p>
-        </div>
-      </div>
 
-    </mat-card>
-  </div>
+      </mat-card>
+    </div>
 
   </div>
 
@@ -254,8 +269,10 @@
         <mat-label>{{'CheckoutPage.Barcode' | translate}}</mat-label>
         <input cdkFocusInitial id="codeInput" [formControl]='searchBar' matKeyboard='oh' autofocus matInput>
       </mat-form-field>
-      <button (click)='addCustomer()' color="{{customerData? 'primary':'' }}" style="text-transform: capitalize;" fxFlex='25' class='buttonSeconday' mat-raised-button>
-        <mat-icon>people</mat-icon>&nbsp; {{ customerData ? customerData.name : ('CheckoutPage.AddCustomer' | translate) }}
+      <button (click)='addCustomer()' color="{{customerData? 'primary':'' }}" style="text-transform: capitalize;"
+        fxFlex='25' class='buttonSeconday' mat-raised-button>
+        <mat-icon>people</mat-icon>&nbsp; {{ customerData ? customerData.name : ('CheckoutPage.AddCustomer' | translate)
+        }}
       </button>
       <button (click)='addDiscount()' fxFlex='25' class='buttonSeconday' mat-raised-button>
         <mat-icon>local_offer</mat-icon>&nbsp; {{'CheckoutPage.AddDiscount' | translate}}
@@ -263,7 +280,8 @@
 
     </div>
     <div fxFlex='25' class="primaryButton">
-      <button (click)='checkOut()' color="accent" fxFlex='100' class='primarySeconday' mat-raised-button>{{'CheckoutPage.Checkout'  | translate}}</button>
+      <button (click)='checkOut()' color="accent" fxFlex='100' class='primarySeconday'
+        mat-raised-button>{{'CheckoutPage.Checkout' | translate}}</button>
 
     </div>
 

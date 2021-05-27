@@ -3,7 +3,7 @@ let win;
 let fs = require('fs')
 
 
-
+const excelToJson = require('convert-excel-to-json');
 const { fse } = require('fs-extra');
 
 
@@ -14,7 +14,7 @@ var licenseKey = require('license-key-gen');
 
 function createWindow() {
     win = new BrowserWindow({
-        show:false,
+        show: false,
         webPreferences: {
 
             nodeIntegration: true,
@@ -26,7 +26,7 @@ function createWindow() {
         icon: __dirname + '/favicon.ico',
     })
 
-   
+
     win.loadURL(`file://${__dirname}/dist/index.html`)
     win.on('closed', function () {
         win = null;
@@ -34,8 +34,8 @@ function createWindow() {
 
     win.setMenuBarVisibility(false)
 
-win.maximize()
-win.show()
+    win.maximize()
+    win.show()
 }
 
 app.on('ready', createWindow)
@@ -96,9 +96,9 @@ ipcMain.handle('getAllCategory', async (event) => {
 // function to insert a single item 
 ipcMain.handle('insertSingleItem', async (event, data) => {
 
-    
+
     data.name = data.name.toLowerCase()
-    data.type='items'
+    data.type = 'items'
     return itemDb.insert(data, function (err, Newdata) {
 
     })
@@ -187,7 +187,7 @@ ipcMain.handle('searchItem', async (event, data) => {
 
 ipcMain.handle('searchItemArabic', async (event, data) => {
 
-console.log("Arabic Search")
+    console.log("Arabic Search")
     temp = new RegExp(data)
     //   console.log( temp)
     return itemDb.find({ nameInArabic: temp }, function (err, docs) {
@@ -243,7 +243,7 @@ ipcMain.handle('searchcust', async (event, data) => {
 
 ipcMain.handle('searchcustnumber', async (event, data) => {
     // console.log(data)
-    
+
     temp = new RegExp(data)
     //   console.log( temp)
     return customerDb.find({ phNumber: temp }, function (err, docs) {
@@ -386,11 +386,11 @@ ipcMain.handle('increaseInv', async (event, id, inv) => {
 })
 
 
-ipcMain.handle('printLabel', async (event, data, printer)=>{
+ipcMain.handle('printLabel', async (event, data, printer) => {
 
     const options = {
         preview: false,
-        silent:true,               // Preview in window or print
+        silent: true,               // Preview in window or print
         width: printer.width,               //  width of content body
         margin: '0 0 0 0',            // margin of content body
         copies: 1,                    // Number of copies to print
@@ -406,8 +406,8 @@ ipcMain.handle('printLabel', async (event, data, printer)=>{
             console.error(error);
         });
 
-  
-}  )
+
+})
 
 
 
@@ -439,48 +439,44 @@ ipcMain.handle('print', async (event, data, printer) => {
                 css: { "font-weight": "700", "font-size": "18px" }
             })
         }
-            if (headerFooter.subHeader) {
-                topArray.push({
-                    type: 'text',                                       // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-                    value: headerFooter.subHeader,
-                    style: `text-align:center;`,
-                    css: { "font-weight": "700", "font-size": "10px" }
-                })
-            }
+        if (headerFooter.subHeader) {
+            topArray.push({
+                type: 'text',                                       // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+                value: headerFooter.subHeader,
+                style: `text-align:center;`,
+                css: { "font-weight": "700", "font-size": "10px" }
+            })
+        }
 
 
-            //adding Data to table
-   topArray =topArray.concat(data)
-
-
-
-
-if (headerFooter.subFooter) {
-    topArray.push({
-        type: 'text',                                       // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-        value: headerFooter.subFooter,
-        style: `text-align:center;`,
-        css: { "font-weight": "700", "font-size": "10px" }
-    })
-}
-
-if (headerFooter.footer) {
-    topArray.push({
-        type: 'text',                                       // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
-        value: headerFooter.footer,
-        style: `text-align:center;`,
-        css: { "font-weight": "700", "font-size": "10px" }
-    })
-}
+        //adding Data to table
+        topArray = topArray.concat(data)
 
 
 
 
+        if (headerFooter.subFooter) {
+            topArray.push({
+                type: 'text',                                       // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+                value: headerFooter.subFooter,
+                style: `text-align:center;`,
+                css: { "font-weight": "700", "font-size": "10px" }
+            })
+        }
+
+        if (headerFooter.footer) {
+            topArray.push({
+                type: 'text',                                       // 'text' | 'barCode' | 'qrCode' | 'image' | 'table
+                value: headerFooter.footer,
+                style: `text-align:center;`,
+                css: { "font-weight": "700", "font-size": "10px" }
+            })
         }
 
 
 
 
+    }
 
 
 
@@ -489,29 +485,33 @@ if (headerFooter.footer) {
 
 
 
-        console.log(topArray)
-        // let printer = printersInfo.filter(printer => printer.isDefault === true)[0];
 
-        const options = {
-            preview: false,               // Preview in window or print
-            width: printer.width,               //  width of content body
-            margin: '0 0 0 0',            // margin of content body
-            copies: 1,  
-            silent:true,                  // Number of copies to print
-            printerName:printer.recieptPrinter,        // printerName: string, check with webContent.getPrinters()
-            timeOutPerLine: 400,
-            pageSize: { height: 301000, width: 71000 }  // page size
-        }
-        console.log(printer.name)
-console.log("heloo ++++++++")
-console.log(printer)
 
-        PosPrinter.print(topArray, options)
-            .then(() => { return "sucess" })
-            .catch((error) => {
-                console.error(error);
-            });
-    })
+
+
+    console.log(topArray)
+    // let printer = printersInfo.filter(printer => printer.isDefault === true)[0];
+
+    const options = {
+        preview: false,               // Preview in window or print
+        width: printer.width,               //  width of content body
+        margin: '0 0 0 0',            // margin of content body
+        copies: 1,
+        silent: true,                  // Number of copies to print
+        printerName: printer.recieptPrinter,        // printerName: string, check with webContent.getPrinters()
+        timeOutPerLine: 400,
+        pageSize: { height: 301000, width: 71000 }  // page size
+    }
+    console.log(printer.name)
+    console.log("heloo ++++++++")
+    console.log(printer)
+
+    PosPrinter.print(topArray, options)
+        .then(() => { return "sucess" })
+        .catch((error) => {
+            console.error(error);
+        });
+})
 
 
 
@@ -790,8 +790,117 @@ ipcMain.handle('getLogo', async (event, data) => {
 
 
 ipcMain.handle('changePassword', async (event, data) => {
-    return userDb.update({ type: 'userinfo' },{$set :{"password":data}}, { upsert: true })
+    return userDb.update({ type: 'userinfo' }, { $set: { "password": data } }, { upsert: true })
 })
+
+
+
+ipcMain.handle('bulkItemAdding', async (event, data) => {
+
+    //open dialog
+
+    dialog.showOpenDialog({
+        properties: ['openFile'],
+        filters: [{ name: 'Images', extensions: ['.xlsx'] }]
+
+
+    }).then(async paths => {
+        console.log(paths)
+        if (paths.canceled == false) {
+
+
+
+            console.log(paths)
+            const result = await excelToJson({
+                sourceFile: paths.filePaths[0],
+                header: {
+                    rows: 1,
+                },
+                sheets: ['sheet1'],
+
+                columnToKey: {
+                    A: 'name',
+                    B: 'nameInArabic',
+                    C: 'category',
+                    D: 'barcode',
+                    E: 'supplierPrice',
+                    F: 'price',
+                    G: 'inventory',
+                    H: 'unit',
+                    I: 'tax'
+                }
+
+            })
+
+            productsArray = result.sheet1
+            // console.log(productsArray)
+            addingProctucts = await productsArray.forEach(x => {
+               
+               //checkingCategory
+
+               checkCategoryAvailabel(x.category)
+               
+               
+               
+                //addProduct
+
+                
+                x.name = x.name.toLowerCase()
+                x.type = 'items'
+                return itemDb.insert(x, function (err, Newdata) {
+
+                })
+
+
+
+
+            })
+
+
+
+
+        }
+    })
+
+
+
+
+
+    
+    //decode the file
+
+
+    // Insert the file 
+
+
+
+    //check the category
+
+    //tax
+
+
+
+
+
+})
+
+
+function checkCategoryAvailabel(data){
+// console.log(data)
+
+    //checkInDatabase
+    categoryDb.findOne({categoryName:data},function (err,doc){
+
+    }).then(x=>{
+        console.log(x)
+
+        if(x == null){
+            categoryDb.insert({type : 'category',categoryName:data})
+        }
+    })
+
+    //if not Add 
+}
 
 
 

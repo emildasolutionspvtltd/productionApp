@@ -267,6 +267,13 @@ updatePay(id,data){
       return this.electron.ipcRenderer.invoke('receiptLogo')
     }
 
+
+
+    bulkItemAdding(){
+      return this.electron.ipcRenderer.invoke('bulkItemAdding')
+
+    }
+
     getLogo(){
       return this.electron.ipcRenderer.invoke('getLogo')
     }

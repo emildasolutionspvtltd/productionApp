@@ -29,7 +29,7 @@ const routes: Routes = [
   
   path: '',
   component: DashboardSideMenuComponent,
-//  canActivate: [AuthGuard] ,
+ canActivate: [AuthGuard] ,
   children: [ {
     //Checkout
     path:'',

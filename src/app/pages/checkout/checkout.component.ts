@@ -42,6 +42,7 @@ export class CheckoutComponent implements AfterViewInit {
 
 
   selectedPaymentMode = ["Cash"]
+cashCollected:number 
 
 
   itemCount
@@ -129,7 +130,10 @@ export class CheckoutComponent implements AfterViewInit {
   }
 
 
+  changePaymentCollected(data){
+    
 
+  }
 
 
 

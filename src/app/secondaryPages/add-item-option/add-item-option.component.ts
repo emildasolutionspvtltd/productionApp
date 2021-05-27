@@ -33,14 +33,22 @@ export class AddItemOptionComponent implements OnInit {
   async routeToBulk(){
     await this.bottom.dismiss()
 
-    await this.dialog.open(AddItemsBulkComponent)
+    await this.dialog.open(AddItemsBulkComponent,{
+      maxWidth:'450px',
+      width:'90%',
+      panelClass:'dialogCss'
+    })
 
 
   }
   async routeToCategory(){
     await this.bottom.dismiss()
 
-    await this.dialog.open(AddItemsCategoryComponent)
+    await this.dialog.open(AddItemsCategoryComponent,{
+      maxWidth:'450px',
+      width:'90%',
+      panelClass:'dialogCss'
+    })
 
   }
 
