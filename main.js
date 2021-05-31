@@ -801,7 +801,7 @@ ipcMain.handle('bulkItemAdding', async (event, data) => {
 
     dialog.showOpenDialog({
         properties: ['openFile'],
-        filters: [{ name: 'Images', extensions: ['.xlsx'] }]
+        filters: [{ name: 'Images', extensions: ['xlsx','xls'] }]
 
 
     }).then(async paths => {
